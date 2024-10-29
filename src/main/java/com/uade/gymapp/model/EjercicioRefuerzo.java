@@ -3,7 +3,7 @@ package com.uade.gymapp.model;
 public class EjercicioRefuerzo extends Ejercicio{
     @Override
     public void modificarRepeticiones(int nuevasRepeticiones) {
-        
+
     }
 
     @Override
