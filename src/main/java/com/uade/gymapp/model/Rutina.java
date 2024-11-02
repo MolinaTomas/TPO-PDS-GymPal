@@ -27,6 +27,6 @@ public class Rutina {
     }
 
     public void eliminarObservador(Trofeo observador) {
-        
+
     }
 }
