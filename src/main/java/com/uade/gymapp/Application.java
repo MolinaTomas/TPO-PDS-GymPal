@@ -1,4 +1,4 @@
-package src.main.java.com.uade.gymapp;
+package com.uade.gymapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,9 @@
 package com.uade.gymapp.model;
 
-public class TonificarCuerpo extends Objetivo{
+import javax.persistence.Entity;
+
+@Entity
+public class TonificarCuerpo extends Objetivo {
     @Override
     public Rutina generarRutina() {
         return null;
@@ -8,6 +11,5 @@ public class TonificarCuerpo extends Objetivo{
 
     @Override
     public void calcularProgreso() {
-
     }
 }

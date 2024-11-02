@@ -13,6 +13,10 @@ public class Medicion implements IMedicion {
     private IMedicion medidor;
     private List<Trofeo> observadores;
 
+    public Medicion(double peso) {
+        this.peso = peso;
+    }
+
     public void suscribirObservador(Trofeo observador) {
         this.observadores.add(observador);
     }
@@ -24,5 +28,11 @@ public class Medicion implements IMedicion {
     @Override
     public void registrarMedicion() {
 
+    }
+
+    @Override
+    public void registrarMedicionPeso(double nuevoPeso) {
+        this.peso = nuevoPeso;
+        // TODO ver si falta logica adicional
     }
 }

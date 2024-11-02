@@ -1,6 +1,9 @@
 package com.uade.gymapp.model;
 
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
 public abstract class Ejercicio {
     private String nombre;
     private String descripcion;
@@ -14,7 +17,15 @@ public abstract class Ejercicio {
 
     }
 
-    public abstract void modificarRepeticiones(int nuevasRepeticiones);
-    public abstract void modificarPeso(float peso);
-    public abstract void modificarSeries(int series);
+    public void modificarRepeticiones(int nuevasRepeticiones) {
+        this.repeticiones = nuevasRepeticiones;
+    }
+
+    public void modificarPeso(float peso) {
+        this.peso = peso;
+    }
+
+    public void modificarSeries(int series) {
+        this.series = series;
+    }
 }
