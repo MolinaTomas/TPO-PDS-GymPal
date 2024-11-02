@@ -15,13 +15,13 @@ public class Socio {
     private Objetivo objetivo;
     private EstadoEntrenamiento estadoEntrenamiento;
     private List<Trofeo> trofeos;
-    private Progreso progresoHistorial; // TODO revisar esta clase, no se si es correcto
+    // private List<EjercicioRealizado> progresoHistorial;
     private List<Medicion> mediciones;
 
     // Constructor
     public Socio(int idSocio, String name, String apellido, String sexo, int edad, int altura,
             String mail, Objetivo objetivo, EstadoEntrenamiento estadoEntrenamiento,
-            List<Trofeo> trofeos, Progreso progresoHistorial, List<Medicion> mediciones) {
+            List<Trofeo> trofeos, List<Medicion> mediciones) {
         this.idSocio = idSocio;
         this.name = name;
         this.apellido = apellido;
@@ -32,7 +32,6 @@ public class Socio {
         this.objetivo = objetivo;
         this.estadoEntrenamiento = estadoEntrenamiento;
         this.trofeos = trofeos;
-        this.progresoHistorial = progresoHistorial;
         this.mediciones = mediciones;
     }
 
@@ -115,14 +114,6 @@ public class Socio {
 
     public void setTrofeos(List<Trofeo> trofeos) {
         this.trofeos = trofeos;
-    }
-
-    public Progreso getProgresoHistorial() {
-        return progresoHistorial;
-    }
-
-    public void setProgresoHistorial(Progreso progresoHistorial) {
-        this.progresoHistorial = progresoHistorial;
     }
 
     public List<Medicion> getMediciones() {

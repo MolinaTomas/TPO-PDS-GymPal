@@ -1,12 +1,18 @@
 package com.uade.gymapp.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Entrenamiento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int duracion;
     @OneToMany
     private List<Ejercicio> ejercicios;
@@ -20,6 +26,14 @@ public class Entrenamiento {
     }
 
     // Getters y Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getDuracion() {
         return duracion;
     }
