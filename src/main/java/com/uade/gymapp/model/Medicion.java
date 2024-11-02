@@ -35,4 +35,54 @@ public class Medicion implements IMedicion {
         this.peso = nuevoPeso;
         // TODO ver si falta logica adicional
     }
+
+    // Getters y Setters
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public double getGrasaCorporal() {
+        return grasaCorporal;
+    }
+
+    public void setGrasaCorporal(double grasaCorporal) {
+        this.grasaCorporal = grasaCorporal;
+    }
+
+    public double getMasaMuscular() {
+        return masaMuscular;
+    }
+
+    public void setMasaMuscular(double masaMuscular) {
+        this.masaMuscular = masaMuscular;
+    }
+
+    public IMedicion getMedidor() {
+        return medidor;
+    }
+
+    public void setMedidor(IMedicion medidor) {
+        this.medidor = medidor;
+    }
+
+    public List<Trofeo> getObservadores() {
+        return observadores;
+    }
+
+    public void setObservadores(List<Trofeo> observadores) {
+        this.observadores = observadores;
+    }
 }

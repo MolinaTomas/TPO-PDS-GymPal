@@ -1,11 +1,17 @@
 package com.uade.gymapp.model;
 
-import com.uade.gymapp.model.Intefaces.EstadoEntrenamiento;
-
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Socio {
-    private int idSocio;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idSocio;
     private String name;
     private String apellido;
     private String sexo;
@@ -13,15 +19,13 @@ public class Socio {
     private int altura;
     private String mail;
     private Objetivo objetivo;
-    private EstadoEntrenamiento estadoEntrenamiento;
     private List<Trofeo> trofeos;
     // private List<EjercicioRealizado> progresoHistorial;
     private List<Medicion> mediciones;
 
     // Constructor
-    public Socio(int idSocio, String name, String apellido, String sexo, int edad, int altura,
-            String mail, Objetivo objetivo, EstadoEntrenamiento estadoEntrenamiento,
-            List<Trofeo> trofeos, List<Medicion> mediciones) {
+    public Socio(Long idSocio, String name, String apellido, String sexo, int edad, int altura,
+            String mail, Objetivo objetivo, List<Trofeo> trofeos, List<Medicion> mediciones) {
         this.idSocio = idSocio;
         this.name = name;
         this.apellido = apellido;
@@ -30,17 +34,16 @@ public class Socio {
         this.altura = altura;
         this.mail = mail;
         this.objetivo = objetivo;
-        this.estadoEntrenamiento = estadoEntrenamiento;
         this.trofeos = trofeos;
         this.mediciones = mediciones;
     }
 
     // Getters y Setters
-    public int getIdSocio() {
+    public Long getIdSocio() {
         return idSocio;
     }
 
-    public void setIdSocio(int idSocio) {
+    public void setIdSocio(Long idSocio) {
         this.idSocio = idSocio;
     }
 
@@ -100,14 +103,6 @@ public class Socio {
         this.objetivo = objetivo;
     }
 
-    public EstadoEntrenamiento getEstadoEntrenamiento() {
-        return estadoEntrenamiento;
-    }
-
-    public void setEstadoEntrenamiento(EstadoEntrenamiento estadoEntrenamiento) {
-        this.estadoEntrenamiento = estadoEntrenamiento;
-    }
-
     public List<Trofeo> getTrofeos() {
         return trofeos;
     }
@@ -122,13 +117,5 @@ public class Socio {
 
     public void setMediciones(List<Medicion> mediciones) {
         this.mediciones = mediciones;
-    }
-
-    public void comenzarEntrenamiento() {
-
-    }
-
-    public void finalizarEntrenamiento() {
-
     }
 }

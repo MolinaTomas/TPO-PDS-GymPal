@@ -1,5 +1,7 @@
 package com.uade.gymapp.model;
 
+import com.uade.gymapp.model.Intefaces.EstadoEntrenamiento;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -17,12 +19,18 @@ public class Entrenamiento {
     @OneToMany
     private List<Ejercicio> ejercicios;
     private Date fecha;
+    private EstadoEntrenamiento estadoEntrenamiento;
 
     // Constructor
     public Entrenamiento(int duracion, List<Ejercicio> ejercicios, Date fecha) {
         this.duracion = duracion;
         this.ejercicios = ejercicios;
         this.fecha = fecha;
+        this.estadoEntrenamiento = new EntrenamientoPreparado();
+    }
+
+    public Entrenamiento() {
+
     }
 
     // Getters y Setters
@@ -46,7 +54,7 @@ public class Entrenamiento {
         return ejercicios;
     }
 
-    public void setEjercicios(List<Ejercicio> ejercicios) {
+    public void addEjercicio(Ejercicio dfd) {
         this.ejercicios = ejercicios;
     }
 
@@ -57,4 +65,14 @@ public class Entrenamiento {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public EstadoEntrenamiento getEstadoEntrenamiento() {
+        return estadoEntrenamiento;
+    }
+
+    public void setEstadoEntrenamiento(EstadoEntrenamiento estadoEntrenamiento) {
+        this.estadoEntrenamiento = estadoEntrenamiento;
+    }
+
+
 }
