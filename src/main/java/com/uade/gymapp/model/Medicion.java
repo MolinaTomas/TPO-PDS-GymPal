@@ -1,4 +1,28 @@
 package com.uade.gymapp.model;
 
-public class Medicion {
+import com.uade.gymapp.model.Intefaces.IMedicion;
+
+import java.util.Date;
+import java.util.List;
+
+public class Medicion implements IMedicion {
+    private Date fecha;
+    private double peso;
+    private double grasaCorporal;
+    private double masaMuscular;
+    private IMedicion medidor;
+    private List<Trofeo> observadores;
+
+    public void suscribirObservador(Trofeo observador) {
+        this.observadores.add(observador);
+    }
+
+    public void eliminarObservador(Trofeo observador) {
+        this.observadores.remove(observador);
+    }
+
+    @Override
+    public void registrarMedicion() {
+
+    }
 }
