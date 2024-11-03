@@ -1,12 +1,15 @@
 package com.uade.gymapp.model;
 
 import com.uade.gymapp.model.Intefaces.EstadoEntrenamiento;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +24,8 @@ public class Entrenamiento {
     private List<Ejercicio> ejercicios;
     private Date fecha;
     private EstadoEntrenamiento estadoEntrenamiento;
+    @Autowired
+    private EjercicioRealizadoRepository ejercicioRealizadoRepository;
 
     // Constructor
     public Entrenamiento(int duracion, Date fecha) {
@@ -90,5 +95,11 @@ public class Entrenamiento {
         estadoEntrenamiento.finalizar(this);
     }
 
+    public EjercicioRealizado registrarEjercicio(Ejercicio ejercicio, int seriesRealizadas, int repeticionesHechas,
+                                                 double pesoLevantado) {
+        EjercicioRealizado ejercicioRealizado = new EjercicioRealizado(this, ejercicio, LocalDateTime.now(),
+                seriesRealizadas, repeticionesHechas, pesoLevantado);
+        return ejercicioRealizadoRepository.save(ejercicioRealizado);
+    }
 
 }

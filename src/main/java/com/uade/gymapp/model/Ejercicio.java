@@ -15,14 +15,18 @@ public class Ejercicio {
     private String descripcion;
     private int series;
     private int repeticiones;
-    private float peso;
+    private double peso;
     private int nivelAerobico;
     private ExigenciaMuscular exigenciaMuscular;
 
     public Ejercicio() {
     }
 
-    public Ejercicio(String nombre, String descripcion, int series, int repeticiones, float peso, int nivelAerobico, ExigenciaMuscular exigenciaMuscular) {
+    public Ejercicio(String nombre, String descripcion, int series, int repeticiones, double peso, int nivelAerobico, ExigenciaMuscular exigenciaMuscular) {
+        // Validar que los valores ingresados sean válidos
+        if (series <= 0 || repeticiones <= 0 || peso < 0 || nivelAerobico < 0) {
+            throw new IllegalArgumentException("Los valores ingresados no son válidos");
+        }
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.series = series;
@@ -32,44 +36,11 @@ public class Ejercicio {
         this.exigenciaMuscular = exigenciaMuscular;
     }
 
-    public EjercicioRealizado realizarEjercicio(int series, int repeticiones, float peso, int nivelAerobico) {
-        // Validar que los valores ingresados sean válidos
-        if (series <= 0 || repeticiones <= 0 || peso < 0 || nivelAerobico < 0) {
-            throw new IllegalArgumentException("Los valores ingresados no son válidos");
-        }
-
-        // Crear registro del ejercicio realizado
-        EjercicioRealizado ejercicioRealizado = new EjercicioRealizado(
-                null, // El entrenamiento se setea desde la clase Entrenamiento
-                this,
-                new Date(),
-                series,
-                repeticiones,
-                peso);
-
-        // Actualizar las métricas del ejercicio si superan las actuales
-        if (series > this.series) {
-            this.series = series;
-        }
-        if (repeticiones > this.repeticiones) {
-            this.repeticiones = repeticiones;
-        }
-        if (peso > this.peso) {
-            this.peso = peso;
-        }
-        if (nivelAerobico > this.nivelAerobico) {
-            this.nivelAerobico = nivelAerobico;
-        }
-
-        // Retornar el ejercicio realizado para que pueda ser agregado al entrenamiento
-        return ejercicioRealizado;
-    }
-
     public void modificarRepeticiones(int nuevasRepeticiones) {
         this.repeticiones = nuevasRepeticiones;
     }
 
-    public void modificarPeso(float peso) {
+    public void modificarPeso(double peso) {
         this.peso = peso;
     }
 
@@ -101,7 +72,7 @@ public class Ejercicio {
         return repeticiones;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 

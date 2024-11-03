@@ -1,17 +1,26 @@
 package com.uade.gymapp.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDateTime;
 import java.util.Date;
 
+@Entity
 public class EjercicioRealizado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Entrenamiento entrenamiento;
     private Ejercicio ejercicio;
-    private Date fecha;
+    private LocalDateTime fecha;
     private int seriesRealizadas;
     private int repeticionesHechas;
     private double pesoLevantado;
 
     // Constructor
-    public EjercicioRealizado(Entrenamiento entrenamiento, Ejercicio ejercicio, Date fecha,
+    public EjercicioRealizado(Entrenamiento entrenamiento, Ejercicio ejercicio, LocalDateTime fecha,
             int seriesRealizadas, int repeticionesHechas, double pesoLevantado) {
         this.entrenamiento = entrenamiento;
         this.ejercicio = ejercicio;
@@ -38,11 +47,11 @@ public class EjercicioRealizado {
         this.ejercicio = ejercicio;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 
