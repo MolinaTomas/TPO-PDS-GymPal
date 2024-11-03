@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import java.util.Date;
 
 @Entity
-public class Ejercicio {
+public class Ejercicio { //TODO ver de incluir el video demostrativo del ejercicio
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +18,15 @@ public class Ejercicio {
     private float peso;
     private int nivelAerobico;
     private ExigenciaMuscular exigenciaMuscular;
+    private String videoUrl;
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
 
     public Ejercicio() {
     }
