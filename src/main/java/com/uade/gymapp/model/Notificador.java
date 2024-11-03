@@ -7,30 +7,39 @@ import java.util.List;
 @Component
 public class Notificador {
     private List<Notificacion> historialNotificaciones;
+    private FirebaseMessaging firebaseMessaging; // Servicio de Firebase
 
     public Notificador() {
         this.historialNotificaciones = new ArrayList<>();
+        // Inicializar Firebase Messaging (esto requeriría configuración adicional)
     }
 
     public void enviarNotificacion(Trofeo trofeo, Socio socio, Notificacion notificacion) {
-        // Personalizar el mensaje según el tipo de trofeo
         String mensaje = generarMensaje(trofeo, socio);
         notificacion.setMensaje(mensaje);
 
-        // Registrar la notificación en el historial
+        // Guardar en el historial
         historialNotificaciones.add(notificacion);
 
-        // Enviar la notificación según el tipo
-        switch (notificacion.getTipoNotificacion()) {
-            case EMAIL:
-                enviarEmail(socio.getMail(), mensaje);
-                break;
-            case PUSH:
-                enviarNotificacionPush(socio, mensaje);
-                break;
-            case APP:
-                mostrarNotificacionEnApp(socio, mensaje);
-                break;
+        // Enviar notificación push a través de Firebase
+        enviarNotificacionPush(socio, mensaje);
+    }
+
+    private void enviarNotificacionPush(Socio socio, String mensaje) {
+        // Aquí iría la lógica de envío usando Firebase Cloud Messaging
+        Message message = Message.builder()
+                .setToken(socio.getDeviceToken()) // Necesitarías agregar deviceToken a Socio
+                .setNotification(Notification.builder()
+                        .setTitle("¡Nuevo Trofeo!")
+                        .setBody(mensaje)
+                        .build())
+                .build();
+
+        try {
+            String response = FirebaseMessaging.getInstance().send(message);
+            System.out.println("Notificación push enviada exitosamente: " + response);
+        } catch (FirebaseMessagingException e) {
+            System.err.println("Error al enviar notificación push: " + e.getMessage());
         }
     }
 
@@ -41,16 +50,7 @@ public class Notificador {
                 trofeo.getDescripcion());
     }
 
-    private void enviarEmail(String email, String mensaje) {
-        // Implementación del envío de email
-        System.out.println("Enviando email a " + email + ": " + mensaje);
+    public List<Notificacion> getHistorialNotificaciones() {
+        return historialNotificaciones;
     }
-
-    private void enviarNotificacionPush(Socio socio, String mensaje) {
-        // Implementación de notificación push
-        System.out.println("Enviando notificación push a " + socio.getName() + ": " + mensaje);
-    }
-
-    private void mostrarNotificacionEnApp(Socio socio, String mensaje) {
-        // Implementación de notificación en la app
-        System.out.println("Mostrando notificación en app para " + socio
+}

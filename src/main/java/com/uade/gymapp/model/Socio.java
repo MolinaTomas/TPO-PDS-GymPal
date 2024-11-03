@@ -22,6 +22,7 @@ public class Socio {
     private List<Trofeo> trofeos;
     // private List<EjercicioRealizado> progresoHistorial;
     private List<Medicion> mediciones;
+    private String deviceToken; // Token para Firebase Cloud Messaging
 
     // Constructor
     public Socio(Long idSocio, String name, String apellido, String sexo, int edad, int altura,
@@ -117,5 +118,13 @@ public class Socio {
 
     public void setMediciones(List<Medicion> mediciones) {
         this.mediciones = mediciones;
+    }
+
+    public String getDeviceToken() {
+        return deviceToken;
+    }
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
     }
 }
