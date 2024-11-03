@@ -7,7 +7,9 @@ import java.time.LocalDate;
 public class TrofeoCreido extends Trofeo{
     @Override
     public void otorgarTrofeo(Socio socio) {
-
+        if (cumpleCondicion(socio)) {
+            socio.getTrofeos().add(this);
+        }
     }
 
     @Override

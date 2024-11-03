@@ -39,12 +39,13 @@ public class EjercicioRefuerzo extends Ejercicio {
     }
 
     @Override
-    public void realizarEjercicio(int series, int repeticiones, float peso, int nivelAerobico) {
+    public EjercicioRealizado realizarEjercicio(int series, int repeticiones, float peso, int nivelAerobico) {
         ejercicioBase.realizarEjercicio(
                 series * FACTOR_SERIES,
                 repeticiones * FACTOR_REPETICIONES,
                 peso * FACTOR_PESO,
                 nivelAerobico + 1);
+        return null;
     }
 
     @Override

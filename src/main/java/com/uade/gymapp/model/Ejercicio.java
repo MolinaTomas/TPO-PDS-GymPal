@@ -20,7 +20,7 @@ public class Ejercicio {
     private int nivelAerobico;
     private ExigenciaMuscular exigenciaMuscular;
 
-    public void realizarEjercicio(int series, int repeticiones, float peso, int nivelAerobico) {
+    public EjercicioRealizado realizarEjercicio(int series, int repeticiones, float peso, int nivelAerobico) {
         // Validar que los valores ingresados sean válidos
         if (series <= 0 || repeticiones <= 0 || peso < 0 || nivelAerobico < 0) {
             throw new IllegalArgumentException("Los valores ingresados no son válidos");

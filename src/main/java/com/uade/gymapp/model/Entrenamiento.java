@@ -30,9 +30,7 @@ public class Entrenamiento {
         this.estadoEntrenamiento = new EntrenamientoPreparado();
     }
 
-    public Entrenamiento() {
-
-    }
+    public Entrenamiento() {}
 
     // Getters y Setters
     public Long getId() {

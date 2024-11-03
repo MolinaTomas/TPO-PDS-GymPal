@@ -8,13 +8,11 @@ public abstract class Objetivo {
     private List<Trofeo> observadores;
     private boolean cumplido;
     private double progresoActual;
-    private double progresoObjetivo;
 
     public Objetivo() {
         this.observadores = new ArrayList<>();
         this.cumplido = false;
         this.progresoActual = 0.0;
-        this.progresoObjetivo = 100.0;
     }
 
     public abstract Rutina generarRutina();
@@ -22,7 +20,7 @@ public abstract class Objetivo {
     public abstract void calcularProgreso();
 
     public void cumplirObjetivo() {
-        if (progresoActual >= progresoObjetivo) {
+        if (progresoActual >= 100.00) {
             this.cumplido = true;
             notificarObservadores();
         }
@@ -31,7 +29,7 @@ public abstract class Objetivo {
     public void actualizarProgreso(double nuevoProgreso) {
         this.progresoActual = nuevoProgreso;
         calcularProgreso();
-        if (progresoActual >= progresoObjetivo) {
+        if (progresoActual >= 100.00) {
             cumplirObjetivo();
         }
     }
@@ -48,7 +46,7 @@ public abstract class Objetivo {
 
     private void notificarObservadores() {
         for (Trofeo observador : observadores) {
-            observador.cumpleCondicion(null); // Aquí deberías pasar el Socio correspondiente
+            observador.otorgarTrofeo(null); // Aquí deberías pasar el Socio correspondiente
         }
     }
 
@@ -75,14 +73,6 @@ public abstract class Objetivo {
 
     public void setProgresoActual(double progresoActual) {
         this.progresoActual = progresoActual;
-    }
-
-    public double getProgresoObjetivo() {
-        return progresoObjetivo;
-    }
-
-    public void setProgresoObjetivo(double progresoObjetivo) {
-        this.progresoObjetivo = progresoObjetivo;
     }
 
     public List<Trofeo> getObservadores() {
