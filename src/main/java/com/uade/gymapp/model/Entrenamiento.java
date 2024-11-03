@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class Entrenamiento {
     private EstadoEntrenamiento estadoEntrenamiento;
 
     // Constructor
-    public Entrenamiento(int duracion, List<Ejercicio> ejercicios, Date fecha) {
+    public Entrenamiento(int duracion, Date fecha) {
         this.duracion = duracion;
-        this.ejercicios = ejercicios;
+        this.ejercicios = new ArrayList<Ejercicio>(); // instancio arraylist
         this.fecha = fecha;
         this.estadoEntrenamiento = new EntrenamientoPreparado();
     }
@@ -54,8 +55,12 @@ public class Entrenamiento {
         return ejercicios;
     }
 
-    public void addEjercicio(Ejercicio dfd) {
-        this.ejercicios = ejercicios;
+    public void addEjercicio(Ejercicio ejercicio) {
+        this.ejercicios.add(ejercicio);
+    }
+
+    public void removeEjercicio(Ejercicio ejercicio) {
+        this.ejercicios.remove(ejercicio);
     }
 
     public Date getFecha() {
@@ -72,7 +77,14 @@ public class Entrenamiento {
 
     public void setEstadoEntrenamiento(EstadoEntrenamiento estadoEntrenamiento) {
         this.estadoEntrenamiento = estadoEntrenamiento;
+        System.out.println("Estado actual: " + estadoEntrenamiento.mostrarNombre());
     }
 
+    public void comenzarEntrenamiento() { // pasa el contexto que requiere el state
+        estadoEntrenamiento.comenzar(this);
+    }
 
+    public void finalizarEntrenamiento() { // pasa el contexto que requiere el state
+        estadoEntrenamiento.finalizar(this);
+    }
 }
