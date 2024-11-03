@@ -15,7 +15,7 @@ public abstract class Objetivo {
         this.progresoActual = 0.0;
     }
 
-    public abstract Rutina generarRutina();
+    public abstract Rutina generarRutina(Socio socio);
 
     public abstract void calcularProgreso();
 

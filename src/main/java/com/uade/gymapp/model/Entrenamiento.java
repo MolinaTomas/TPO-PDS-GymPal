@@ -16,7 +16,7 @@ public class Entrenamiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int duracion;
+    private int duracion; // en horas
     @OneToMany
     private List<Ejercicio> ejercicios;
     private Date fecha;
@@ -53,6 +53,10 @@ public class Entrenamiento {
         return ejercicios;
     }
 
+    public void setEjercicios(List<Ejercicio> ejercicios) {
+        this.ejercicios = ejercicios;
+    }
+
     public void addEjercicio(Ejercicio ejercicio) {
         this.ejercicios.add(ejercicio);
     }
@@ -85,4 +89,6 @@ public class Entrenamiento {
     public void finalizarEntrenamiento() { // pasa el contexto que requiere el state
         estadoEntrenamiento.finalizar(this);
     }
+
+
 }

@@ -11,7 +11,6 @@ public class Ejercicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
     private String descripcion;
     private int series;
@@ -19,6 +18,19 @@ public class Ejercicio {
     private float peso;
     private int nivelAerobico;
     private ExigenciaMuscular exigenciaMuscular;
+
+    public Ejercicio() {
+    }
+
+    public Ejercicio(String nombre, String descripcion, int series, int repeticiones, float peso, int nivelAerobico, ExigenciaMuscular exigenciaMuscular) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.series = series;
+        this.repeticiones = repeticiones;
+        this.peso = peso;
+        this.nivelAerobico = nivelAerobico;
+        this.exigenciaMuscular = exigenciaMuscular;
+    }
 
     public EjercicioRealizado realizarEjercicio(int series, int repeticiones, float peso, int nivelAerobico) {
         // Validar que los valores ingresados sean válidos

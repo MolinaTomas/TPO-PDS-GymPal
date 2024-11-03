@@ -2,7 +2,7 @@ package com.uade.gymapp.model;
 
 public class MantenerFigura extends Objetivo {
     @Override
-    public Rutina generarRutina() {
+    public Rutina generarRutina(Socio socio) {
         return null;
     }
 
