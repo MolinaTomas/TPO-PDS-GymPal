@@ -14,7 +14,7 @@ public class Notificacion {
         this.deviceToken = deviceToken;
         this.fecha = new Date();
         this.leida = false;
-        this.titulo = "¡Nuevo Trofeo!"; // Título por defecto
+        this.titulo = "¡Nuevo Trofeo!"; // Título por defecto, podemos ver de incluir otro
     }
 
     // Getters y Setters

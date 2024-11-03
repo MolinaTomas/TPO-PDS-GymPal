@@ -3,6 +3,10 @@ package com.uade.gymapp.model;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.Message;
+import com.google.firebase.messaging.Notification;
+import com.google.firebase.messaging.FirebaseMessagingException;
 
 @Component
 public class Notificador {
@@ -11,7 +15,8 @@ public class Notificador {
 
     public Notificador() {
         this.historialNotificaciones = new ArrayList<>();
-        // Inicializar Firebase Messaging (esto requeriría configuración adicional)
+        // Inicializar Firebase Messaging (falta testear!)
+        this.firebaseMessaging = FirebaseMessaging.getInstance();
     }
 
     public void enviarNotificacion(Trofeo trofeo, Socio socio, Notificacion notificacion) {
@@ -21,14 +26,14 @@ public class Notificador {
         // Guardar en el historial
         historialNotificaciones.add(notificacion);
 
-        // Enviar notificación push a través de Firebase
+        // Enviar notificación por Firebase
         enviarNotificacionPush(socio, mensaje);
     }
 
     private void enviarNotificacionPush(Socio socio, String mensaje) {
-        // Aquí iría la lógica de envío usando Firebase Cloud Messaging
+        // TODO verificar si esta es la correcta logica de Firebase
         Message message = Message.builder()
-                .setToken(socio.getDeviceToken()) // Necesitarías agregar deviceToken a Socio
+                .setToken(socio.getDeviceToken()) // Aca se deberia agregar deviceToken a Socio
                 .setNotification(Notification.builder()
                         .setTitle("¡Nuevo Trofeo!")
                         .setBody(mensaje)
@@ -36,7 +41,7 @@ public class Notificador {
                 .build();
 
         try {
-            String response = FirebaseMessaging.getInstance().send(message);
+            String response = firebaseMessaging.send(message);
             System.out.println("Notificación push enviada exitosamente: " + response);
         } catch (FirebaseMessagingException e) {
             System.err.println("Error al enviar notificación push: " + e.getMessage());
@@ -47,7 +52,7 @@ public class Notificador {
         return String.format("¡Felicitaciones %s! Has ganado el trofeo: %s - %s",
                 socio.getName(),
                 trofeo.getTipo(),
-                trofeo.getDescripcion());
+                trofeo.getDescripcion()); // TODO verificar que datos queremos incluir en la notificacion
     }
 
     public List<Notificacion> getHistorialNotificaciones() {
