@@ -10,4 +10,6 @@ public class Notificacion {
     private Long id;
     private String texto;
     private Date fecha;
+
+
 }

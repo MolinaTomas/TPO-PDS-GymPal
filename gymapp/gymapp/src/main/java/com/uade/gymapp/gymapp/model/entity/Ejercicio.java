@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Ejercicio { //TODO ver de incluir el video demostrativo del ejercicio
+public class Ejercicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +20,13 @@ public class Ejercicio { //TODO ver de incluir el video demostrativo del ejercic
     private int repeticiones;
     private double peso;
     private int nivelAerobico;
+
+    @Enumerated(EnumType.STRING) // Suponiendo que ExigenciaMuscular es un enum
     private ExigenciaMuscular exigenciaMuscular;
     private String videoUrl;
 
+    @ManyToOne
+    @JoinColumn(name = "entrenamientoId") // Relación con Entrenamiento
+    private Entrenamiento entrenamiento;
 }
+

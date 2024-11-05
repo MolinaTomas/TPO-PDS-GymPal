@@ -1,7 +1,6 @@
 package com.uade.gymapp.gymapp.model.entity;
 
-import com.uade.gymapp.gymapp.model.service.Notificador;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.uade.gymapp.gymapp.model.service.NotificadorService;
 
 
 import jakarta.persistence.*;
@@ -19,6 +18,12 @@ public class Trofeo {
     private Long id;
     private String tipo;
     private String descripcion;
-    private Notificador notificador;
 
+    @ManyToOne
+    @JoinColumn(name = "socioId") // Relación con Socio
+    private Socio socio;
+
+    @Transient // NotificadorService es un servicio
+    private NotificadorService notificadorService;
 }
+

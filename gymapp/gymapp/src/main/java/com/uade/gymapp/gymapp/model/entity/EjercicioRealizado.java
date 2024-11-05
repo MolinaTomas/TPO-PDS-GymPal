@@ -15,11 +15,19 @@ public class EjercicioRealizado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "entrenamientoId") // Relación con Entrenamiento
     private Entrenamiento entrenamiento;
+
+    @ManyToOne
+    @JoinColumn(name = "Ejercicioid") // Relación con Ejercicio
     private Ejercicio ejercicio;
+
     private LocalDateTime fecha;
     private int seriesRealizadas;
     private int repeticionesHechas;
     private double pesoLevantado;
-
 }
+
+

@@ -2,9 +2,9 @@ package com.uade.gymapp.gymapp.model.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MantenerFigura extends Objetivo {
+public class MantenerFiguraService extends ObjetivoService {
     @Override
-    public Rutina generarRutina(Socio socio) {
+    public RutinaService generarRutina(SocioService socioService) {
         return null;
     }
 

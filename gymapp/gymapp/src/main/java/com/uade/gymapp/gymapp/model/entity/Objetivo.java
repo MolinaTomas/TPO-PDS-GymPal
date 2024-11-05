@@ -16,8 +16,11 @@ public class Objetivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "rutinaId") // Relación con Rutina
     private Rutina rutina;
-    private List<Trofeo> observadores;
+
     private boolean cumplido;
     private double progresoActual;
 }

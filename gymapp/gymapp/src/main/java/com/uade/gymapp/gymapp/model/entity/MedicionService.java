@@ -1,6 +1,6 @@
 package com.uade.gymapp.gymapp.model.entity;
 
-import com.uade.gymapp.gymapp.model.service.IMedicion;
+import com.uade.gymapp.gymapp.model.service.IMedicionService;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Medicion implements IMedicion {
+public class MedicionService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +22,12 @@ public class Medicion implements IMedicion {
     private double peso;
     private double grasaCorporal;
     private double masaMuscular;
-    private IMedicion medidor;
-    private List<Trofeo> observadores;
 
+    @Transient // IMedicionService es un servicio
+    private IMedicionService medidor;
+
+    @ManyToOne
+    @JoinColumn(name = "socioId")
+    private Socio socio;
 }
+

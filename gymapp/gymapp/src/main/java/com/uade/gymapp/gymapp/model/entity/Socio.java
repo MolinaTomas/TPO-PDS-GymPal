@@ -22,10 +22,20 @@ public class Socio {
     private int edad;
     private int altura;
     private String mail;
-    private Objetivo objetivo;
-    private List<Trofeo> trofeos;
-    // private List<EjercicioRealizado> progresoHistorial;
-    private List<Medicion> mediciones;
-    private String deviceToken; // Token para Firebase Cloud Messaging
 
+    @OneToOne
+    @JoinColumn(name = "objetivo_id") // Relación con Objetivo
+    private Objetivo objetivo;
+
+    @OneToMany(mappedBy = "socio") // Relación con Trofeo
+    private List<Trofeo> trofeos;
+
+    @OneToMany(mappedBy = "socio") // Relación con MedicionService
+    private List<MedicionService> mediciones;
+
+    @ManyToOne
+    @JoinColumn(name = "rutinaId") // Relación con Rutina
+    private Rutina rutina;
 }
+
+

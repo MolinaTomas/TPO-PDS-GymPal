@@ -3,18 +3,14 @@ package com.uade.gymapp.gymapp.model.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BajarPeso extends Objetivo {
+public class TonificarCuerpoService extends ObjetivoService {
 
     @Override
-    public Rutina generarRutina(Socio socio) {
-
+    public RutinaService generarRutina(SocioService socioService) {
+        return null;
     }
 
     @Override
     public void calcularProgreso() {
-    }
-
-    private double calcularPesoObjetivo(Socio socio) {
-
     }
 }

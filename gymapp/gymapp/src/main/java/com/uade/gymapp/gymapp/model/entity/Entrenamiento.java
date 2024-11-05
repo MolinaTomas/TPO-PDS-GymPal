@@ -1,10 +1,7 @@
 package com.uade.gymapp.gymapp.model.entity;
 
-import com.uade.gymapp.gymapp.model.service.EstadoEntrenamiento;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.uade.gymapp.gymapp.model.service.EstadoEntrenamientoService;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import jakarta.persistence.*;
@@ -20,12 +17,13 @@ public class Entrenamiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int duracion; // en horas
-    @OneToMany
-    private List<Ejercicio> ejercicios;
+    private int duracion;
     private Date fecha;
-    private EstadoEntrenamiento estadoEntrenamiento;
-    private EjercicioRealizadoRepository ejercicioRealizadoRepository;
 
+    @OneToMany(mappedBy = "entrenamiento") // Relación bidireccional con Ejercicio
+    private List<Ejercicio> ejercicios;
 
+    @Transient // EstadoEntrenamientoService es un servicio, no se mapea en la BD
+    private EstadoEntrenamientoService estadoEntrenamientoService;
 }
+

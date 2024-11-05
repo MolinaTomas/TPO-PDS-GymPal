@@ -5,7 +5,7 @@ import com.uade.gymapp.gymapp.model.entity.EjercicioRealizado;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Entrenamiento {
+public class EntrenamientoService {
 
     public void comenzarEntrenamiento() { // pasa el contexto que requiere el state
 
@@ -15,8 +15,8 @@ public class Entrenamiento {
 
     }
 
-    public EjercicioRealizado registrarEjercicio(Ejercicio ejercicio, int seriesRealizadas, int repeticionesHechas, double pesoLevantado) {
-
+    public EjercicioRealizado registrarEjercicio(EjercicioService ejercicio, int seriesRealizadas, int repeticionesHechas, double pesoLevantado) {
+        return null;
     }
 
 }
