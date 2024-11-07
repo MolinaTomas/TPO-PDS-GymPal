@@ -1,6 +1,8 @@
 package com.uade.gymapp.model;
 
 import com.uade.gymapp.model.Intefaces.EstadoEntrenamiento;
+import com.uade.gymapp.repository.EjercicioRealizadoRepositorio;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Entity;
@@ -25,7 +27,7 @@ public class Entrenamiento {
     private Date fecha;
     private EstadoEntrenamiento estadoEntrenamiento;
     @Autowired
-    private EjercicioRealizadoRepository ejercicioRealizadoRepository;
+    private EjercicioRealizadoRepositorio ejercicioRealizadoRepositorio;
 
     // Constructor
     public Entrenamiento(int duracion, Date fecha) {
@@ -99,7 +101,7 @@ public class Entrenamiento {
                                                  double pesoLevantado) {
         EjercicioRealizado ejercicioRealizado = new EjercicioRealizado(this, ejercicio, LocalDateTime.now(),
                 seriesRealizadas, repeticionesHechas, pesoLevantado);
-        return ejercicioRealizadoRepository.save(ejercicioRealizado);
+        return ejercicioRealizadoRepositorio.save(ejercicioRealizado);
     }
 
 }

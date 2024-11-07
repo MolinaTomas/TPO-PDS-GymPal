@@ -15,7 +15,7 @@ public class BajarPeso extends Objetivo {
         if (pesoObjetivo==0.0) {
             pesoObjetivo = calcularPesoObjetivo(socio);
         }
-
+        return null;
 
     }
 
