@@ -21,7 +21,7 @@ public class EjercicioRealizado {
     private Entrenamiento entrenamiento;
 
     @ManyToOne
-    @JoinColumn(name = "Ejercicioid") // Relación con Ejercicio
+    @JoinColumn(name = "EjercicioId") // Relación con Ejercicio
     private Ejercicio ejercicio;
 
     private LocalDateTime fecha;
