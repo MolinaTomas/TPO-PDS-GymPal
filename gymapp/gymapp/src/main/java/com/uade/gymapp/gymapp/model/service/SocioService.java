@@ -1,8 +1,6 @@
 package com.uade.gymapp.gymapp.model.service;
 
-
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
-import com.uade.gymapp.gymapp.model.entity.Objetivo;
 import com.uade.gymapp.gymapp.model.entity.Socio;
 import com.uade.gymapp.gymapp.model.repository.SocioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +21,26 @@ public class SocioService {
 
     public SocioDTO setObjetivo(Long id, int idObjetivo) throws Exception {
         Socio socio = socioRepository.findById(id).orElse(null);
-        ObjetivoService bajarPeso = new BajarPesoService();
-        ObjetivoService mantenerFigura = new MantenerFiguraService();
-        ObjetivoService tonificarCuerpo = new TonificarCuerpoService();
         assert socio != null;
-        if (idObjetivo == 1) {
-            socio.setObjetivo(bajarPeso);
+
+        ObjetivoService objetivo;
+
+        switch (idObjetivo) {
+            case 1:
+                objetivo = new BajarPesoService();
+                break;
+            case 2:
+                objetivo = new MantenerFiguraService();
+                break;
+            case 3:
+                objetivo = new TonificarCuerpoService();
+                break;
+            default:
+                throw new IllegalArgumentException("Objetivo no válido");
         }
-        socio=socioRepository.save(socio);
+
+        socio.setObjetivo(objetivo);
+        socio = socioRepository.save(socio);
 
         return socio.toSocioDTO();
     }
