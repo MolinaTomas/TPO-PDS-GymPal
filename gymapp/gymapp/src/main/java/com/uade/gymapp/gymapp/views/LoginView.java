@@ -1,16 +1,21 @@
 package com.uade.gymapp.gymapp.views;
 
 import com.uade.gymapp.gymapp.GymappApplication;
+import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.model.dto.SocioDTO;
+import org.springframework.http.HttpStatus;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class LoginView extends JPanel {
     private GymappApplication app;
+    private SocioController socioController;
 
-    public LoginView(GymappApplication app) {
+    public LoginView(GymappApplication app, SocioController socioController) {
         super(); // Aseguramos que extienda JPanel
         this.app = app;
+        this.socioController = socioController;
         this.setLayout(new BorderLayout());
 
         // Título
@@ -43,6 +48,18 @@ public class LoginView extends JPanel {
 
         // Listeners para la navegación
         btnCancelar.addActionListener(e -> app.mostrarVista("InicioView"));
-        btnIngresar.addActionListener(e -> app.mostrarVista("DashboardView"));
+        btnIngresar.addActionListener(e -> {
+            String usuario = userField.getText();
+            String contraseña = new String(passField.getPassword());
+            SocioDTO socioDTO = new SocioDTO();
+            socioDTO.setMail(usuario);
+            socioDTO.setPassword(contraseña);
+            if (socioController.login(socioDTO).getStatusCode() == HttpStatus.OK) { // Verificar con SocioController
+                app.mostrarVista("DashboardView");
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        });
     }
 }

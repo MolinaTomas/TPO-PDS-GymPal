@@ -1,16 +1,21 @@
 package com.uade.gymapp.gymapp.views;
 
 import com.uade.gymapp.gymapp.GymappApplication;
+import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.model.dto.SocioDTO;
+import org.springframework.http.ResponseEntity;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class SingupView extends JPanel {
     private GymappApplication app;
+    private SocioController socioController;
 
-    public SingupView(GymappApplication app) {
+    public SingupView(GymappApplication app, SocioController socioController) {
         super(); // Aseguramos que extienda JPanel
         this.app = app;
+        this.socioController = socioController; // Inicializamos el controlador
         this.setLayout(new BorderLayout());
 
         // Título
@@ -20,21 +25,28 @@ public class SingupView extends JPanel {
 
         // Formulario de registro
         JPanel formPanel = new JPanel(new GridLayout(7, 2, 10, 10));
+        JTextField nameField = new JTextField();
+        JTextField apellidoField = new JTextField();
+        JTextField sexoField = new JTextField();
+        JTextField edadField = new JTextField();
+        JTextField alturaField = new JTextField();
+        JTextField mailField = new JTextField();
+        JTextField passwordField = new JTextField();
+
         formPanel.add(new JLabel("Nombre:"));
-        formPanel.add(new JTextField());
+        formPanel.add(nameField);
         formPanel.add(new JLabel("Apellido:"));
-        formPanel.add(new JTextField());
+        formPanel.add(apellidoField);
         formPanel.add(new JLabel("Sexo:"));
-        formPanel.add(new JTextField());
+        formPanel.add(sexoField);
         formPanel.add(new JLabel("Edad:"));
-        formPanel.add(new JTextField());
+        formPanel.add(edadField);
         formPanel.add(new JLabel("Altura:"));
-        formPanel.add(new JTextField());
+        formPanel.add(alturaField);
         formPanel.add(new JLabel("Mail:"));
-        formPanel.add(new JTextField());
-        formPanel.add(new JLabel("Objetivo:"));
-        JComboBox<String> objetivoCombo = new JComboBox<>(new String[]{"Bajar de peso", "Mantener figura", "Tonificar cuerpo"});
-        formPanel.add(objetivoCombo);
+        formPanel.add(mailField);
+        formPanel.add(new JLabel("Contraseña:"));
+        formPanel.add(passwordField);
 
         this.add(formPanel, BorderLayout.CENTER);
 
@@ -49,7 +61,20 @@ public class SingupView extends JPanel {
 
         // Listeners para la navegación
         btnLimpiar.addActionListener(e -> limpiarFormulario(formPanel));
-        btnRegistrar.addActionListener(e -> app.mostrarVista("DashboardView"));
+        btnRegistrar.addActionListener(e -> {
+            // Crear un nuevo SocioDTO con los datos del formulario
+            SocioDTO socioDTO = new SocioDTO();
+            socioDTO.setName(nameField.getText());
+            socioDTO.setApellido(apellidoField.getText());
+            socioDTO.setSexo(sexoField.getText());
+            socioDTO.setEdad(Integer.parseInt(edadField.getText()));
+            socioDTO.setAltura(Integer.parseInt(alturaField.getText()));
+            socioDTO.setMail(mailField.getText());
+            socioDTO.setPassword(passwordField.getText());
+            ResponseEntity<String> response = socioController.register(socioDTO);
+            System.out.println(response.getBody());
+            app.mostrarVista("DashboardView"); // Cambiar a la vista del dashboard
+        });
     }
 
     private void limpiarFormulario(JPanel panel) {
