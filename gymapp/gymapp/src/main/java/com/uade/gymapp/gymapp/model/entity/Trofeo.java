@@ -1,6 +1,6 @@
 package com.uade.gymapp.gymapp.model.entity;
 
-import com.uade.gymapp.gymapp.model.service.NotificadorService;
+//import com.uade.gymapp.gymapp.model.service.NotificadorService;
 
 
 import jakarta.persistence.*;
@@ -23,7 +23,7 @@ public class Trofeo {
     @JoinColumn(name = "socioId") // Relación con Socio
     private Socio socio;
 
-    @Transient // NotificadorService es un servicio
-    private NotificadorService notificadorService;
+//    @Transient // NotificadorService es un servicio
+//    private NotificadorService notificadorService;
 }
 

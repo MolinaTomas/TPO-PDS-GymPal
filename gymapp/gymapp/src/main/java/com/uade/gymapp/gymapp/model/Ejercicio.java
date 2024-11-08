@@ -1,6 +1,7 @@
 package com.uade.gymapp.gymapp.model;
 
 import com.uade.gymapp.gymapp.model.ExigenciaMuscular;
+import com.uade.gymapp.gymapp.model.dto.EjercicioDTO;
 
 public class Ejercicio {
     private Long id;

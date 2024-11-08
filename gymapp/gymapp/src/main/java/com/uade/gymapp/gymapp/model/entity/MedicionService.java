@@ -1,6 +1,6 @@
 package com.uade.gymapp.gymapp.model.entity;
 
-import com.uade.gymapp.gymapp.model.service.IMedicionService;
+//import com.uade.gymapp.gymapp.model.service.IMedicionService;
 
 import java.util.Date;
 import java.util.List;
@@ -23,8 +23,8 @@ public class MedicionService {
     private double grasaCorporal;
     private double masaMuscular;
 
-    @Transient // IMedicionService es un servicio
-    private IMedicionService medidor;
+//    @Transient // IMedicionService es un servicio
+//    private IMedicionService medidor;
 
     @ManyToOne
     @JoinColumn(name = "socioId")

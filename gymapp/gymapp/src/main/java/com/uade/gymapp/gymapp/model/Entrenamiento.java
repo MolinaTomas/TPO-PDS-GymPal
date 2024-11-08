@@ -1,5 +1,7 @@
 package com.uade.gymapp.gymapp.model;
 
+import com.uade.gymapp.gymapp.model.dto.EntrenamientoDTO;
+
 import java.util.Date;
 import java.util.List;
 

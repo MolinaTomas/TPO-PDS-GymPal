@@ -1,5 +1,7 @@
 package com.uade.gymapp.gymapp.model;
 
+import com.uade.gymapp.gymapp.model.dto.EjercicioRefuerzoDTO;
+
 public class EjercicioRefuerzo {
     private Long id;
     private Ejercicio ejercicioBase;

@@ -1,6 +1,6 @@
 package com.uade.gymapp.gymapp.controller;
 
-import com.uade.gymapp.gymapp.model.service.EjercicioService;
+//import com.uade.gymapp.gymapp.model.service.EjercicioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/ejercicios")
 public class EjercicioController {
-    @Autowired
-    private EjercicioService ejercicioService;
+//    @Autowired
+//    private EjercicioService ejercicioService;
 
 //    @GetMapping
 //    public List<Ejercicio> obtenerEjercicios() {

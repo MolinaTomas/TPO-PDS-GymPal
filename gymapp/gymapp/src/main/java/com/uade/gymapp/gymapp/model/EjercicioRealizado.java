@@ -1,5 +1,7 @@
 package com.uade.gymapp.gymapp.model;
 
+import com.uade.gymapp.gymapp.model.dto.EjercicioRealizadoDTO;
+
 import java.time.LocalDateTime;
 
 public class EjercicioRealizado {
@@ -22,8 +24,8 @@ public class EjercicioRealizado {
         this.pesoLevantado = pesoLevantado;
     }
 
-    public EjercicioRealizadoDTO toDto() {
-        return new EjercicioRealizadoDTO(id, entrenamiento.toDto(), ejercicio.toDto(), fecha, seriesRealizadas,
-                repeticionesHechas, pesoLevantado);
-    }
+//    public EjercicioRealizadoDTO toDto() {
+//        return new EjercicioRealizadoDTO(id, entrenamiento.toDto(), ejercicio.toDto(), fecha, seriesRealizadas,
+//                repeticionesHechas, pesoLevantado);
+//    }
 }

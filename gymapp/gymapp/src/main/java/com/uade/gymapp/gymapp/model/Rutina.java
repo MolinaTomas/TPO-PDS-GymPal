@@ -1,5 +1,7 @@
 package com.uade.gymapp.gymapp.model;
 
+import com.uade.gymapp.gymapp.model.dto.RutinaDTO;
+
 import java.util.List;
 
 public class Rutina {
