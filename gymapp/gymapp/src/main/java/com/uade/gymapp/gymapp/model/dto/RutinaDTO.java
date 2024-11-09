@@ -1,7 +1,12 @@
 package com.uade.gymapp.gymapp.model.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 public class RutinaDTO {
     private Long id;
     private List<EntrenamientoDTO> entrenamientos;
@@ -12,6 +17,4 @@ public class RutinaDTO {
         this.entrenamientos = entrenamientos;
         this.objetivo = objetivo;
     }
-
-    // Getters y Setters
 }

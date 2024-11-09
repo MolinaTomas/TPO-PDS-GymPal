@@ -1,7 +1,11 @@
 package com.uade.gymapp.gymapp.model;
 
 import com.uade.gymapp.gymapp.model.dto.ObjetivoDTO;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Objetivo {
     private Long id;
     private boolean cumplido;
