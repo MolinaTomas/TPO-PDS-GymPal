@@ -8,15 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("api/usuario")
+
 public class SocioController {
 
     private List<Socio> usuarios = new ArrayList<>(); // "simulación" de un repositorio de usuarios vacio
 
     // crear un nuevo usuario
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody SocioDTO socioDTO) {
+    public ResponseEntity<String> register(SocioDTO socioDTO) {
         // verifico si el usuario ya existe
         for (Socio usuario : usuarios) {
             if (usuario.getMail().equals(socioDTO.getMail())) {
@@ -42,7 +40,6 @@ public class SocioController {
     }
 
     // Método para autenticar usuario
-    @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody SocioDTO socioDTO) {
         for (Socio usuario : usuarios) {
             if (usuario.getMail().equals(socioDTO.getMail())) {
@@ -57,15 +54,5 @@ public class SocioController {
         return ResponseEntity.status(404).body("Correo electrónico no encontrado");
     }
 
-    // @Autowired
-    // private SocioService socioService;
-    //
-    // @PutMapping("/{id}/objetivo")
-    // public ResponseEntity<SocioDTO> actualizarObjetivo(@PathVariable Long id,
-    // @RequestBody Objetivo nuevoObjetivo) throws Exception {
-    //
-    // SocioDTO socioActualizado = socioService.setObjetivo(id, nuevoObjetivo);
-    // return ResponseEntity.ok(socioActualizado);
-    // }
 
 }
