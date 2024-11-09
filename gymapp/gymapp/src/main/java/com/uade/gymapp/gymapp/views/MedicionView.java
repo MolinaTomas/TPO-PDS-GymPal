@@ -1,6 +1,10 @@
 package com.uade.gymapp.gymapp.views;
 
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
+import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.model.Mediciones;
+import com.uade.gymapp.gymapp.model.Socio;
+import com.uade.gymapp.gymapp.model.dto.MedicionDTO;
 import org.springframework.http.ResponseEntity;
 
 import javax.swing.*;
@@ -72,7 +76,24 @@ public class MedicionView {
         btnRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                limpiarFormulario(formPanel);
+                double peso = Double.parseDouble(pesoField.getText());
+                double masaMuscular = Double.parseDouble(masaMuscularField.getText());
+                double grasaCorporal = Double.parseDouble(grasaCorporalField.getText());
+
+                MedicionDTO medicionDTO = new MedicionDTO(peso, grasaCorporal, masaMuscular);
+                Socio usuarioActual = SocioController.getUsuarioActual();
+
+                if (usuarioActual != null) {
+                    Mediciones medicion = new Mediciones(medicionDTO.getPeso(),
+                            medicionDTO.getPorcentajeGrasaCorporal(), medicionDTO.getMasaMuscular());
+                    usuarioActual.getListaMediciones().add(medicion); // Agregar la medición a la lista del usuario
+                    System.out.println(usuarioActual.getListaMediciones().get(0).getMasaMuscular());
+                    JOptionPane.showMessageDialog(medicionPanel, "Medición registrada exitosamente");
+                    limpiarFormulario(formPanel);
+                } else {
+                    JOptionPane.showMessageDialog(medicionPanel, "No hay usuario logueado", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         buttonPanel.add(btnVerHistorialMediciones);

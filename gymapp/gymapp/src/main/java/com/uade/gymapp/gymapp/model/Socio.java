@@ -3,6 +3,7 @@ package com.uade.gymapp.gymapp.model;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
 import com.uade.gymapp.gymapp.model.Trofeo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Socio {
@@ -16,15 +17,17 @@ public class Socio {
     private String password;
     private Objetivo objetivo;
     private List<Trofeo> trofeos;
-    // private List<MedicionService> mediciones;
+    private List<Mediciones> listaMediciones;
     private Rutina rutina;
 
     public Socio() {
+        this.listaMediciones = new ArrayList<>();
     }
 
     // Constructor
     public Socio(Long id, String name, String apellido, String sexo, int edad,
-            int altura, String mail, String password, Objetivo objetivo, List<Trofeo> trofeos, Rutina rutina) {
+            int altura, String mail, String password, Objetivo objetivo, List<Trofeo> trofeos,
+            List<Mediciones> listaMediciones, Rutina rutina) {
         this.id = id;
         this.name = name;
         this.apellido = apellido;
@@ -35,6 +38,7 @@ public class Socio {
         this.password = password;
         this.objetivo = objetivo;
         this.trofeos = trofeos;
+        this.listaMediciones = listaMediciones != null ? listaMediciones : new ArrayList<>();
         this.rutina = rutina;
     }
 
@@ -125,6 +129,10 @@ public class Socio {
 
     public void setRutina(Rutina rutina) {
         this.rutina = rutina;
+    }
+
+    public List<Mediciones> getListaMediciones() {
+        return listaMediciones;
     }
 
     // public SocioDTO toDto() {
