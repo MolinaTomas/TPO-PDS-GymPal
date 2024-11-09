@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class SocioController {
 
     private List<Socio> usuarios = new ArrayList<>(); // "simulación" de un repositorio de usuarios vacio
+    private static Socio usuarioActual; // Variable estática para el usuario actual
 
-    // crear un nuevo usuario
+    // Método para registrar un nuevo usuario
     public ResponseEntity<String> register(SocioDTO socioDTO) {
-        // verifico si el usuario ya existe
+        // Verificar si el usuario ya existe
         for (Socio usuario : usuarios) {
             if (usuario.getMail().equals(socioDTO.getMail())) {
                 return ResponseEntity.status(409).body("El usuario ya existe");
             }
         }
 
-        // si no existe, lo creo
+        // Si no existe, lo creo
         Socio nuevoUsuario = new Socio();
         nuevoUsuario.setName(socioDTO.getName());
         nuevoUsuario.setApellido(socioDTO.getApellido());
@@ -30,12 +30,10 @@ public class SocioController {
         nuevoUsuario.setEdad(socioDTO.getEdad());
         nuevoUsuario.setAltura(socioDTO.getAltura());
         nuevoUsuario.setMail(socioDTO.getMail());
-        nuevoUsuario.setPassword(socioDTO.getPassword()); // TODO ver de hashear la contraseña, no creo que haga falta
-                                                          // pero bueno
+        nuevoUsuario.setPassword(socioDTO.getPassword());
 
-        usuarios.add(nuevoUsuario); // agrego al usuario a la lista
-        System.out.println("Usuario registrado: " + nuevoUsuario.getMail()); // Mensaje en consola
-        System.out.println(usuarios);
+        usuarios.add(nuevoUsuario); // Agrego el usuario a la lista
+        usuarioActual = nuevoUsuario; // Establezco el usuario actual
         return ResponseEntity.ok("Usuario registrado exitosamente!");
     }
 
@@ -44,7 +42,7 @@ public class SocioController {
         for (Socio usuario : usuarios) {
             if (usuario.getMail().equals(socioDTO.getMail())) {
                 if (usuario.getPassword().equals(socioDTO.getPassword())) {
-                    System.out.println("Inicio de sesión exitoso para: " + usuario.getMail()); // Mensaje en consola
+                    usuarioActual = usuario; // Establezco el usuario actual
                     return ResponseEntity.ok("Inicio de sesión exitoso");
                 } else {
                     return ResponseEntity.status(401).body("Contraseña incorrecta");
@@ -54,5 +52,13 @@ public class SocioController {
         return ResponseEntity.status(404).body("Correo electrónico no encontrado");
     }
 
+    // Método para cerrar sesión
+    public void logout() {
+        usuarioActual = null; // Limpio la variable del usuario actual
+    }
 
+    // Método para obtener el usuario actual
+    public static Socio getUsuarioActual() {
+        return usuarioActual;
+    }
 }
