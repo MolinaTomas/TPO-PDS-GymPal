@@ -32,7 +32,7 @@ public class DashboardView extends JPanel {
         btnVerMediciones.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card.show(panelCard, "Inicio");
+                card.show(panelCard, "Mediciones");
             }
         });
         btnVerRutina.addActionListener(new ActionListener() {
