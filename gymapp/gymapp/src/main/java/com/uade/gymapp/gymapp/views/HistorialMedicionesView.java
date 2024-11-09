@@ -1,15 +1,16 @@
 package com.uade.gymapp.gymapp.views;
 
-import com.uade.gymapp.gymapp.model.Mediciones;
+import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.model.Medicion;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 
 public class HistorialMedicionesView {
-    public void crearPantalla(CardLayout card, JPanel panelCard, ArrayList<Mediciones> mediciones) {
+    public void crearPantalla(CardLayout card, JPanel panelCard) {
         JPanel medicionPanel = new JPanel();
         medicionPanel.setLayout(new BorderLayout());
 
@@ -39,12 +40,15 @@ public class HistorialMedicionesView {
         // formulario
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        for (Mediciones medicion : mediciones) {
+
+        List<Medicion> mediciones = SocioController.getUsuarioActual().getListaMediciones();
+
+        for (Medicion medicion : mediciones) {
             JPanel item = new JPanel(new FlowLayout());
 
             JPanel itemFecha = new JPanel(new FlowLayout());
             itemFecha.add(new JLabel("Fecha:"));
-            itemFecha.add(new JLabel(medicion.getFecha().toString()));
+            itemFecha.add(new JLabel(medicion.getFechaYhora().toString()));
 
             JPanel itemPeso = new JPanel(new FlowLayout());
             itemPeso.add(new JLabel("Peso en KG:"));
@@ -57,6 +61,13 @@ public class HistorialMedicionesView {
             JPanel itemGrasa = new JPanel(new FlowLayout());
             itemGrasa.add(new JLabel("Grasa corporal:"));
             itemGrasa.add(new JLabel(String.valueOf(medicion.getPorcentajeGrasaCorporal())));
+
+            item.add(itemFecha);
+            item.add(itemPeso);
+            item.add(itemMasa);
+            item.add(itemGrasa);
+
+            infoPanel.add(item);
 
         }
 

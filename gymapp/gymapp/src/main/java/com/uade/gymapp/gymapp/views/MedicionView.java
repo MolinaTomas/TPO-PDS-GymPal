@@ -9,9 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class MedicionView {
-    public void crearPantalla(CardLayout card, JPanel panelCard) {
+    public void crearPantalla(CardLayout card, JPanel panelCard, HistorialMedicionesView historialMedicionesView) {
         JPanel medicionPanel = new JPanel();
         medicionPanel.setLayout(new BorderLayout());
 
@@ -74,19 +75,22 @@ public class MedicionView {
         btnRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                LocalDateTime fechaYhora = LocalDateTime.now();
+                System.out.println(fechaYhora);
                 double peso = Double.parseDouble(pesoField.getText());
                 double masaMuscular = Double.parseDouble(masaMuscularField.getText());
                 double grasaCorporal = Double.parseDouble(grasaCorporalField.getText());
 
-                MedicionDTO medicionDTO = new MedicionDTO(peso, grasaCorporal, masaMuscular);
+                MedicionDTO medicionDTO = new MedicionDTO(fechaYhora, peso, grasaCorporal, masaMuscular);
                 Socio usuarioActual = SocioController.getUsuarioActual();
 
                 if (usuarioActual != null) {
-                    Medicion medicion = new Medicion(medicionDTO.getPeso(),
+                    Medicion medicion = new Medicion(medicionDTO.getFechaYhora(), medicionDTO.getPeso(),
                             medicionDTO.getPorcentajeGrasaCorporal(), medicionDTO.getMasaMuscular());
                     usuarioActual.getListaMediciones().add(medicion); // Agregar la medición a la lista del usuario
                     System.out.println(usuarioActual.getListaMediciones().get(0).getMasaMuscular());
                     JOptionPane.showMessageDialog(medicionPanel, "Medición registrada exitosamente");
+                    historialMedicionesView.crearPantalla(card, panelCard);
                     limpiarFormulario(formPanel);
                 } else {
                     JOptionPane.showMessageDialog(medicionPanel, "No hay usuario logueado", "Error",

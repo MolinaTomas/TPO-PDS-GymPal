@@ -3,6 +3,8 @@ package com.uade.gymapp.gymapp;
 import com.uade.gymapp.gymapp.controller.SocioController;
 import com.uade.gymapp.gymapp.views.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -56,12 +58,11 @@ public class GymappApplication {
 		// crear pantallas
 		inicioView.crearPantalla(card, panelCard);
 		dashboardView.crearPantalla(socioController, card, panelCard);
-		loginView.crearPantalla(socioController, card, panelCard);
-		signupView.crearPantalla(socioController, card, panelCard);
+		loginView.crearPantalla(socioController, card, panelCard, historialMedicionesView);
+		signupView.crearPantalla(socioController, card, panelCard, historialMedicionesView);
 		perfilView.crearPantalla(card, panelCard);
 		configurarPerfilView.crearPantalla(card, panelCard);
-		medicionView.crearPantalla(card, panelCard);
-		historialMedicionesView.crearPantalla(card, panelCard);
+		medicionView.crearPantalla(card, panelCard, historialMedicionesView);
 		rutinaView.crearPantalla(card, panelCard);
 		entrenamientoView.crearPantalla(card, panelCard);
 		historialEntrenamientosView.crearPantalla(card, panelCard);

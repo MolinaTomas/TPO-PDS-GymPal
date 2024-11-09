@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class LoginView {
     private SocioController socioController;
 
-    public void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
+    public void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard, HistorialMedicionesView historialMedicionesView) {
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new BorderLayout());
 
@@ -74,6 +74,7 @@ public class LoginView {
                 socioDTO.setMail(usuario);
                 socioDTO.setPassword(contraseña);
                 if (socioController.login(socioDTO).getStatusCode() == HttpStatus.OK) { // Verificar con SocioController
+                    historialMedicionesView.crearPantalla(card, panelCard);
                     card.show(panelCard, "Dashboard");
                 } else {
                     JOptionPane.showMessageDialog(loginPanel, "Usuario o contraseña incorrectos", "Error",
