@@ -1,5 +1,10 @@
 package com.uade.gymapp.gymapp.model.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class ObjetivoDTO {
     private Long id;
     private boolean cumplido;
@@ -10,6 +15,4 @@ public class ObjetivoDTO {
         this.cumplido = cumplido;
         this.progresoActual = progresoActual;
     }
-
-    // Getters y Setters
 }

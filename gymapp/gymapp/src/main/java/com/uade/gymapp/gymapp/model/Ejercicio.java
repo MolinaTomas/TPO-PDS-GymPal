@@ -2,7 +2,11 @@ package com.uade.gymapp.gymapp.model;
 
 import com.uade.gymapp.gymapp.model.ExigenciaMuscular;
 import com.uade.gymapp.gymapp.model.dto.EjercicioDTO;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Ejercicio {
     private Long id;
     private String nombre;

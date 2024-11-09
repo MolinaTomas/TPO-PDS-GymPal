@@ -4,9 +4,13 @@ import com.uade.gymapp.gymapp.model.Mediciones;
 import com.uade.gymapp.gymapp.model.Objetivo;
 import com.uade.gymapp.gymapp.model.Rutina;
 import com.uade.gymapp.gymapp.model.Trofeo;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 public class SocioDTO {
     private Long id;
     private String name;
@@ -40,100 +44,11 @@ public class SocioDTO {
         this.rutina = rutina;
     }
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
+    public void addTrofeo(Trofeo trofeo) {
+        this.trofeos.add(trofeo);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public int getAltura() {
-        return altura;
-    }
-
-    public void setAltura(int altura) {
-        this.altura = altura;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Objetivo getObjetivo() {
-        return objetivo;
-    }
-
-    public void setObjetivo(Objetivo objetivo) {
-        this.objetivo = objetivo;
-    }
-
-    public List<Trofeo> getTrofeos() {
-        return trofeos;
-    }
-
-    public void setTrofeos(List<Trofeo> trofeos) {
-        this.trofeos = trofeos;
-    }
-
-    public List<Mediciones> getMediciones() {
-        return mediciones;
-    }
-
-    public void setMediciones(List<Mediciones> mediciones) {
-        this.mediciones = mediciones;
-    }
-
-    public Rutina getRutina() {
-        return rutina;
-    }
-
-    public void setRutina(Rutina rutina) {
-        this.rutina = rutina;
+    public void addMedicion(Mediciones medicion) {
+        this.mediciones.add(medicion);
     }
 }

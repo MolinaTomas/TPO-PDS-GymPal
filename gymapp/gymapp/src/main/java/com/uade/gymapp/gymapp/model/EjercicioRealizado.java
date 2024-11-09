@@ -1,9 +1,13 @@
 package com.uade.gymapp.gymapp.model;
 
 import com.uade.gymapp.gymapp.model.dto.EjercicioRealizadoDTO;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class EjercicioRealizado {
     private Long id;
     private Entrenamiento entrenamiento;

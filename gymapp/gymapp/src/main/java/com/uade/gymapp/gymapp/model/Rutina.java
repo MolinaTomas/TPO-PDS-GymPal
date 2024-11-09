@@ -1,9 +1,13 @@
 package com.uade.gymapp.gymapp.model;
 
 import com.uade.gymapp.gymapp.model.dto.RutinaDTO;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 public class Rutina {
     private Long id;
     private List<Entrenamiento> entrenamientos;
