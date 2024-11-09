@@ -1,7 +1,5 @@
 package com.uade.gymapp.gymapp.model;
 
-import com.uade.gymapp.gymapp.model.dto.SocioDTO;
-import com.uade.gymapp.gymapp.model.Trofeo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,7 +19,7 @@ public class Socio {
     private String password;
     private Objetivo objetivo;
     private List<Trofeo> trofeos;
-    private List<Mediciones> listaMediciones;
+    private List<Medicion> listaMediciones;
     private Rutina rutina;
 
     public Socio() {
@@ -30,8 +28,8 @@ public class Socio {
 
     // Constructor
     public Socio(Long id, String name, String apellido, String sexo, int edad,
-            int altura, String mail, String password, Objetivo objetivo, List<Trofeo> trofeos,
-            List<Mediciones> listaMediciones, Rutina rutina) {
+                 int altura, String mail, String password, Objetivo objetivo, List<Trofeo> trofeos,
+                 List<Medicion> listaMediciones, Rutina rutina) {
         this.id = id;
         this.name = name;
         this.apellido = apellido;
@@ -50,12 +48,8 @@ public class Socio {
         this.trofeos.add(trofeo);
     }
 
-    /*public void addMedicion(Mediciones medicion) {
-        this.mediciones.add(medicion);
-    }*/
-
-    public List<Mediciones> getListaMediciones() {
-        return listaMediciones;
+    public void addMedicion(Medicion medicion) {
+        this.listaMediciones.add(medicion);
     }
 
     // public SocioDTO toDto() {

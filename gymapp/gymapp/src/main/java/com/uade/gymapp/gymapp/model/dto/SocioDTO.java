@@ -1,6 +1,6 @@
 package com.uade.gymapp.gymapp.model.dto;
 
-import com.uade.gymapp.gymapp.model.Mediciones;
+import com.uade.gymapp.gymapp.model.Medicion;
 import com.uade.gymapp.gymapp.model.Objetivo;
 import com.uade.gymapp.gymapp.model.Rutina;
 import com.uade.gymapp.gymapp.model.Trofeo;
@@ -22,14 +22,14 @@ public class SocioDTO {
     private String password;
     private Objetivo objetivo;
     private List<Trofeo> trofeos;
-    private List<Mediciones> mediciones;
+    private List<Medicion> mediciones;
     private Rutina rutina;
 
     public SocioDTO() {
     }
 
     public SocioDTO(Long id, String name, String apellido, String sexo, int edad, int altura, String mail,
-            String password, Objetivo objetivo, List<Trofeo> trofeos, List<Mediciones> mediciones, Rutina rutina) {
+                    String password, Objetivo objetivo, List<Trofeo> trofeos, List<Medicion> mediciones, Rutina rutina) {
         this.id = id;
         this.name = name;
         this.apellido = apellido;
@@ -48,7 +48,7 @@ public class SocioDTO {
         this.trofeos.add(trofeo);
     }
 
-    public void addMedicion(Mediciones medicion) {
+    public void addMedicion(Medicion medicion) {
         this.mediciones.add(medicion);
     }
 }

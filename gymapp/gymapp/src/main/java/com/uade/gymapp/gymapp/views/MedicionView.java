@@ -1,11 +1,9 @@
 package com.uade.gymapp.gymapp.views;
 
-import com.uade.gymapp.gymapp.model.dto.SocioDTO;
 import com.uade.gymapp.gymapp.controller.SocioController;
-import com.uade.gymapp.gymapp.model.Mediciones;
+import com.uade.gymapp.gymapp.model.Medicion;
 import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.dto.MedicionDTO;
-import org.springframework.http.ResponseEntity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,7 +63,7 @@ public class MedicionView {
                 Socio usuarioActual = SocioController.getUsuarioActual();
 
                 if (usuarioActual != null) {
-                    Mediciones medicion = new Mediciones(medicionDTO.getPeso(),
+                    Medicion medicion = new Medicion(medicionDTO.getPeso(),
                             medicionDTO.getPorcentajeGrasaCorporal(), medicionDTO.getMasaMuscular());
                     usuarioActual.getListaMediciones().add(medicion); // Agregar la medición a la lista del usuario
                     System.out.println(usuarioActual.getListaMediciones().get(0).getMasaMuscular());
