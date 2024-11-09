@@ -1,5 +1,6 @@
 package com.uade.gymapp.gymapp.views;
 
+import com.mysql.cj.log.Log;
 import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
@@ -11,13 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginView {
-    private static InicioView inicioView;
     private SocioController socioController;
 
-    public static void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
+    public void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new BorderLayout());
-        inicioView = new InicioView();
 
         // Botón para regresar
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -26,7 +25,6 @@ public class LoginView {
         btnRegresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inicioView.crearPantalla(card, panelCard);
                 card.show(panelCard, "Inicio");
             }
         });
@@ -62,7 +60,6 @@ public class LoginView {
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inicioView.crearPantalla(card, panelCard);
                 card.show(panelCard, "Inicio");
             }
         });
@@ -75,7 +72,6 @@ public class LoginView {
                 socioDTO.setMail(usuario);
                 socioDTO.setPassword(contraseña);
                 if (socioController.login(socioDTO).getStatusCode() == HttpStatus.OK) { // Verificar con SocioController
-                    DashboardView.crearPantalla(socioController, card, panelCard);
                     card.show(panelCard, "Dashboard");
                 } else {
                     JOptionPane.showMessageDialog(loginPanel, "Usuario o contraseña incorrectos", "Error",
@@ -85,5 +81,8 @@ public class LoginView {
         });
 
         loginPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Agregar al panelCard
+        panelCard.add(loginPanel, "Login");
     }
 }

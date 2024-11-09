@@ -11,15 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SingupView {
-    private static InicioView inicioView;
-    private static DashboardView dashboardView;
     private SocioController socioController;
 
-    public static void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
+    public void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
         JPanel signupPanel = new JPanel();
         signupPanel.setLayout(new BorderLayout());
-        inicioView = new InicioView();
-        dashboardView = new DashboardView();
 
         // Botón para regresar
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -28,7 +24,6 @@ public class SingupView {
         btnRegresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inicioView.crearPantalla(card, panelCard);
                 card.show(panelCard, "Inicio");
             }
         });
@@ -92,7 +87,7 @@ public class SingupView {
                 socioDTO.setPassword(passwordField.getText());
                 ResponseEntity<String> response = socioController.register(socioDTO);
                 System.out.println(response.getBody());
-                dashboardView.crearPantalla(socioController, card, panelCard);
+                card.show(panelCard, "Dashboard");
             }
         });
 
@@ -100,6 +95,9 @@ public class SingupView {
         buttonPanel.add(btnRegistrar);
 
         signupPanel.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Agregar al panelCard
+        panelCard.add(signupPanel, "Signup");
     }
 
     private static void limpiarFormulario(JPanel panel) {

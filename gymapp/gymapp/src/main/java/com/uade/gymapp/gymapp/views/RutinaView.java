@@ -5,5 +5,6 @@ import java.awt.*;
 
 public class RutinaView {
     public void crearPantalla(CardLayout card, JPanel panelCard) {
+
     }
 }

@@ -5,5 +5,6 @@ import java.awt.*;
 
 public class MedicionView {
     public void crearPantalla(CardLayout card, JPanel panelCard) {
+
     }
 }

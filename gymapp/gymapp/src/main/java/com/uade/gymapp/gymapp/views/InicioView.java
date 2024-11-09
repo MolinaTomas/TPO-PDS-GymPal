@@ -9,15 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InicioView {
-    private static LoginView loginView;
-    private static SingupView singupView;
     private SocioController socioController;
 
     public void crearPantalla(CardLayout card, JPanel panelCard) {
         JPanel inicioPanel = new JPanel();
         inicioPanel.setLayout(new BorderLayout());
-        loginView = new LoginView();
-        singupView = new SingupView();
 
         this.socioController = new SocioController();
 
@@ -43,20 +39,17 @@ public class InicioView {
         btnIniciarSesion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginView.crearPantalla(socioController, card, panelCard);
                 card.show(panelCard, "Login");
             }
         });
         btnRegistrarse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                singupView.crearPantalla(socioController, card, panelCard);
                 card.show(panelCard, "Signup");
             }
         });
 
         // Agregar al panelCard
         panelCard.add(inicioPanel, "Inicio");
-        card.show(panelCard, "Inicio");
     }
 }
