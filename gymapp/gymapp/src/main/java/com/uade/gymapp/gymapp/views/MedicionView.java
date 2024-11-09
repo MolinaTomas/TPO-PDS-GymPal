@@ -20,6 +20,18 @@ public class MedicionView {
         JLabel subtitle = new JLabel("Registrar nueva medición");
         title.setFont(new Font("Arial", Font.BOLD, 36));
         subtitle.setFont(new Font("Arial", Font.PLAIN, 18));
+
+        // Botón para regresar
+        JButton btnRegresar = new JButton("Regresar");
+        topPanel.add(btnRegresar);
+        btnRegresar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                card.show(panelCard, "Dashboard");
+            }
+        });
+
+        topPanel.add(btnRegresar);
         topPanel.add(title);
         topPanel.add(subtitle);
         medicionPanel.add(topPanel, BorderLayout.NORTH);
@@ -40,10 +52,17 @@ public class MedicionView {
 
         // botones
         JPanel buttonPanel = new JPanel(new FlowLayout());
+        JButton btnVerHistorialMediciones = new JButton("Ver Historial de Mediciones");
         JButton btnLimpiar = new JButton("Limpiar");
         JButton btnRegistrar = new JButton("Registrar medición");
 
         // Listeners para la navegación
+        btnVerHistorialMediciones.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                card.show(panelCard, "Historial de Mediciones");
+            }
+        });
         btnLimpiar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,6 +75,7 @@ public class MedicionView {
                 limpiarFormulario(formPanel);
             }
         });
+        buttonPanel.add(btnVerHistorialMediciones);
         buttonPanel.add(btnLimpiar);
         buttonPanel.add(btnRegistrar);
 

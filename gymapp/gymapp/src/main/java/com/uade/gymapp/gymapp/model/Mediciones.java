@@ -1,6 +1,9 @@
 package com.uade.gymapp.gymapp.model;
 
+import java.time.LocalDateTime;
+
 public class Mediciones {
+    private LocalDateTime fecha;
     private double peso;
     private double porcentajeGrasaCorporal;
     private double masaMuscular;
@@ -36,5 +39,13 @@ public class Mediciones {
 
     public void setMasaMuscular(double masaMuscular) {
         this.masaMuscular = masaMuscular;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
     }
 }
