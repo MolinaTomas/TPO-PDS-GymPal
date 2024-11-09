@@ -1,19 +1,25 @@
 package com.uade.gymapp.gymapp.views;
 
 import com.uade.gymapp.gymapp.GymappApplication;
+import com.uade.gymapp.gymapp.controller.SocioController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InicioView extends JPanel {
-    private GymappApplication app;
+public class InicioView {
+    private static LoginView loginView;
+    private static SingupView singupView;
+    private SocioController socioController;
 
-    public InicioView(GymappApplication app) {
-        super(); // Extiende JPanel
-        this.app = app;
-        this.setLayout(new BorderLayout());
+    public void crearPantalla(CardLayout card, JPanel panelCard) {
+        JPanel inicioPanel = new JPanel();
+        inicioPanel.setLayout(new BorderLayout());
+        loginView = new LoginView();
+        singupView = new SingupView();
+
+        this.socioController = new SocioController();
 
         // Panel para el título y subtítulo
         JPanel titlePanel = new JPanel(new GridLayout(2, 1));
@@ -21,23 +27,36 @@ public class InicioView extends JPanel {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 36));
         JLabel subtitleLabel = new JLabel("¡Bienvenido/a a GymPal!", JLabel.CENTER);
         subtitleLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-
         titlePanel.add(titleLabel);
         titlePanel.add(subtitleLabel);
-        this.add(titlePanel, BorderLayout.NORTH);
+        inicioPanel.add(titlePanel, BorderLayout.NORTH);
 
         // Panel para los botones
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnIniciarSesion = new JButton("Iniciar Sesión");
         JButton btnRegistrarse = new JButton("Registrarse");
-
         buttonPanel.add(btnIniciarSesion);
         buttonPanel.add(btnRegistrarse);
-
-        this.add(buttonPanel, BorderLayout.CENTER);
+        inicioPanel.add(buttonPanel, BorderLayout.CENTER);
 
         // Listeners para la navegación
-        btnIniciarSesion.addActionListener(e -> app.mostrarVista("LoginView"));
-        btnRegistrarse.addActionListener(e -> app.mostrarVista("SignupView"));
+        btnIniciarSesion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginView.crearPantalla(socioController, card, panelCard);
+                card.show(panelCard, "Login");
+            }
+        });
+        btnRegistrarse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                singupView.crearPantalla(socioController, card, panelCard);
+                card.show(panelCard, "Signup");
+            }
+        });
+
+        // Agregar al panelCard
+        panelCard.add(inicioPanel, "Inicio");
+        card.show(panelCard, "Inicio");
     }
 }

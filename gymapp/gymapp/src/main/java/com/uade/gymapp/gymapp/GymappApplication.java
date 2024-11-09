@@ -5,6 +5,7 @@ import com.uade.gymapp.gymapp.views.DashboardView;
 import com.uade.gymapp.gymapp.views.InicioView;
 import com.uade.gymapp.gymapp.views.LoginView;
 import com.uade.gymapp.gymapp.views.SingupView;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,38 +13,29 @@ import javax.swing.*;
 import java.awt.*;
 
 @SpringBootApplication
-public class GymappApplication extends JFrame {
-
-	private CardLayout cardLayout;
-	private JPanel mainPanel;
-	private SocioController socioController;
-
-	public GymappApplication() {
-		super("GymPal");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(800, 600);
-
-		socioController = new SocioController();
-
-		cardLayout = new CardLayout();
-		mainPanel = new JPanel(cardLayout);
-
-		// Agregamos las vistas al CardLayout
-		mainPanel.add(new InicioView(this), "InicioView");
-		mainPanel.add(new LoginView(this, socioController), "LoginView");
-		mainPanel.add(new SingupView(this, socioController), "SignupView");
-		mainPanel.add(new DashboardView(this), "DashboardView");
-
-		this.add(mainPanel);
-	}
-
-	public void mostrarVista(String nombreVista) {
-		cardLayout.show(mainPanel, nombreVista);
-	}
+public class GymappApplication {
+	private static InicioView inicioView;
 
 	public static void main(String[] args) {
-		GymappApplication app = new GymappApplication();
-		app.setVisible(true);
+		//GymappApplication app = new GymappApplication();
+		//app.setVisible(true);
+
+		inicioView = new InicioView();
+
+		JFrame frame = new JFrame("GymPal");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(500, 500);
+		frame.setLocationRelativeTo(null);
+		CardLayout card = new CardLayout();
+		JPanel panelCard = new JPanel(card);
+
+		// crear pantallas
+		inicioView.crearPantalla(card, panelCard);
+
+		// agregar panelCard al frame
+		frame.setLayout(new BorderLayout());
+		frame.add(panelCard, BorderLayout.CENTER);
+		frame.setVisible(true);
 	}
 
 }

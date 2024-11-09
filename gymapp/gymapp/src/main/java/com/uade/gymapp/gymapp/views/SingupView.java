@@ -7,21 +7,37 @@ import org.springframework.http.ResponseEntity;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class SingupView extends JPanel {
-    private GymappApplication app;
+public class SingupView {
+    private static InicioView inicioView;
+    private static DashboardView dashboardView;
     private SocioController socioController;
 
-    public SingupView(GymappApplication app, SocioController socioController) {
-        super(); // Aseguramos que extienda JPanel
-        this.app = app;
-        this.socioController = socioController; // Inicializamos el controlador
-        this.setLayout(new BorderLayout());
+    public static void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
+        JPanel signupPanel = new JPanel();
+        signupPanel.setLayout(new BorderLayout());
+        inicioView = new InicioView();
+        dashboardView = new DashboardView();
+
+        // Botón para regresar
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton btnRegresar = new JButton("Regresar");
+        topPanel.add(btnRegresar);
+        btnRegresar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                inicioView.crearPantalla(card, panelCard);
+                card.show(panelCard, "Inicio");
+            }
+        });
+        signupPanel.add(topPanel, BorderLayout.NORTH);
 
         // Título
         JLabel titleLabel = new JLabel("Registrarse", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        this.add(titleLabel, BorderLayout.NORTH);
+        signupPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Formulario de registro
         JPanel formPanel = new JPanel(new GridLayout(7, 2, 10, 10));
@@ -48,36 +64,45 @@ public class SingupView extends JPanel {
         formPanel.add(new JLabel("Contraseña:"));
         formPanel.add(passwordField);
 
-        this.add(formPanel, BorderLayout.CENTER);
+        signupPanel.add(formPanel, BorderLayout.CENTER);
 
         // Botones
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton btnLimpiar = new JButton("Limpiar");
         JButton btnRegistrar = new JButton("Registrar usuario");
 
+        // Listeners para la navegación
+        btnLimpiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                limpiarFormulario(formPanel);
+            }
+        });
+        btnRegistrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Crear un nuevo SocioDTO con los datos del formulario
+                SocioDTO socioDTO = new SocioDTO();
+                socioDTO.setName(nameField.getText());
+                socioDTO.setApellido(apellidoField.getText());
+                socioDTO.setSexo(sexoField.getText());
+                socioDTO.setEdad(Integer.parseInt(edadField.getText()));
+                socioDTO.setAltura(Integer.parseInt(alturaField.getText()));
+                socioDTO.setMail(mailField.getText());
+                socioDTO.setPassword(passwordField.getText());
+                ResponseEntity<String> response = socioController.register(socioDTO);
+                System.out.println(response.getBody());
+                dashboardView.crearPantalla(socioController, card, panelCard);
+            }
+        });
+
         buttonPanel.add(btnLimpiar);
         buttonPanel.add(btnRegistrar);
-        this.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Listeners para la navegación
-        btnLimpiar.addActionListener(e -> limpiarFormulario(formPanel));
-        btnRegistrar.addActionListener(e -> {
-            // Crear un nuevo SocioDTO con los datos del formulario
-            SocioDTO socioDTO = new SocioDTO();
-            socioDTO.setName(nameField.getText());
-            socioDTO.setApellido(apellidoField.getText());
-            socioDTO.setSexo(sexoField.getText());
-            socioDTO.setEdad(Integer.parseInt(edadField.getText()));
-            socioDTO.setAltura(Integer.parseInt(alturaField.getText()));
-            socioDTO.setMail(mailField.getText());
-            socioDTO.setPassword(passwordField.getText());
-            ResponseEntity<String> response = socioController.register(socioDTO);
-            System.out.println(response.getBody());
-            app.mostrarVista("DashboardView"); // Cambiar a la vista del dashboard
-        });
+        signupPanel.add(buttonPanel, BorderLayout.SOUTH);
     }
 
-    private void limpiarFormulario(JPanel panel) {
+    private static void limpiarFormulario(JPanel panel) {
         for (Component comp : panel.getComponents()) {
             if (comp instanceof JTextField) {
                 ((JTextField) comp).setText("");
