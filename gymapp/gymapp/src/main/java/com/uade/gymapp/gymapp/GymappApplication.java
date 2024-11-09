@@ -55,6 +55,7 @@ public class GymappApplication {
 
 		// crear pantallas
 		inicioView.crearPantalla(card, panelCard);
+		dashboardView.crearPantalla(socioController, card, panelCard);
 		loginView.crearPantalla(socioController, card, panelCard);
 		signupView.crearPantalla(socioController, card, panelCard);
 		perfilView.crearPantalla(card, panelCard);

@@ -18,6 +18,8 @@ public class LoginView {
         JPanel loginPanel = new JPanel();
         loginPanel.setLayout(new BorderLayout());
 
+        // Sección NORTH
+
         // Botón para regresar
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JButton btnRegresar = new JButton("Regresar");
@@ -28,12 +30,12 @@ public class LoginView {
                 card.show(panelCard, "Inicio");
             }
         });
-        loginPanel.add(topPanel, BorderLayout.NORTH);
 
         // Título
         JLabel titleLabel = new JLabel("Iniciar sesión", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        loginPanel.add(titleLabel, BorderLayout.NORTH);
+        topPanel.add(titleLabel);
+        loginPanel.add(topPanel, BorderLayout.NORTH);
 
         // Formulario
         JPanel formPanel = new JPanel(new GridLayout(3, 2, 10, 10));

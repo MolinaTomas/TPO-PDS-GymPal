@@ -27,12 +27,13 @@ public class SingupView {
                 card.show(panelCard, "Inicio");
             }
         });
-        signupPanel.add(topPanel, BorderLayout.NORTH);
+
 
         // Título
         JLabel titleLabel = new JLabel("Registrarse", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        signupPanel.add(titleLabel, BorderLayout.NORTH);
+        topPanel.add(titleLabel);
+        signupPanel.add(topPanel, BorderLayout.NORTH);
 
         // Formulario de registro
         JPanel formPanel = new JPanel(new GridLayout(7, 2, 10, 10));
