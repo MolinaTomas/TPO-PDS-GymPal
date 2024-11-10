@@ -1,5 +1,6 @@
 package com.uade.gymapp.gymapp.controller;
 
+import com.uade.gymapp.gymapp.model.BajarDePeso;
 import com.uade.gymapp.gymapp.model.Objetivo;
 import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
@@ -25,7 +26,7 @@ public class SocioController {
         admin.setMail("admin");
         admin.setPassword("123");
         // Assuming Objetivo is a required field, set a default one
-        admin.setObjetivo(new Objetivo());
+        admin.setObjetivo(new BajarDePeso());
 
         usuarios.add(admin);
     }
