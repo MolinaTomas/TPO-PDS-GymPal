@@ -15,7 +15,7 @@ public class DashboardView extends JPanel {
         dashboardPanel.setLayout(new BorderLayout());
 
         // Título
-        JLabel titleLabel = new JLabel("Dashboard", JLabel.CENTER);
+        JLabel titleLabel = new JLabel("GYM PAL", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         dashboardPanel.add(titleLabel, BorderLayout.NORTH);
 
