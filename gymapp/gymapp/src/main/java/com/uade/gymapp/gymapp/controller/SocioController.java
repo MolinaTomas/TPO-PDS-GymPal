@@ -31,7 +31,6 @@ public class SocioController {
         admin.setAltura(175);
         admin.setMail("admin");
         admin.setPassword("123");
-        // Assuming Objetivo is a required field, set a default one
         admin.setObjetivo(new BajarDePeso());
         TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
         admin.addObserver(creidoObserver);

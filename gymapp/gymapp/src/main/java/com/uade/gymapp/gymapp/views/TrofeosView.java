@@ -42,7 +42,7 @@ public class TrofeosView {
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
         List<Trofeo> trofeos = SocioController.getUsuarioActual().getTrofeos();
-        if (trofeos!=null) {
+        if (trofeos != null) {
             for (Trofeo trofeo : trofeos) {
                 JPanel item = new JPanel(new FlowLayout());
 

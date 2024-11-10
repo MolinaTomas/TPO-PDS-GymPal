@@ -2,7 +2,6 @@ package com.uade.gymapp.gymapp.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 

@@ -24,7 +24,7 @@ public class Entrenamiento {
         this.fecha = fecha;
         this.ejercicios = ejercicios;
         this.ejerciciosRealizados = new ArrayList<>();
-        this.estado = new EstadoEntrenamientoListo(); // Initial state
+        this.estado = new EstadoEntrenamientoListo(); // Estado Inicial
     }
 
     public void iniciar() {

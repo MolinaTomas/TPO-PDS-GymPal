@@ -8,13 +8,17 @@ import java.time.LocalDateTime;
 public class TrofeoCreidoObserver implements TrofeoObserver {
     @Override
     public void otorgarTrofeo(Socio socio) {
-        long count = socio.getListaMediciones().stream()
+        long conteo = socio.getListaMediciones().stream()
                 .filter(m -> m.getFechaYhora().getMonth() == LocalDateTime.now().getMonth())
                 .count();
-        if (count > 3) {
+
+        boolean yaTieneTrofeo = socio.getTrofeos().stream()
+                .anyMatch(t -> t.getNombre().equals("Trofeo al Creído"));
+
+        if (conteo > 3 && !yaTieneTrofeo) {
             Trofeo trofeo = new Trofeo(null, "Trofeo al Creído", LocalDateTime.now());
             socio.addTrofeo(trofeo);
-            System.out.println("Trofeo otorgado al creído");
+            System.out.println("Trofeo otorgado al creído para el usuario: " + socio.getName());
         }
     }
 }
