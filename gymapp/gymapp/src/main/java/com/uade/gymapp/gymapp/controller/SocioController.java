@@ -5,7 +5,9 @@ import com.uade.gymapp.gymapp.model.Objetivo;
 import com.uade.gymapp.gymapp.model.Rutina;
 import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
+import com.uade.gymapp.gymapp.model.observer.TrofeoConstanciaObserver;
 import com.uade.gymapp.gymapp.model.observer.TrofeoCreidoObserver;
+import com.uade.gymapp.gymapp.model.observer.TrofeoDedicacionObserver;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +35,10 @@ public class SocioController {
         admin.setObjetivo(new BajarDePeso());
         TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
         admin.addObserver(creidoObserver);
-
+        TrofeoConstanciaObserver constanciaObserver = new TrofeoConstanciaObserver();
+        admin.addObserver(constanciaObserver);
+        TrofeoDedicacionObserver dedicacionObserver = new TrofeoDedicacionObserver();
+        admin.addObserver(dedicacionObserver);
         usuarios.add(admin);
     }
 

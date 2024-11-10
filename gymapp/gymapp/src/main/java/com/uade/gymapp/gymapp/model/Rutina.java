@@ -22,4 +22,17 @@ public class Rutina {
     public RutinaDTO toDto() {
         return new RutinaDTO(id, entrenamientos.stream().map(Entrenamiento::toDto).toList(), objetivo.toDto());
     }
+
+    public void addEntrenamiento(Entrenamiento entrenamiento) {
+        if (entrenamiento.getEjercicios().stream().allMatch(objetivo::isEjercicioValido) &&
+                isTiempoEntrenamientoValido(entrenamiento.getDuracion())) {
+            entrenamientos.add(entrenamiento);
+        } else {
+            throw new IllegalArgumentException("Entrenamiento no válido para el objetivo actual.");
+        }
+    }
+
+    public boolean isTiempoEntrenamientoValido(int duracion) {
+        return duracion >= objetivo.getTiempoEntrenamientoMin() && duracion <= objetivo.getTiempoEntrenamientoMax();
+    }
 }
