@@ -88,7 +88,12 @@ public class MedicionView {
                     Medicion medicion = new Medicion(medicionDTO.getFechaYhora(), medicionDTO.getPeso(),
                             medicionDTO.getPorcentajeGrasaCorporal(), medicionDTO.getMasaMuscular());
                     usuarioActual.getListaMediciones().add(medicion); // Agregar la medición a la lista del usuario
-                    System.out.println(usuarioActual.getListaMediciones().get(0).getMasaMuscular());
+
+                    // Imprimir la medición en la consola
+                    System.out.println("Nueva medición registrada: Peso: " + medicion.getPeso() +
+                            ", Porcentaje de Grasa Corporal: " + medicion.getPorcentajeGrasaCorporal() +
+                            ", Masa Muscular: " + medicion.getMasaMuscular());
+
                     JOptionPane.showMessageDialog(medicionPanel, "Medición registrada exitosamente");
                     historialMedicionesView.crearPantalla(card, panelCard);
                     limpiarFormulario(formPanel);

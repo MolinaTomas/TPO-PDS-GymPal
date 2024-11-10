@@ -21,15 +21,18 @@ public class Socio {
     private List<Trofeo> trofeos;
     private List<Medicion> listaMediciones;
     private Rutina rutina;
+    private List<Entrenamiento> entrenamientosCompletados;
 
     public Socio() {
+        this.trofeos = new ArrayList<>();
         this.listaMediciones = new ArrayList<>();
+        this.entrenamientosCompletados = new ArrayList<>();
     }
 
     // Constructor
     public Socio(Long id, String name, String apellido, String sexo, int edad,
-                 int altura, String mail, String password, Objetivo objetivo, List<Trofeo> trofeos,
-                 List<Medicion> listaMediciones, Rutina rutina) {
+            int altura, String mail, String password, Objetivo objetivo, List<Trofeo> trofeos,
+            List<Medicion> listaMediciones, Rutina rutina) {
         this.id = id;
         this.name = name;
         this.apellido = apellido;
@@ -39,9 +42,10 @@ public class Socio {
         this.mail = mail;
         this.password = password;
         this.objetivo = objetivo;
-        this.trofeos = trofeos;
+        this.trofeos = trofeos != null ? trofeos : new ArrayList<>();
         this.listaMediciones = listaMediciones != null ? listaMediciones : new ArrayList<>();
         this.rutina = rutina;
+        this.entrenamientosCompletados = new ArrayList<>();
     }
 
     public void addTrofeo(Trofeo trofeo) {
@@ -50,6 +54,10 @@ public class Socio {
 
     public void addMedicion(Medicion medicion) {
         this.listaMediciones.add(medicion);
+    }
+
+    public void addEntrenamientoCompletado(Entrenamiento entrenamiento) {
+        this.entrenamientosCompletados.add(entrenamiento);
     }
 
     // public SocioDTO toDto() {
