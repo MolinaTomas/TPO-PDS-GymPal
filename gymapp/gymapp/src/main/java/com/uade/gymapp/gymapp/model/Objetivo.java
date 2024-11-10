@@ -11,6 +11,8 @@ public class Objetivo {
     private boolean cumplido;
     private double progresoActual;
 
+    public Objetivo() {}
+
     public Objetivo(Long id, boolean cumplido, double progresoActual) {
         this.id = id;
         this.cumplido = cumplido;

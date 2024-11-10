@@ -31,6 +31,7 @@ public class SocioController {
         nuevoUsuario.setAltura(socioDTO.getAltura());
         nuevoUsuario.setMail(socioDTO.getMail());
         nuevoUsuario.setPassword(socioDTO.getPassword());
+        nuevoUsuario.setObjetivo(socioDTO.getObjetivo());
 
         usuarios.add(nuevoUsuario); // Agrego el usuario a la lista
         usuarioActual = nuevoUsuario; // Establezco el usuario actual
@@ -60,5 +61,17 @@ public class SocioController {
     // Método para obtener el usuario actual
     public static Socio getUsuarioActual() {
         return usuarioActual;
+    }
+
+    // Método para modificar datos del usuario actual
+    public static void updateUsuarioActual(SocioDTO socioDTO) {
+        usuarioActual.setName(socioDTO.getName());
+        usuarioActual.setApellido(socioDTO.getApellido());
+        usuarioActual.setSexo(socioDTO.getSexo());
+        usuarioActual.setEdad(socioDTO.getEdad());
+        usuarioActual.setAltura(socioDTO.getAltura());
+        usuarioActual.setMail(socioDTO.getMail());
+        usuarioActual.setPassword(socioDTO.getPassword());
+        usuarioActual.setObjetivo(socioDTO.getObjetivo());
     }
 }

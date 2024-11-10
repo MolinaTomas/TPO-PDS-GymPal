@@ -50,7 +50,7 @@ public class GymappApplication {
 
 		JFrame frame = new JFrame("GymPal");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 500);
+		frame.setSize(600, 700);
 		frame.setLocationRelativeTo(null);
 		CardLayout card = new CardLayout();
 		JPanel panelCard = new JPanel(card);

@@ -2,6 +2,10 @@ package com.uade.gymapp.gymapp.views;
 
 import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.model.BajarDePeso;
+import com.uade.gymapp.gymapp.model.MantenerFigura;
+import com.uade.gymapp.gymapp.model.Objetivo;
+import com.uade.gymapp.gymapp.model.TonificarCuerpo;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -35,7 +39,7 @@ public class SingupView {
         signupPanel.add(topPanel, BorderLayout.NORTH);
 
         // Formulario de registro
-        JPanel formPanel = new JPanel(new GridLayout(7, 2, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(8, 2, 10, 10));
         JTextField nameField = new JTextField();
         JTextField apellidoField = new JTextField();
         JTextField sexoField = new JTextField();
@@ -58,6 +62,11 @@ public class SingupView {
         formPanel.add(mailField);
         formPanel.add(new JLabel("Contraseña:"));
         formPanel.add(passwordField);
+
+        String[] objetivos = {"bajar de peso", "mantener figura", "tonificar cuerpo"};
+        JComboBox<String> objetivoComboBox = new JComboBox<>(objetivos);
+        formPanel.add(new JLabel("Objetivo: "));
+        formPanel.add(objetivoComboBox);
 
         signupPanel.add(formPanel, BorderLayout.CENTER);
 
@@ -85,6 +94,18 @@ public class SingupView {
                 socioDTO.setAltura(Integer.parseInt(alturaField.getText()));
                 socioDTO.setMail(mailField.getText());
                 socioDTO.setPassword(passwordField.getText());
+
+                String objetivoSeleccionado = (String) objetivoComboBox.getSelectedItem();
+                Objetivo objetivo;
+                if (objetivoSeleccionado.equals("bajar de peso")) {
+                    objetivo = new BajarDePeso();
+                } else if (objetivoSeleccionado.equals("mantener figura")) {
+                    objetivo = new MantenerFigura();
+                } else {
+                    objetivo = new TonificarCuerpo();
+                }
+
+                socioDTO.setObjetivo(objetivo);
                 ResponseEntity<String> response = socioController.register(socioDTO);
                 System.out.println(response.getBody());
                 GymappApplication.crearPantallasPersonalizadas(card, panelCard);
