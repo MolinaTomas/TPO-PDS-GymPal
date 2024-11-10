@@ -6,6 +6,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uade.gymapp.gymapp.model.observer.TrofeoObserver;
+
 @Getter
 @Setter
 public class Socio {
@@ -22,6 +24,7 @@ public class Socio {
     private List<Medicion> listaMediciones;
     private Rutina rutina;
     private List<Entrenamiento> entrenamientosCompletados;
+    private List<TrofeoObserver> observadores = new ArrayList<>();
 
     public Socio() {
         this.trofeos = new ArrayList<>();
@@ -58,6 +61,20 @@ public class Socio {
 
     public void addEntrenamientoCompletado(Entrenamiento entrenamiento) {
         this.entrenamientosCompletados.add(entrenamiento);
+    }
+
+    public void addObserver(TrofeoObserver observador) {
+        this.observadores.add(observador);
+    }
+
+    public void removeObserver(TrofeoObserver observador) {
+        this.observadores.remove(observador);
+    }
+
+    public void notifyObservers() {
+        for (TrofeoObserver observador : observadores) {
+            observador.otorgarTrofeo(this);
+        }
     }
 
     // public SocioDTO toDto() {

@@ -95,6 +95,7 @@ public class MedicionView {
                             ", Masa Muscular: " + medicion.getMasaMuscular());
 
                     JOptionPane.showMessageDialog(medicionPanel, "Medición registrada exitosamente");
+                    usuarioActual.notifyObservers();
                     historialMedicionesView.crearPantalla(card, panelCard);
                     limpiarFormulario(formPanel);
                 } else {
