@@ -14,6 +14,7 @@ public class TrofeoCreidoObserver implements TrofeoObserver {
         if (count > 3) {
             Trofeo trofeo = new Trofeo(null, "Trofeo al Creído", LocalDateTime.now());
             socio.addTrofeo(trofeo);
+            System.out.println("Trofeo otorgado al creído");
         }
     }
 }

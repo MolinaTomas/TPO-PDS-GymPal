@@ -2,8 +2,11 @@ package com.uade.gymapp.gymapp.controller;
 
 import com.uade.gymapp.gymapp.model.BajarDePeso;
 import com.uade.gymapp.gymapp.model.Objetivo;
+import com.uade.gymapp.gymapp.model.Rutina;
 import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
+import com.uade.gymapp.gymapp.model.observer.TrofeoCreidoObserver;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +30,8 @@ public class SocioController {
         admin.setPassword("123");
         // Assuming Objetivo is a required field, set a default one
         admin.setObjetivo(new BajarDePeso());
+        TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
+        admin.addObserver(creidoObserver);
 
         usuarios.add(admin);
     }
@@ -51,8 +56,14 @@ public class SocioController {
         nuevoUsuario.setPassword(socioDTO.getPassword());
         nuevoUsuario.setObjetivo(socioDTO.getObjetivo());
 
+        // Crear una Rutina basada en el Objetivo
+        Rutina nuevaRutina = new Rutina(null, new ArrayList<>(), socioDTO.getObjetivo());
+        nuevoUsuario.setRutina(nuevaRutina);
+        TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
+        usuarioActual.addObserver(creidoObserver);
         usuarios.add(nuevoUsuario); // Agrego el usuario a la lista
         usuarioActual = nuevoUsuario; // Establezco el usuario actual
+
         return ResponseEntity.ok("Usuario registrado exitosamente!");
     }
 
@@ -90,6 +101,14 @@ public class SocioController {
         usuarioActual.setAltura(socioDTO.getAltura());
         usuarioActual.setMail(socioDTO.getMail());
         usuarioActual.setPassword(socioDTO.getPassword());
-        usuarioActual.setObjetivo(socioDTO.getObjetivo());
+
+        // Reviso si el objetivo cambió
+        if (!usuarioActual.getObjetivo().equals(socioDTO.getObjetivo())) {
+            usuarioActual.setObjetivo(socioDTO.getObjetivo());
+
+            // Creo una nueva Rutina basada en el nuevo Objetivo
+            Rutina nuevaRutina = new Rutina(null, new ArrayList<>(), socioDTO.getObjetivo());
+            usuarioActual.setRutina(nuevaRutina);
+        }
     }
 }
