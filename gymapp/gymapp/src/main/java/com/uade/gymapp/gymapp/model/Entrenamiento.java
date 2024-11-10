@@ -16,6 +16,7 @@ public class Entrenamiento {
     private Date fecha;
     private List<Ejercicio> ejercicios;
     private List<EjercicioRealizado> ejerciciosRealizados;
+    private EstadoEntrenamiento estado;
 
     public Entrenamiento(Long id, int duracion, Date fecha, List<Ejercicio> ejercicios) {
         this.id = id;
@@ -23,6 +24,15 @@ public class Entrenamiento {
         this.fecha = fecha;
         this.ejercicios = ejercicios;
         this.ejerciciosRealizados = new ArrayList<>();
+        this.estado = new EstadoEntrenamientoListo(); // Initial state
+    }
+
+    public void iniciar() {
+        estado.iniciar(this);
+    }
+
+    public void finalizar() {
+        estado.finalizar(this);
     }
 
     public void addEjercicioRealizado(EjercicioRealizado ejercicioRealizado) {
