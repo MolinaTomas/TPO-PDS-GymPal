@@ -37,7 +37,7 @@ public class HistorialMedicionesView {
         topPanel.add(subtitle);
         medicionPanel.add(topPanel, BorderLayout.NORTH);
 
-        // formulario
+        // información
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 

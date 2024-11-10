@@ -58,22 +58,25 @@ public class GymappApplication {
 		// crear pantallas
 		inicioView.crearPantalla(card, panelCard);
 		dashboardView.crearPantalla(socioController, card, panelCard);
-		loginView.crearPantalla(socioController, card, panelCard, historialMedicionesView);
-		signupView.crearPantalla(socioController, card, panelCard, historialMedicionesView);
-		perfilView.crearPantalla(card, panelCard);
-		configurarPerfilView.crearPantalla(card, panelCard);
+		loginView.crearPantalla(socioController, card, panelCard);
+		signupView.crearPantalla(socioController, card, panelCard);
 		medicionView.crearPantalla(card, panelCard, historialMedicionesView);
-		rutinaView.crearPantalla(card, panelCard);
-		entrenamientoView.crearPantalla(card, panelCard);
-		historialEntrenamientosView.crearPantalla(card, panelCard);
 		registrarEntrenamientoView.crearPantalla(card, panelCard);
-		trofeosView.crearPantalla(card, panelCard);
 
 		// agregar panelCard al frame
 		frame.setLayout(new BorderLayout());
 		frame.add(panelCard, BorderLayout.CENTER);
 		card.show(panelCard, "Inicio");
 		frame.setVisible(true);
+	}
+
+	public static void crearPantallasPersonalizadas(CardLayout card, JPanel panelCard) {
+		perfilView.crearPantalla(card, panelCard);
+		configurarPerfilView.crearPantalla(card, panelCard);
+		rutinaView.crearPantalla(card, panelCard, entrenamientoView);
+		historialEntrenamientosView.crearPantalla(card, panelCard);
+		historialMedicionesView.crearPantalla(card, panelCard);
+		trofeosView.crearPantalla(card, panelCard);
 	}
 
 }

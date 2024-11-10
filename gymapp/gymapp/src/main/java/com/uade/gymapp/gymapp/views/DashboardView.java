@@ -38,25 +38,25 @@ public class DashboardView extends JPanel {
         btnVerRutina.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card.show(panelCard, "Inicio");
+                card.show(panelCard, "Rutina");
             }
         });
         btnVerHistorial.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card.show(panelCard, "Inicio");
-            }
-        });
-        btnVerTrofeos.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                card.show(panelCard, "Inicio");
+                card.show(panelCard, "Historial de Entrenamientos");
             }
         });
         btnVerPerfil.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card.show(panelCard, "Inicio");
+                card.show(panelCard, "Perfil");
+            }
+        });
+        btnVerTrofeos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                card.show(panelCard, "Trofeos");
             }
         });
 

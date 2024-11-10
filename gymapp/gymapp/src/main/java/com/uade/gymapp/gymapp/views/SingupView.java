@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 public class SingupView {
     private SocioController socioController;
 
-    public void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard, HistorialMedicionesView historialMedicionesView) {
+    public void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
         JPanel signupPanel = new JPanel();
         signupPanel.setLayout(new BorderLayout());
 
@@ -27,7 +27,6 @@ public class SingupView {
                 card.show(panelCard, "Inicio");
             }
         });
-
 
         // Título
         JLabel titleLabel = new JLabel("Registrarse", JLabel.CENTER);
@@ -88,7 +87,7 @@ public class SingupView {
                 socioDTO.setPassword(passwordField.getText());
                 ResponseEntity<String> response = socioController.register(socioDTO);
                 System.out.println(response.getBody());
-                historialMedicionesView.crearPantalla(card, panelCard);
+                GymappApplication.crearPantallasPersonalizadas(card, panelCard);
                 card.show(panelCard, "Dashboard");
             }
         });
