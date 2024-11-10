@@ -23,4 +23,13 @@ public abstract class Objetivo {
     public ObjetivoDTO toDto() {
         return new ObjetivoDTO(id, cumplido, progresoActual);
     }
+
+    // Abstract methods for constraints
+    public abstract boolean isAerobicoValido(int nivelAerobico);
+
+    public abstract boolean isEjercicioValido(Ejercicio ejercicio);
+
+    public abstract int getTiempoEntrenamientoMin();
+
+    public abstract int getTiempoEntrenamientoMax();
 }
