@@ -71,6 +71,8 @@ public class RutinaView {
             }
         }
 
+
+
         rutinaPanel.add(calendarPanel, BorderLayout.CENTER);
 
         panelCard.add(rutinaPanel, "Rutina");

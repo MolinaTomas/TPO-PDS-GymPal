@@ -48,7 +48,7 @@ public class EntrenamientoView {
         infoPanel.add(new JLabel("- fecha: "+entrenamiento.getFecha()));
 
         JPanel ejerciciosPanel = new JPanel();
-        ejerciciosPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+        ejerciciosPanel.setLayout(new BoxLayout(ejerciciosPanel, BoxLayout.Y_AXIS));
         ejerciciosPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
         JLabel subsubtitle = new JLabel("Ejercicios incluídos");
@@ -58,7 +58,7 @@ public class EntrenamientoView {
         List<Ejercicio> ejercicios = entrenamiento.getEjercicios();
         for (Ejercicio ejercicio : ejercicios) {
             JPanel ejercicioItem = new JPanel();
-            ejercicioItem.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+            ejercicioItem.setLayout(new BoxLayout(ejercicioItem, BoxLayout.Y_AXIS));
 
             JPanel ejercicioTitlePanel = new JPanel(new FlowLayout());
             ejercicioTitlePanel.add(new JLabel("- nombre: ")); ejercicioTitlePanel.add(new JLabel(ejercicio.getNombre()));

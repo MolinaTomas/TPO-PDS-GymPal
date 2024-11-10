@@ -1,17 +1,84 @@
 package com.uade.gymapp.gymapp.controller;
 
-import com.uade.gymapp.gymapp.model.Ejercicio;
-import com.uade.gymapp.gymapp.model.Entrenamiento;
-import com.uade.gymapp.gymapp.model.Socio;
+import com.uade.gymapp.gymapp.model.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class RutinaController { //AHORA LLENO LOS DATOS
-    private List<Entrenamiento> entrenamientosTonificar = new ArrayList<>();
-    private List<Entrenamiento> entrenamientosMantener = new ArrayList<>();
-    private List<Entrenamiento> entrenamientosBajar = new ArrayList<>();
-    private List<Ejercicio> ejerciciosTotales = new ArrayList<>();
+public class RutinaController {
 
+    private List<Ejercicio> ejerciciosDisponibles;
 
+    public RutinaController() {
+        // Inicializamos la lista de ejercicios disponibles
+        ejerciciosDisponibles = inicializarEjercicios();
+    }
+
+    private List<Ejercicio> inicializarEjercicios() {
+        List<Ejercicio> ejercicios = new ArrayList<>();
+// Ejercicios de cardio (alto nivel aeróbico)
+        ejercicios.add(new Ejercicio(1L, "Cinta de correr", "Carrera continua con intervalos de intensidad", 3, 1, 0.0, 8, ExigenciaMuscular.BAJO, "url_video_cinta"));
+
+// Ejercicios de fuerza (pecho)
+        ejercicios.add(new Ejercicio(2L, "Press de banca", "Press de banca con barra", 4, 12, 40.0, 2, ExigenciaMuscular.ALTO, "url_video_press"));
+
+// Ejercicios de piernas
+        ejercicios.add(new Ejercicio(3L, "Sentadillas", "Sentadillas con peso corporal", 4, 15, 0.0, 4, ExigenciaMuscular.ALTO, "url_video_sentadillas"));
+
+// Ejercicios de core
+        ejercicios.add(new Ejercicio(4L, "Plancha", "Plancha isométrica", 3, 1, 0.0, 3, ExigenciaMuscular.MEDIO, "url_video_plancha"));
+
+// Ejercicios de espalda
+        ejercicios.add(new Ejercicio(5L, "Dominadas", "Dominadas en barra", 4, 8, 0.0, 3, ExigenciaMuscular.ALTO, "url_video_dominadas"));
+
+        return ejercicios;
+    }
+
+    public Rutina crearRutina(Objetivo objetivo) {
+        List<Ejercicio> ejerciciosSeleccionados = seleccionarEjerciciosSegunObjetivo(objetivo);
+
+        // Creamos un entrenamiento con los ejercicios seleccionados
+        Entrenamiento entrenamiento = new Entrenamiento(9223372036854775807L, 45, new Date(), ejerciciosSeleccionados);
+        //entrenamiento.setEjercicios(ejerciciosSeleccionados);
+
+        // Creamos la rutina con el entrenamiento
+        List<Entrenamiento> entrenamientos = new ArrayList<>();
+        entrenamientos.add(entrenamiento);
+
+        Rutina rutina = new Rutina(9223372036854775807L, entrenamientos, objetivo);
+
+        return rutina;
+    }
+
+    private List<Ejercicio> seleccionarEjerciciosSegunObjetivo(Objetivo objetivo) {
+        List<Ejercicio> ejerciciosSeleccionados = new ArrayList<>();
+
+        if (objetivo instanceof BajarDePeso) {
+            // Para bajar de peso: ejercicios con nivel aeróbico >= 3
+            for (Ejercicio ejercicio : ejerciciosDisponibles) {
+                if (ejercicio.getNivelAerobico() >= 3) {
+                    ejerciciosSeleccionados.add(ejercicio);
+                }
+            }
+        } else if (objetivo instanceof TonificarCuerpo) {
+            // Para tonificar: ejercicios con nivel aeróbico <= 4 y exigencia muscular alta
+            for (Ejercicio ejercicio : ejerciciosDisponibles) {
+                if (ejercicio.getNivelAerobico() <= 4 &&
+                        ejercicio.getExigenciaMuscular() == ExigenciaMuscular.ALTO) {
+                    ejerciciosSeleccionados.add(ejercicio);
+                }
+            }
+        } else {
+            // Para mantener figura: ejercicios con nivel aeróbico entre 2 y 4 y exigencia media-baja
+            for (Ejercicio ejercicio : ejerciciosDisponibles) {
+                if (ejercicio.getNivelAerobico() >= 2 &&
+                        ejercicio.getNivelAerobico() <= 4 &&
+                        (ejercicio.getExigenciaMuscular() == ExigenciaMuscular.MEDIO ||
+                                ejercicio.getExigenciaMuscular() == ExigenciaMuscular.BAJO)) {
+                    ejerciciosSeleccionados.add(ejercicio);
+                }
+            }
+        }
+
+        return ejerciciosSeleccionados;
+    }
 }

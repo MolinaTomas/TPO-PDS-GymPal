@@ -17,6 +17,7 @@ public class SocioController {
 
     private List<Socio> usuarios = new ArrayList<>(); // "simulación" de un repositorio de usuarios vacio
     private static Socio usuarioActual; // Variable estática para el usuario actual
+    private RutinaController rutinaController = new RutinaController();
 
     // Constructor to add the admin user
     public SocioController() {
@@ -57,12 +58,14 @@ public class SocioController {
         nuevoUsuario.setObjetivo(socioDTO.getObjetivo());
 
         // Crear una Rutina basada en el Objetivo
-        Rutina nuevaRutina = new Rutina(null, new ArrayList<>(), socioDTO.getObjetivo());
+        Rutina nuevaRutina = rutinaController.crearRutina(socioDTO.getObjetivo());
         nuevoUsuario.setRutina(nuevaRutina);
-        TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
-        usuarioActual.addObserver(creidoObserver);
+
         usuarios.add(nuevoUsuario); // Agrego el usuario a la lista
         usuarioActual = nuevoUsuario; // Establezco el usuario actual
+
+        TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
+        usuarioActual.addObserver(creidoObserver);
 
         return ResponseEntity.ok("Usuario registrado exitosamente!");
     }
