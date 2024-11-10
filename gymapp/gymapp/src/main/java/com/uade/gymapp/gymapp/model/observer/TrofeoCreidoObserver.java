@@ -1,8 +1,5 @@
 package com.uade.gymapp.gymapp.model.observer;
-<<<<<<< HEAD
-=======
 
->>>>>>> da8f4b74e6f73d065cd942a902f84df4f51538e3
 import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.Trofeo;
 

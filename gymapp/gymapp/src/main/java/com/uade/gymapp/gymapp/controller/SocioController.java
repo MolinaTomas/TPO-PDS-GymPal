@@ -1,5 +1,6 @@
 package com.uade.gymapp.gymapp.controller;
 
+import com.uade.gymapp.gymapp.model.Objetivo;
 import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,22 @@ public class SocioController {
 
     private List<Socio> usuarios = new ArrayList<>(); // "simulación" de un repositorio de usuarios vacio
     private static Socio usuarioActual; // Variable estática para el usuario actual
+
+    // Constructor to add the admin user
+    public SocioController() {
+        Socio admin = new Socio();
+        admin.setName("admin");
+        admin.setApellido("admin");
+        admin.setSexo("M");
+        admin.setEdad(30);
+        admin.setAltura(175);
+        admin.setMail("admin");
+        admin.setPassword("123");
+        // Assuming Objetivo is a required field, set a default one
+        admin.setObjetivo(new Objetivo());
+
+        usuarios.add(admin);
+    }
 
     // Método para registrar un nuevo usuario
     public ResponseEntity<String> register(SocioDTO socioDTO) {
