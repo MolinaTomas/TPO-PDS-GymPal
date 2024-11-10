@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Objetivo {
+public abstract class Objetivo {
     private Long id;
     private boolean cumplido;
     private double progresoActual;
