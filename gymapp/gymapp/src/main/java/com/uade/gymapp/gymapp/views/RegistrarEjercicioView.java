@@ -1,6 +1,5 @@
 package com.uade.gymapp.gymapp.views;
 
-import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
 import com.uade.gymapp.gymapp.model.Ejercicio;
 import com.uade.gymapp.gymapp.model.EjercicioRealizado;
@@ -11,15 +10,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Map;
+
+import static com.uade.gymapp.gymapp.views.EntrenamientoView.cargarEjercicioItem;
 
 public class RegistrarEjercicioView {
     EntrenamientoView entrenamientoView;
 
-    public void crearPantalla(CardLayout card, JPanel panelCard, Entrenamiento entrenamiento, Ejercicio ejercicio, int dia) {
+    public void crearPantalla(Entrenamiento entrenamiento, Ejercicio ejercicio, int dia, JPanel ejerciciosPanel, Map<Ejercicio, JPanel> ejercicioItemsMap) {
+        JFrame registrarEjercicioFrame = new JFrame("Registrar Ejercicio");
+        registrarEjercicioFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registrarEjercicioFrame.setSize(600, 700);
+        registrarEjercicioFrame.setLocationRelativeTo(null);
         JPanel registrarEjercicioPanel = new JPanel();
         registrarEjercicioPanel.setLayout(new BorderLayout());
 
@@ -35,7 +40,8 @@ public class RegistrarEjercicioView {
         btnRegresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card.show(panelCard, "Dashboard");
+                registrarEjercicioFrame.setVisible(false);
+                //card.show(panelCard, "Dashboard");
             }
         });
 
@@ -84,7 +90,8 @@ public class RegistrarEjercicioView {
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                card.show(panelCard, "Entrenamiento "+dia);
+                registrarEjercicioFrame.setVisible(false);
+                //card.show(panelCard, "Entrenamiento "+dia);
             }
         });
         JButton btnRegistrar = new JButton("Registrar");
@@ -101,12 +108,12 @@ public class RegistrarEjercicioView {
                 double pesoLevantado = Double.parseDouble(pesoInput.getText());
 
                 EjercicioRealizado nuevoEjercicioRealizado = new EjercicioRealizado(entrenamiento, ejercicio, fecha, seriesHechas, repeticionesHechas, pesoLevantado);
+                ejercicio.setEjercicioRealizado(nuevoEjercicioRealizado);
                 realizados.add(nuevoEjercicioRealizado);
 
-                //GymappApplication.crearPantallasPersonalizadas(card, panelCard);
-                entrenamientoView = new EntrenamientoView();
-                entrenamientoView.crearPantalla(card, panelCard, entrenamiento, dia);
-                card.show(panelCard, "Entrenamiento "+dia);
+                JPanel ejercicioItem = ejercicioItemsMap.get(ejercicio);
+                cargarEjercicioItem(ejercicioItemsMap, ejerciciosPanel, ejercicioItem, ejercicio, false, entrenamiento, dia);
+                registrarEjercicioFrame.setVisible(false);
             }
         });
 
@@ -115,6 +122,9 @@ public class RegistrarEjercicioView {
 
         registrarEjercicioPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
-        panelCard.add(registrarEjercicioPanel, "Registrar Ejercicio");
+        registrarEjercicioFrame.setLayout(new BorderLayout());
+        registrarEjercicioFrame.add(registrarEjercicioPanel, BorderLayout.CENTER);
+        registrarEjercicioFrame.setVisible(true);
+        //panelCard.add(registrarEjercicioPanel, "Registrar Ejercicio");
     }
 }

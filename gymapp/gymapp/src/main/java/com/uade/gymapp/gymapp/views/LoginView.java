@@ -76,6 +76,8 @@ public class LoginView {
                 socioDTO.setMail(usuario);
                 socioDTO.setPassword(contraseña);
                 if (socioController.login(socioDTO).getStatusCode() == HttpStatus.OK) { // Verificar con SocioController
+                    userField.setText("");
+                    passField.setText("");
                     Socio socio = obtenerSocio(usuario);
                     SocioController.setUsuarioActual(socio);
                     GymappApplication.crearPantallasPersonalizadas(card, panelCard);

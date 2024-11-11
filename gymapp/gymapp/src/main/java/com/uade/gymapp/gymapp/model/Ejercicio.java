@@ -17,9 +17,36 @@ public class Ejercicio {
     private int nivelAerobico;
     private ExigenciaMuscular exigenciaMuscular;
     private String videoUrl;
+    private EjercicioRealizado ejercicioRealizado;
+
+    public Ejercicio(String nombre, String descripcion, int series, int repeticiones, double peso,
+                     int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.series = series;
+        this.repeticiones = repeticiones;
+        this.peso = peso;
+        this.nivelAerobico = nivelAerobico;
+        this.exigenciaMuscular = exigenciaMuscular;
+        this.videoUrl = videoUrl;
+        this.ejercicioRealizado = null;
+    }
+
+    public Ejercicio(String nombre, String descripcion, int series, int repeticiones, double peso,
+                     int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl, EjercicioRealizado ejercicioRealizado) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.series = series;
+        this.repeticiones = repeticiones;
+        this.peso = peso;
+        this.nivelAerobico = nivelAerobico;
+        this.exigenciaMuscular = exigenciaMuscular;
+        this.videoUrl = videoUrl;
+        this.ejercicioRealizado = ejercicioRealizado;
+    }
 
     public Ejercicio(Long id, String nombre, String descripcion, int series, int repeticiones, double peso,
-            int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
+                     int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -29,6 +56,21 @@ public class Ejercicio {
         this.nivelAerobico = nivelAerobico;
         this.exigenciaMuscular = exigenciaMuscular;
         this.videoUrl = videoUrl;
+        this.ejercicioRealizado = null;
+    }
+
+    public Ejercicio(Long id, String nombre, String descripcion, int series, int repeticiones, double peso,
+            int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl, EjercicioRealizado ejercicioRealizado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.series = series;
+        this.repeticiones = repeticiones;
+        this.peso = peso;
+        this.nivelAerobico = nivelAerobico;
+        this.exigenciaMuscular = exigenciaMuscular;
+        this.videoUrl = videoUrl;
+        this.ejercicioRealizado = ejercicioRealizado;
     }
 
     public EjercicioDTO toDto() {

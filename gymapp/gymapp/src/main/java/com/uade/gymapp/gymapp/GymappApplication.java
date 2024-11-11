@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.query.JSqlParserUtils;
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 @SpringBootApplication
 public class GymappApplication {
 	private static SocioController socioController;
@@ -87,13 +88,11 @@ public class GymappApplication {
 		rutinaController.crearRutina(socioActual, socioActual.getObjetivo());
 
 		rutinaView.crearPantalla(card, panelCard, entrenamientoView);
-		//registrarEjercicioView.crearPantalla(card, panelCard);
 		historialEntrenamientosView.crearPantalla(card, panelCard);
 		historialMedicionesView.crearPantalla(card, panelCard);
 		trofeosView.crearPantalla(card, panelCard);
 	}
 
-	// Método para devolver esta instancia de socioController
 	public static SocioController getSocioController() {
 		return socioController;
 	}
