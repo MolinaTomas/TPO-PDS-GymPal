@@ -1,6 +1,8 @@
 package com.uade.gymapp.gymapp.views;
 
+import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.controller.RutinaController;
 import com.uade.gymapp.gymapp.model.Entrenamiento;
 import com.uade.gymapp.gymapp.model.Objetivo;
 import com.uade.gymapp.gymapp.model.Rutina;
@@ -55,6 +57,7 @@ public class RutinaView {
         });
 
         topPanel.add(btnRegresar);
+
         topPanel.add(title);
         topPanel.add(subtitle);
         rutinaPanel.add(topPanel, BorderLayout.NORTH);
@@ -62,10 +65,25 @@ public class RutinaView {
         // Panel de calendario
         JPanel calendarPanel = new JPanel(new GridLayout(4, 5));
         Rutina rutina = usuarioActual.getRutina();
+
+        JButton reforzarBtn = new JButton("Reforzar entrenamiento");
+
+        reforzarBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Reforzando rutina...");
+                rutina.refuerzoRutina();
+                GymappApplication.crearPantallasPersonalizadas(card, panelCard);
+            }
+        });
+
+        topPanel.add(reforzarBtn);
+
         if (rutina == null) {
             System.out.println("Rutina es null");
             calendarPanel.add(new JLabel("No hay rutina disponible"));
         } else {
+
             List<Entrenamiento> entrenamientos = rutina.getEntrenamientos();
             if (entrenamientos == null || entrenamientos.isEmpty()) {
                 System.out.println("No hay entrenamientos disponibles");

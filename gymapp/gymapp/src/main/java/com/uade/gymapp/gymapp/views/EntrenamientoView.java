@@ -85,16 +85,9 @@ public class EntrenamientoView {
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new FlowLayout());
 
-        JButton reforzarBtn = new JButton("Reforzar entrenamiento");
         JButton finalizarBtn = new JButton("Finalizar entrenamiento");
         JButton comenzarBtn = new JButton("Comenzar entrenamiento");
 
-        reforzarBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Reforzando entrenamiento...");
-            }
-        });
         comenzarBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -156,7 +149,7 @@ public class EntrenamientoView {
                 }
             }
         });
-        buttonsPanel.add(reforzarBtn);
+
         buttonsPanel.add(comenzarBtn);
         entrenamientoPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
