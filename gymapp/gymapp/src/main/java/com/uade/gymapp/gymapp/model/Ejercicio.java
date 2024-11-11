@@ -19,6 +19,10 @@ public class Ejercicio {
     private String videoUrl;
     private EjercicioRealizado ejercicioRealizado;
 
+
+    public Ejercicio(){
+
+    }
     public Ejercicio(String nombre, String descripcion, int series, int repeticiones, double peso,
             int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
         this.nombre = nombre;
@@ -35,21 +39,6 @@ public class Ejercicio {
     public Ejercicio(String nombre, String descripcion, int series, int repeticiones, double peso,
             int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl,
             EjercicioRealizado ejercicioRealizado) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.series = series;
-        this.repeticiones = repeticiones;
-        this.peso = peso;
-        this.nivelAerobico = nivelAerobico;
-        this.exigenciaMuscular = exigenciaMuscular;
-        this.videoUrl = videoUrl;
-        this.ejercicioRealizado = ejercicioRealizado;
-    }
-
-    public Ejercicio(Long id, String nombre, String descripcion, int series, int repeticiones, double peso,
-            int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl,
-            EjercicioRealizado ejercicioRealizado) {
-        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.series = series;

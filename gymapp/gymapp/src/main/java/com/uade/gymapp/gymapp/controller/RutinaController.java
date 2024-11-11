@@ -79,11 +79,12 @@ public class RutinaController {
         }
 
         for (Entrenamiento entrenamiento : rutina.getEntrenamientos()) {
-            for (Ejercicio ejercicio : entrenamiento.getEjercicios()) {
-                // Incrementar repeticiones, series y peso a cada ejercicio
-                ejercicio.setRepeticiones(ejercicio.getRepeticiones() + 1);
-                ejercicio.setSeries(ejercicio.getSeries() + 1);
-                ejercicio.setPeso(ejercicio.getPeso() + 2.5);
+            List<Ejercicio> ejercicios = entrenamiento.getEjercicios();
+            for (int i = 0; i < ejercicios.size(); i++) {
+                Ejercicio ejercicio = ejercicios.get(i);
+                // Crear el decorador que incrementa repeticiones, series y peso
+                EjercicioRefuerzo refuerzo = new EjercicioRefuerzo(ejercicio);
+                ejercicios.set(i, refuerzo); // Reemplazar el ejercicio original con el decorador
             }
         }
     }

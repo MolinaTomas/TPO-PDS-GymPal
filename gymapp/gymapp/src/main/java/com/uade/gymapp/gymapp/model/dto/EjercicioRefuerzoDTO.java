@@ -6,11 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EjercicioRefuerzoDTO {
-    private Long id;
     private EjercicioDTO ejercicioBase;
 
-    public EjercicioRefuerzoDTO(Long id, EjercicioDTO ejercicioBase) {
-        this.id = id;
+    public EjercicioRefuerzoDTO (EjercicioDTO ejercicioBase) {
         this.ejercicioBase = ejercicioBase;
     }
 }

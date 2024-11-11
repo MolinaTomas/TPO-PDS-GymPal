@@ -6,16 +6,30 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EjercicioRefuerzo {
-    private Long id;
+public class EjercicioRefuerzo extends Ejercicio{
     private Ejercicio ejercicioBase;
 
-    public EjercicioRefuerzo(Long id, Ejercicio ejercicioBase) {
-        this.id = id;
+    public EjercicioRefuerzo(Ejercicio ejercicioBase) {
+        super();
         this.ejercicioBase = ejercicioBase;
     }
 
-    public EjercicioRefuerzoDTO toDto() {
-        return new EjercicioRefuerzoDTO(id, ejercicioBase.toDto());
+    @Override
+    public int getRepeticiones() {
+        return this.ejercicioBase.getRepeticiones() + 3;
+    }
+
+    @Override
+    public double getPeso() {
+        return this.ejercicioBase.getPeso() + 5;
+    }
+
+    @Override
+    public int getSeries() {
+        return this.ejercicioBase.getSeries() + 1;
+    }
+
+    public EjercicioRefuerzoDTO haciaDto() {
+        return new EjercicioRefuerzoDTO(ejercicioBase.toDto());
     }
 }
