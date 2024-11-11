@@ -1,6 +1,16 @@
 package com.uade.gymapp.gymapp.model;
 
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@NoArgsConstructor
 public class MantenerFigura extends Objetivo {
+    private final int duracionMinima = 45; // en minutos
+    private final int duracionMaxima = 80; // en minutos (1 hora y 20)
+    private final int nivelAerobicoMinimo = 2;
+    private final int nivelAerobicoMaximo = 4;
+    private final String nivelMuscular = "medio-bajo";
 
     @Override
     public boolean isAerobicoValido(int nivelAerobico) {
@@ -14,12 +24,13 @@ public class MantenerFigura extends Objetivo {
     }
 
     @Override
-    public int getTiempoEntrenamientoMin() {
-        return 45; // 45 minutos
+    public Rutina generarRutina() {
+        Rutina rutina = new Rutina();
+        // Crear ejercicios específicos para mantener la figura (nivel aeróbico 2-4)
+        List<Ejercicio> ejercicios = getEjerciciosModerados(nivelAerobicoMinimo, nivelAerobicoMaximo);
+        // Asignar los ejercicios a la rutina
+        rutina.setEntrenamientos(armarEntrenamientos(ejercicios));
+        return rutina;
     }
 
-    @Override
-    public int getTiempoEntrenamientoMax() {
-        return 120; // 2 horas
-    }
 }

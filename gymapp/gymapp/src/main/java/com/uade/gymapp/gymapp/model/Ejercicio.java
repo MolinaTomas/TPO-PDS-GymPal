@@ -45,9 +45,8 @@ public class Ejercicio {
         this.ejercicioRealizado = ejercicioRealizado;
     }
 
-    public Ejercicio(Long id, String nombre, String descripcion, int series, int repeticiones, double peso,
-                     int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
-        this.id = id;
+    public Ejercicio(String nombre, String descripcion, int series, int repeticiones, double peso,
+            int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.series = series;
@@ -74,7 +73,7 @@ public class Ejercicio {
     }
 
     public EjercicioDTO toDto() {
-        return new EjercicioDTO(id, nombre, descripcion, series, repeticiones, peso, nivelAerobico, exigenciaMuscular,
+        return new EjercicioDTO(nombre, descripcion, series, repeticiones, peso, nivelAerobico, exigenciaMuscular,
                 videoUrl);
     }
 }

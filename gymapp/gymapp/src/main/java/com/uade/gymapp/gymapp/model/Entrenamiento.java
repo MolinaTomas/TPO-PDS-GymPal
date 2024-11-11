@@ -11,18 +11,14 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class Entrenamiento {
-    private Long id;
     private int duracion;
     private Date fecha;
     private List<Ejercicio> ejercicios;
     private List<EjercicioRealizado> ejerciciosRealizados;
     private EstadoEntrenamiento estado;
 
-    public Entrenamiento(Long id, int duracion, Date fecha, List<Ejercicio> ejercicios) {
-        this.id = id;
+    public Entrenamiento(int duracion) {
         this.duracion = duracion;
-        this.fecha = fecha;
-        this.ejercicios = ejercicios;
         this.ejerciciosRealizados = new ArrayList<>();
         this.estado = new EstadoEntrenamientoListo(); // Estado Inicial
     }
@@ -40,6 +36,6 @@ public class Entrenamiento {
     }
 
     public EntrenamientoDTO toDto() {
-        return new EntrenamientoDTO(id, duracion, fecha, ejercicios.stream().map(Ejercicio::toDto).toList());
+        return new EntrenamientoDTO(duracion, fecha, ejercicios.stream().map(Ejercicio::toDto).toList());
     }
 }

@@ -22,7 +22,7 @@ public class Socio {
     private String password;
     private Objetivo objetivo;
     private List<Trofeo> trofeos;
-    private List<Medicion> listaMediciones;
+    private List<Medicion> Mediciones;
     private Rutina rutina;
     private List<Entrenamiento> entrenamientosCompletados;
     private List<TrofeoObserver> observadores = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Socio {
 
     public Socio() {
         this.trofeos = new ArrayList<>();
-        this.listaMediciones = new ArrayList<>();
+        this.Mediciones = new ArrayList<>();
         this.entrenamientosCompletados = new ArrayList<>();
     }
 
@@ -48,7 +48,7 @@ public class Socio {
         this.password = password;
         this.objetivo = objetivo;
         this.trofeos = trofeos != null ? trofeos : new ArrayList<>();
-        this.listaMediciones = listaMediciones != null ? listaMediciones : new ArrayList<>();
+        this.Mediciones = listaMediciones != null ? listaMediciones : new ArrayList<>();
         this.rutina = rutina;
         this.entrenamientosCompletados = new ArrayList<>();
     }
@@ -58,7 +58,7 @@ public class Socio {
     }
 
     public void addMedicion(Medicion medicion) {
-        this.listaMediciones.add(medicion);
+        this.Mediciones.add(medicion);
     }
 
     public void addEntrenamientoCompletado(Entrenamiento entrenamiento) {
@@ -87,8 +87,20 @@ public class Socio {
         rutinaController.crearRutina(this, objetivo);
     }
 
-    // public SocioDTO toDto() {
-    // return new SocioDTO(id, name, apellido, sexo, edad, altura, mail, objetivo,
-    // trofeos, mediciones, rutina);
-    // }
+    public void setObjetivo(String objetivoSeleccionado) {
+        switch (objetivoSeleccionado.toLowerCase()) {
+            case "bajar de peso":
+                this.objetivo = new BajarDePeso(); // El objetivo es una instancia concreta del objetivo
+                break;
+            case "tonificar cuerpo":
+                this.objetivo = new TonificarCuerpo();
+                break;
+            case "mantener la figura":
+                this.objetivo = new MantenerFigura();
+                break;
+            default:
+                throw new IllegalArgumentException("Objetivo no válido");
+        }
+    }
+
 }
