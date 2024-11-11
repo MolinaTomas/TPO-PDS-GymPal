@@ -28,6 +28,7 @@ public class GymappApplication {
 	private static MedicionView medicionView;
 	private static HistorialMedicionesView historialMedicionesView;
 	private static RutinaView rutinaView;
+	private static RegistrarEjercicioView registrarEjercicioView;
 	private static EntrenamientoView entrenamientoView;
 	private static HistorialEntrenamientosView historialEntrenamientosView;
 	private static RegistrarEntrenamientoView registrarEntrenamientoView;
@@ -50,6 +51,7 @@ public class GymappApplication {
 		medicionView = new MedicionView();
 		historialMedicionesView = new HistorialMedicionesView();
 		rutinaView = new RutinaView();
+		registrarEjercicioView = new RegistrarEjercicioView();
 		entrenamientoView = new EntrenamientoView();
 		historialEntrenamientosView = new HistorialEntrenamientosView();
 		registrarEntrenamientoView = new RegistrarEntrenamientoView();
@@ -85,6 +87,7 @@ public class GymappApplication {
 		rutinaController.crearRutina(socioActual, socioActual.getObjetivo());
 
 		rutinaView.crearPantalla(card, panelCard, entrenamientoView);
+		//registrarEjercicioView.crearPantalla(card, panelCard);
 		historialEntrenamientosView.crearPantalla(card, panelCard);
 		historialMedicionesView.crearPantalla(card, panelCard);
 		trofeosView.crearPantalla(card, panelCard);

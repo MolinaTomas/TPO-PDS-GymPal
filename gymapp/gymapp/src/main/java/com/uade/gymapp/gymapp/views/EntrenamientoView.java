@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class EntrenamientoView {
+    private static RegistrarEjercicioView registrarEjercicioView;
+
     public void crearPantalla(CardLayout card, JPanel panelCard, Entrenamiento entrenamiento, int dia) {
         JPanel entrenamientoPanel = new JPanel();
         entrenamientoPanel.setLayout(new BorderLayout());
@@ -55,7 +57,7 @@ public class EntrenamientoView {
 
         JPanel ejerciciosPanel = new JPanel();
         ejerciciosPanel.setLayout(new BoxLayout(ejerciciosPanel, BoxLayout.Y_AXIS));
-        ejerciciosPanel.setPreferredSize(new Dimension(600, 400));
+        ejerciciosPanel.setPreferredSize(new Dimension(550, 500));
         ejerciciosPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
         List<Ejercicio> ejercicios = entrenamiento.getEjercicios();
@@ -89,6 +91,17 @@ public class EntrenamientoView {
             JPanel ejercicioTutorialPanel = new JPanel(new FlowLayout());
             ejercicioTutorialPanel.add(new JLabel("- video tutorial: "));
             ejercicioTutorialPanel.add(new JLabel(ejercicio.getVideoUrl()));
+
+            JButton btnRegistrarEjercicio = new JButton("Registrar ejercicio");
+            btnRegistrarEjercicio.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    registrarEjercicioView = new RegistrarEjercicioView();
+                    registrarEjercicioView.crearPantalla(card, panelCard, entrenamiento, ejercicio, dia);
+                    card.show(panelCard, "Registrar Ejercicio");
+                }
+            });
+
             JPanel blankLine = new JPanel();
             blankLine.add(new JLabel(" "));
 
@@ -100,6 +113,7 @@ public class EntrenamientoView {
             ejercicioItem.add(ejercicioNivelAerobicoPanel);
             ejercicioItem.add(ejercicioExigenciaPanel);
             ejercicioItem.add(ejercicioTutorialPanel);
+            ejercicioItem.add(btnRegistrarEjercicio);
             ejercicioItem.add(blankLine);
             ejercicioItem.add(blankLine);
             ejercicioItem.add(blankLine);
@@ -111,7 +125,7 @@ public class EntrenamientoView {
         //scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setPreferredSize(new Dimension(600, 400));
+        scrollPane.setPreferredSize(new Dimension(550, 500));
 
         //centerPanel.add(infoPanel);
         centerPanel.add(scrollPane);

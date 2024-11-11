@@ -17,6 +17,18 @@ public class EjercicioRealizado {
     private int repeticionesHechas;
     private double pesoLevantado;
 
+    public EjercicioRealizado() {}
+
+    public EjercicioRealizado(Entrenamiento entrenamiento, Ejercicio ejercicio, LocalDateTime fecha,
+                              int seriesRealizadas, int repeticionesHechas, double pesoLevantado) {
+        this.entrenamiento = entrenamiento;
+        this.ejercicio = ejercicio;
+        this.fecha = fecha;
+        this.seriesRealizadas = seriesRealizadas;
+        this.repeticionesHechas = repeticionesHechas;
+        this.pesoLevantado = pesoLevantado;
+    }
+
     public EjercicioRealizado(Long id, Entrenamiento entrenamiento, Ejercicio ejercicio, LocalDateTime fecha,
             int seriesRealizadas, int repeticionesHechas, double pesoLevantado) {
         this.id = id;
