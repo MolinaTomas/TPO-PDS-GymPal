@@ -17,7 +17,7 @@ public class EjercicioDTO {
     private ExigenciaMuscular exigenciaMuscular;
     private String videoUrl;
 
-    public EjercicioDTO(Long id, String nombre, String descripcion, int series, int repeticiones, double peso,
+    public EjercicioDTO(String nombre, String descripcion, int series, int repeticiones, double peso,
             int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
         this.id = id;
         this.nombre = nombre;

@@ -10,6 +10,7 @@ public abstract class Objetivo {
     private Long id;
     private boolean cumplido;
     private double progresoActual;
+    protected Rutina rutina;
 
     public Objetivo() {
     }
@@ -29,7 +30,6 @@ public abstract class Objetivo {
 
     public abstract boolean isEjercicioValido(Ejercicio ejercicio);
 
-    public abstract int getTiempoEntrenamientoMin();
-
-    public abstract int getTiempoEntrenamientoMax();
+    public abstract Rutina generarRutina();
+    public abstract void calcularProgreso(Socio socio);
 }

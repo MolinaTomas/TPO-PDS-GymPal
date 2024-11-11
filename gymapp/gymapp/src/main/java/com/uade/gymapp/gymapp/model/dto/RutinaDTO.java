@@ -12,7 +12,7 @@ public class RutinaDTO {
     private List<EntrenamientoDTO> entrenamientos;
     private ObjetivoDTO objetivo;
 
-    public RutinaDTO(Long id, List<EntrenamientoDTO> entrenamientos, ObjetivoDTO objetivo) {
+    public RutinaDTO(List<EntrenamientoDTO> entrenamientos, ObjetivoDTO objetivo) {
         this.id = id;
         this.entrenamientos = entrenamientos;
         this.objetivo = objetivo;

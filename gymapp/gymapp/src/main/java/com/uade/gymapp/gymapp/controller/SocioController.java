@@ -125,7 +125,7 @@ public class SocioController {
             usuarioActual.setObjetivo(socioDTO.getObjetivo());
 
             // Creo una nueva Rutina basada en el nuevo Objetivo
-            Rutina nuevaRutina = new Rutina(null, new ArrayList<>(), socioDTO.getObjetivo());
+            Rutina nuevaRutina = new Rutina(socioDTO.getObjetivo());
             usuarioActual.setRutina(nuevaRutina);
         }
     }

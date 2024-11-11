@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Ejercicio {
-    private Long id;
     private String nombre;
     private String descripcion;
     private int series;
@@ -18,9 +17,8 @@ public class Ejercicio {
     private ExigenciaMuscular exigenciaMuscular;
     private String videoUrl;
 
-    public Ejercicio(Long id, String nombre, String descripcion, int series, int repeticiones, double peso,
+    public Ejercicio(String nombre, String descripcion, int series, int repeticiones, double peso,
             int nivelAerobico, ExigenciaMuscular exigenciaMuscular, String videoUrl) {
-        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.series = series;
@@ -32,7 +30,7 @@ public class Ejercicio {
     }
 
     public EjercicioDTO toDto() {
-        return new EjercicioDTO(id, nombre, descripcion, series, repeticiones, peso, nivelAerobico, exigenciaMuscular,
+        return new EjercicioDTO(nombre, descripcion, series, repeticiones, peso, nivelAerobico, exigenciaMuscular,
                 videoUrl);
     }
 }

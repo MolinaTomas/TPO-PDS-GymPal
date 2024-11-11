@@ -48,7 +48,7 @@ public class RutinaController {
             entrenamientos.add(entrenamiento);
         }
 
-        Rutina rutina = new Rutina(9223372036854775807L, entrenamientos, objetivo);
+        Rutina rutina = new Rutina(objetivo);
         socio.setRutina(rutina);
     }
 

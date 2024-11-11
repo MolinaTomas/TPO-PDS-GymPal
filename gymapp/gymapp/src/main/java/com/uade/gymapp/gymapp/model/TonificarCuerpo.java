@@ -1,6 +1,17 @@
 package com.uade.gymapp.gymapp.model;
 
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@NoArgsConstructor
 public class TonificarCuerpo extends Objetivo {
+    private final int nivelAerobicoMaximo = 4;
+    private final String nivelMuscular = "alto"; // Ejercicios fuertes en ejercitación muscular
+    private final int duracionMinima = 120; // en minutos (2 horas)
+    private final int duracionMaxima = 150; // en minutos (2.5 horas)
+    private double masaMuscularIdeal;
+    private double porcentajeGrasaIdeal;
 
     @Override
     public boolean isAerobicoValido(int nivelAerobico) {
@@ -14,12 +25,13 @@ public class TonificarCuerpo extends Objetivo {
     }
 
     @Override
-    public int getTiempoEntrenamientoMin() {
-        return 120; // 2 horas
+    public Rutina generarRutina() {
+        Rutina rutina = new Rutina();
+        // Crear ejercicios específicos para tonificar cuerpo (fuerza muscular)
+        List<Ejercicio> ejercicios = getEjerciciosFuerza(nivelAerobicoMaximo);
+        // Asignar los ejercicios a la rutina
+        rutina.setEntrenamientos(armarEntrenamientos(ejercicios));
+        return rutina;
     }
 
-    @Override
-    public int getTiempoEntrenamientoMax() {
-        return 150; // 2.5 horas
-    }
 }
