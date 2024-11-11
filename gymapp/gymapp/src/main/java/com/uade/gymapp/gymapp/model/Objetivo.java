@@ -30,9 +30,6 @@ public abstract class Objetivo {
     // Abstract methods for constraints
     public abstract boolean isAerobicoValido(int nivelAerobico);
 
-    public abstract boolean isEjercicioValido(Ejercicio ejercicio);
-
-    public abstract Rutina generarRutina();
     public abstract boolean cumpleObjetivo(Socio socio, Medicion medicion);
 
     public abstract List<Ejercicio> generarEntrenamientos();

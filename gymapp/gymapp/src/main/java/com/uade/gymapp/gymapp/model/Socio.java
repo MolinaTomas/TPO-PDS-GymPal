@@ -87,7 +87,7 @@ public class Socio {
     public void setObjetivo(String objetivoSeleccionado) {
         switch (objetivoSeleccionado.toLowerCase()) {
             case "bajar de peso":
-                this.objetivo = new BajarDePeso(); // El objetivo es una instancia concreta del objetivo
+                this.objetivo = new BajarDePeso(getMediciones().get(0).getPeso()); // El objetivo es una instancia concreta del objetivo
                 break;
             case "tonificar cuerpo":
                 this.objetivo = new TonificarCuerpo();

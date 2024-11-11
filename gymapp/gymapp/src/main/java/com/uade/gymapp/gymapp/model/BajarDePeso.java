@@ -14,27 +14,16 @@ public class BajarDePeso extends Objetivo {
     private final int nivelAerobicoMinimo = 3;
     private int cantidadEntrenamientos;
 
-    public BajarDePeso() {
+    public BajarDePeso(double pesoInicial) {
         super();
         this.cumplido = false;
+        this.pesoInicial = pesoInicial;
+        this.pesoIdeal = pesoInicial * 0.8;
     }
 
     @Override
     public boolean isAerobicoValido(int nivelAerobico) {
         return nivelAerobico >= 3;
-    }
-
-    @Override
-    public boolean isEjercicioValido(Ejercicio ejercicio) {
-        return isAerobicoValido(ejercicio.getNivelAerobico());
-    }
-
-    @Override
-    public Rutina generarRutina() {
-        Rutina rutina = new Rutina();
-        rutina.setObjetivo(this);
-        rutina.generarEntrenamientos();
-        return rutina;
     }
 
     @Override

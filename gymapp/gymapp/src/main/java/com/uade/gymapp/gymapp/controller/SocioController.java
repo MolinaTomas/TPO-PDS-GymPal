@@ -23,7 +23,6 @@ public class SocioController {
 
     private List<Socio> usuarios = new ArrayList<>(); // "simulación" de un repositorio de usuarios vacio
     private static Socio usuarioActual; // Variable estática para el usuario actual
-    private RutinaController rutinaController = new RutinaController();
 
     // Constructor to add the admin user
     public SocioController() {
@@ -35,7 +34,7 @@ public class SocioController {
         admin.setAltura(175);
         admin.setMail("admin");
         admin.setPassword("123");
-        admin.setObjetivo(new BajarDePeso());
+        admin.setObjetivo(new BajarDePeso(getUsuarioActual().getMediciones().get(0).getPeso()));
         admin.setRutina(new Rutina(admin.getObjetivo()));
         TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
         admin.addObserver(creidoObserver);

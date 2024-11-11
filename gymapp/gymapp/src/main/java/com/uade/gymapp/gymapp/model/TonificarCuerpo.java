@@ -1,5 +1,6 @@
 package com.uade.gymapp.gymapp.model;
 
+import com.uade.gymapp.gymapp.controller.SocioController;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ public class TonificarCuerpo extends Objetivo {
     public TonificarCuerpo() {
         super();
         this.cumplido = false;
+        this.masaMuscularInicial = SocioController.getUsuarioActual().getMediciones().get(0).getMasaMuscular();
+        this.masaMuscularIdeal = masaMuscularInicial * 1.25;
+        this.porcentajeGrasaInicial = SocioController.getUsuarioActual().getMediciones().get(0).getPorcentajeGrasaCorporal();
+        this.porcentajeGrasaIdeal = porcentajeGrasaInicial * 0.8;
     }
 
     @Override

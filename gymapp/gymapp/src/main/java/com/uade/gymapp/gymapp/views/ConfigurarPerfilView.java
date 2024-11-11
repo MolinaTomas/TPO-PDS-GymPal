@@ -138,7 +138,7 @@ public class ConfigurarPerfilView {
                 String objetivoSeleccionado = (String) objetivoComboBox.getSelectedItem();
                 Objetivo objetivo;
                 if (objetivoSeleccionado.equals("bajar de peso")) {
-                    objetivo = new BajarDePeso();
+                    objetivo = new BajarDePeso((SocioController.getUsuarioActual().getMediciones().get(0).getPeso()));
                 } else if (objetivoSeleccionado.equals("mantener figura")) {
                     objetivo = new MantenerFigura();
                 } else {

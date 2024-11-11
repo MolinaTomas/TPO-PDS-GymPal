@@ -2,10 +2,7 @@ package com.uade.gymapp.gymapp.views;
 
 import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
-import com.uade.gymapp.gymapp.model.BajarDePeso;
-import com.uade.gymapp.gymapp.model.MantenerFigura;
-import com.uade.gymapp.gymapp.model.Objetivo;
-import com.uade.gymapp.gymapp.model.TonificarCuerpo;
+import com.uade.gymapp.gymapp.model.*;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -13,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class SingupView {
     private SocioController socioController;
@@ -47,6 +45,9 @@ public class SingupView {
         JTextField alturaField = new JTextField();
         JTextField mailField = new JTextField();
         JTextField passwordField = new JTextField();
+        JTextField pesoField = new JTextField();
+        JTextField masaField = new JTextField();
+        JTextField grasaField = new JTextField();
 
         formPanel.add(new JLabel("Nombre:"));
         formPanel.add(nameField);
@@ -62,6 +63,12 @@ public class SingupView {
         formPanel.add(mailField);
         formPanel.add(new JLabel("Contraseña:"));
         formPanel.add(passwordField);
+        formPanel.add(new JLabel("Peso:"));
+        formPanel.add(pesoField);
+        formPanel.add(new JLabel("Masa muscular:"));
+        formPanel.add(masaField);
+        formPanel.add(new JLabel("Porcentaje de grasa corporal:"));
+        formPanel.add(grasaField);
 
         String[] objetivos = {"bajar de peso", "mantener figura", "tonificar cuerpo"};
         JComboBox<String> objetivoComboBox = new JComboBox<>(objetivos);
@@ -98,7 +105,7 @@ public class SingupView {
                 String objetivoSeleccionado = (String) objetivoComboBox.getSelectedItem();
                 Objetivo objetivo;
                 if (objetivoSeleccionado.equals("bajar de peso")) {
-                    objetivo = new BajarDePeso();
+                    objetivo = new BajarDePeso(Double.parseDouble(pesoField.getText()));
                 } else if (objetivoSeleccionado.equals("mantener figura")) {
                     objetivo = new MantenerFigura();
                 } else {
@@ -106,6 +113,17 @@ public class SingupView {
                 }
 
                 socioDTO.setObjetivo(objetivo);
+
+                double peso = Double.parseDouble(pesoField.getText());
+                double masa = Double.parseDouble(masaField.getText());
+                double grasa = Double.parseDouble(grasaField.getText());
+                Medicion medicionInicial = new Medicion();
+                medicionInicial.setPeso(peso);
+                medicionInicial.setMasaMuscular(masa);
+                medicionInicial.setPorcentajeGrasaCorporal(grasa);
+                Socio usuarioActual = SocioController.getUsuarioActual();
+                usuarioActual.getMediciones().add(medicionInicial);
+
                 ResponseEntity<String> response = socioController.register(socioDTO);
                 System.out.println(response.getBody());
                 GymappApplication.crearPantallasPersonalizadas(card, panelCard);
