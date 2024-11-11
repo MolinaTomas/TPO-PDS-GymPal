@@ -94,6 +94,8 @@ public class MedicionView {
                             ", Porcentaje de Grasa Corporal: " + medicion.getPorcentajeGrasaCorporal() +
                             ", Masa Muscular: " + medicion.getMasaMuscular());
 
+                    usuarioActual.getObjetivo().notifyObservers(usuarioActual, medicion);
+
                     JOptionPane.showMessageDialog(medicionPanel, "Medición registrada exitosamente");
                     usuarioActual.notifyObservers();
                     GymappApplication.crearPantallasPersonalizadas(card, panelCard);

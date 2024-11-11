@@ -5,9 +5,17 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 public class TonificarCuerpo extends Objetivo {
+    private double masaMuscularInicial;
+    private double masaMuscularIdeal;
+    private double porcentajeGrasaInicial;
+    private double porcentajeGrasaIdeal;
 
+
+    public TonificarCuerpo() {
+        super();
+        this.cumplido = false;
+    }
 
     @Override
     public boolean isAerobicoValido(int nivelAerobico) {
@@ -29,8 +37,11 @@ public class TonificarCuerpo extends Objetivo {
     }
 
     @Override
-    public void calcularProgreso(Socio socio) {
-
+    public boolean cumpleObjetivo(Socio socio, Medicion medicion) {
+        if (medicion.getMasaMuscular() >= this.masaMuscularIdeal && medicion.getPorcentajeGrasaCorporal() <= this.porcentajeGrasaIdeal) {
+            this.cumplido = true;
+        }
+        return this.cumplido;
     }
 
     @Override

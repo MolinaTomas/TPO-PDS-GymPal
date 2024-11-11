@@ -5,14 +5,19 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 public class BajarDePeso extends Objetivo {
 
     private double pesoIdeal; // Peso objetivo al que debe llegar el usuario
+    private double pesoInicial; // Peso inicial del usuario
     private final int duracionMinima = 60; // en minutos (1 hora)
     private final int duracionMaxima = 90; // en minutos (1.5 horas)
     private final int nivelAerobicoMinimo = 3;
     private int cantidadEntrenamientos;
+
+    public BajarDePeso() {
+        super();
+        this.cumplido = false;
+    }
 
     @Override
     public boolean isAerobicoValido(int nivelAerobico) {
@@ -33,14 +38,11 @@ public class BajarDePeso extends Objetivo {
     }
 
     @Override
-    public void calcularProgreso(Socio socio) {
-        // Utilizar las mediciones para calcular el progreso del socio
-        for (Medicion medicion : socio.getMediciones()) {
-            if (medicion.getPeso() <= this.pesoIdeal) {
-                this.cumplido = true;
-                break;
-            }
+    public boolean cumpleObjetivo(Socio socio, Medicion medicion) {
+        if (medicion.getPeso() <= this.pesoIdeal) {
+            this.cumplido = true;
         }
+        return this.cumplido;
     }
 
     @Override

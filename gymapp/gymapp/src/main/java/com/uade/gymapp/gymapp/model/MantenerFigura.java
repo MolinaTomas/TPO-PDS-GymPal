@@ -5,13 +5,19 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
 public class MantenerFigura extends Objetivo {
     private final int duracionMinima = 45; // en minutos
     private final int duracionMaxima = 80; // en minutos (1 hora y 20)
     private final int nivelAerobicoMinimo = 2;
     private final int nivelAerobicoMaximo = 4;
     private final String nivelMuscular = "medio-bajo";
+    private static final double VARIABILIDAD = 3;
+    private double pesoInicial;
+
+    public MantenerFigura() {
+        super();
+        this.cumplido = true;
+    }
 
     @Override
     public boolean isAerobicoValido(int nivelAerobico) {
@@ -33,8 +39,11 @@ public class MantenerFigura extends Objetivo {
     }
 
     @Override
-    public void calcularProgreso(Socio socio) {
-
+    public boolean cumpleObjetivo(Socio socio, Medicion medicion) {
+        if (medicion.getPeso()>pesoInicial+VARIABILIDAD || medicion.getPeso()<pesoInicial-VARIABILIDAD) {
+            this.cumplido = false;
+        }
+        return this.cumplido;
     }
 
     @Override

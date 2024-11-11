@@ -61,7 +61,7 @@ public class Rutina {
 
     public void notifyObservers(Socio socio) {
         for (TrofeoObserver observer : observadores) {
-            observer.otorgarTrofeo(socio);
+            observer.otorgarTrofeo(socio, null);
         }
     }
 
