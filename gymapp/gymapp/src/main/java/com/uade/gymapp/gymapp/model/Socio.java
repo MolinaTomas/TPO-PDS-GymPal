@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.uade.gymapp.gymapp.model.observer.TrofeoObserver;
-import com.uade.gymapp.gymapp.controller.RutinaController;
 
 @Getter
 @Setter
@@ -25,7 +24,6 @@ public class Socio {
     private Rutina rutina;
     private List<Entrenamiento> entrenamientosCompletados;
     private List<TrofeoObserver> observadores = new ArrayList<>();
-    private RutinaController rutinaController = new RutinaController();
 
     public Socio() {
         this.trofeos = new ArrayList<>();

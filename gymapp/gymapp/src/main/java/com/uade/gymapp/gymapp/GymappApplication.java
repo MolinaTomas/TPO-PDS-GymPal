@@ -1,15 +1,9 @@
 package com.uade.gymapp.gymapp;
 
-import com.uade.gymapp.gymapp.controller.RutinaController;
 import com.uade.gymapp.gymapp.controller.SocioController;
-import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.views.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.query.JSqlParserUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +12,6 @@ import java.awt.*;
 @SpringBootApplication
 public class GymappApplication {
 	private static SocioController socioController;
-	private static RutinaController rutinaController;
 
 	private static InicioView inicioView;
 	private static LoginView loginView;
@@ -32,7 +25,6 @@ public class GymappApplication {
 	private static RegistrarEjercicioView registrarEjercicioView;
 	private static EntrenamientoView entrenamientoView;
 	private static HistorialEntrenamientosView historialEntrenamientosView;
-	private static RegistrarEntrenamientoView registrarEntrenamientoView;
 	private static TrofeosView trofeosView;
 
 
@@ -41,7 +33,6 @@ public class GymappApplication {
 		//app.setVisible(true);
 
 		socioController = new SocioController();
-		rutinaController = new RutinaController();
 
 		inicioView = new InicioView();
 		loginView = new LoginView();
@@ -55,7 +46,6 @@ public class GymappApplication {
 		registrarEjercicioView = new RegistrarEjercicioView();
 		entrenamientoView = new EntrenamientoView();
 		historialEntrenamientosView = new HistorialEntrenamientosView();
-		registrarEntrenamientoView = new RegistrarEntrenamientoView();
 		trofeosView = new TrofeosView();
 
 		JFrame frame = new JFrame("GymPal");
@@ -71,7 +61,6 @@ public class GymappApplication {
 		loginView.crearPantalla(socioController, card, panelCard);
 		signupView.crearPantalla(socioController, card, panelCard);
 		medicionView.crearPantalla(card, panelCard, historialMedicionesView);
-		registrarEntrenamientoView.crearPantalla(card, panelCard);
 
 		// agregar panelCard al frame
 		frame.setLayout(new BorderLayout());

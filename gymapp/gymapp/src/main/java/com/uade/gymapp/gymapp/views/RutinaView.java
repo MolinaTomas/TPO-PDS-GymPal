@@ -2,7 +2,6 @@ package com.uade.gymapp.gymapp.views;
 
 import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
-import com.uade.gymapp.gymapp.controller.RutinaController;
 import com.uade.gymapp.gymapp.model.Entrenamiento;
 import com.uade.gymapp.gymapp.model.Objetivo;
 import com.uade.gymapp.gymapp.model.Rutina;
@@ -12,7 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RutinaView {
