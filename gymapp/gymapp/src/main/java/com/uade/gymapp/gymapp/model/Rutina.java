@@ -1,6 +1,8 @@
 package com.uade.gymapp.gymapp.model;
 
 import com.uade.gymapp.gymapp.model.dto.RutinaDTO;
+import com.uade.gymapp.gymapp.model.observer.TrofeoObserver;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +14,7 @@ public class Rutina {
     private Long id;
     private List<Entrenamiento> entrenamientos;
     private Objetivo objetivo;
-    private List<Trofeo> Observadores;
+    private List<TrofeoObserver> Observadores;
 
     public Rutina(Long id, List<Entrenamiento> entrenamientos, Objetivo objetivo) {
         this.id = id;
@@ -37,19 +39,27 @@ public class Rutina {
         return duracion >= objetivo.getTiempoEntrenamientoMin() && duracion <= objetivo.getTiempoEntrenamientoMax();
     }
 
-    public void reforzarRutina() {
-
+    public void reforzarRutina(Socio socio) {
+        notifyObservers(socio);
     }
 
-    public void registrarProgreso() {
-
+    public void registrarProgreso(Socio socio) {
+        notifyObservers(socio);
     }
 
-    public void suscribirObservador(Trofeo observador) {
+    public void suscribirObservador(TrofeoObserver observador) {
         this.Observadores.add(observador);
     }
 
-    public void eliminarObservador(Trofeo observador) {
+    public void eliminarObservador(TrofeoObserver observador) {
         this.Observadores.remove(observador);
     }
+
+    public void notifyObservers(Socio socio) {
+        for (TrofeoObserver observer : Observadores) {
+            observer.otorgarTrofeo(socio);
+        }
+    }
+
+    // Recordar agregar socio en notifyObservers y reforzarRutina cuando se codee
 }
