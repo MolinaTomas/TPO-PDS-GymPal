@@ -40,4 +40,6 @@ public class Entrenamiento {
     public EntrenamientoDTO toDto() {
         return new EntrenamientoDTO(duracion, fecha, ejercicios.stream().map(Ejercicio::toDto).toList());
     }
+
+
 }

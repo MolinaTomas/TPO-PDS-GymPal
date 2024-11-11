@@ -27,14 +27,8 @@ public class BajarDePeso extends Objetivo {
     @Override
     public Rutina generarRutina() {
         Rutina rutina = new Rutina();
-        List<Entrenamiento> entrenamientos = new ArrayList<>();
-        for (int i = 0; i < cantidadEntrenamientos; i++) {
-            Entrenamiento entrenamiento = new Entrenamiento();
-            List<Ejercicio> ejerciciosEntrenamiento = generarEjerciciosAerobicos();
-            entrenamiento.setEjercicios(ejerciciosEntrenamiento);
-            entrenamientos.add(entrenamiento);
-        }
-        rutina.setEntrenamientos();
+        rutina.setObjetivo(this);
+        rutina.generarEntrenamientos();
         return rutina;
     }
 
@@ -49,16 +43,5 @@ public class BajarDePeso extends Objetivo {
         }
     }
 
-    private List<Ejercicio> generarEjerciciosAerobicos() {
-        List<Ejercicio> ejerciciosAerobicos = new ArrayList<>();
-
-        // Crear ejercicios específicos para "Bajar de Peso"
-        ejerciciosAerobicos.add(new Ejercicio("Running", "Correr en cinta", 3, 4, 10));
-        ejerciciosAerobicos.add(new Ejercicio("Bicicleta", "Bicicleta fija", 3, 3, 15));
-        ejerciciosAerobicos.add(new Ejercicio("Elíptico", "Ejercicio en elíptico", 3, 3, 20));
-        ejerciciosAerobicos.add(new Ejercicio("Salto de soga", "Saltos de soga", 3, 3, 5));
-
-        return ejerciciosAerobicos;
-    }
 }
 

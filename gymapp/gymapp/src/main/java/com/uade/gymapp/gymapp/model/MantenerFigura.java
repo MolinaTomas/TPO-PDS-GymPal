@@ -26,10 +26,8 @@ public class MantenerFigura extends Objetivo {
     @Override
     public Rutina generarRutina() {
         Rutina rutina = new Rutina();
-        // Crear ejercicios específicos para mantener la figura (nivel aeróbico 2-4)
-        List<Ejercicio> ejercicios = getEjerciciosModerados(nivelAerobicoMinimo, nivelAerobicoMaximo);
-        // Asignar los ejercicios a la rutina
-        rutina.setEntrenamientos(armarEntrenamientos(ejercicios));
+        rutina.setObjetivo(this);
+        rutina.generarEntrenamientos();
         return rutina;
     }
 

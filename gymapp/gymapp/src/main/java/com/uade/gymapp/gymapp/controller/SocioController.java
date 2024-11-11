@@ -67,8 +67,8 @@ public class SocioController {
         nuevoUsuario.setObjetivo(socioDTO.getObjetivo());
 
         // Crear una Rutina basada en el Objetivo
-        //Rutina nuevaRutina = rutinaController.crearRutina(socioDTO.getObjetivo());
-        //nuevoUsuario.setRutina(nuevaRutina);
+
+        nuevoUsuario.setRutina(nuevaRutina);
         rutinaController.crearRutina(nuevoUsuario, nuevoUsuario.getObjetivo());
 
         usuarios.add(nuevoUsuario); // Agrego el usuario a la lista
