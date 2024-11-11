@@ -82,8 +82,9 @@ public class Socio {
     public void setObjetivo(Objetivo objetivo) {
         this.objetivo = objetivo;
         // Crea una nueva rutina basada en el nuevo objetivo
-        Rutina nuevaRutina = rutinaController.crearRutina(objetivo);
-        this.rutina = nuevaRutina;
+        //Rutina nuevaRutina = rutinaController.crearRutina(objetivo);
+        //this.rutina = nuevaRutina;
+        rutinaController.crearRutina(this, objetivo);
     }
 
     // public SocioDTO toDto() {

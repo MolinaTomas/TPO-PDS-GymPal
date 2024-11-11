@@ -3,6 +3,7 @@ package com.uade.gymapp.gymapp.views;
 import com.mysql.cj.log.Log;
 import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
 import org.springframework.http.HttpStatus;
 
@@ -10,9 +11,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginView {
-    private SocioController socioController;
 
     public void crearPantalla(SocioController socioController, CardLayout card, JPanel panelCard) {
         JPanel loginPanel = new JPanel();
@@ -74,6 +76,8 @@ public class LoginView {
                 socioDTO.setMail(usuario);
                 socioDTO.setPassword(contraseña);
                 if (socioController.login(socioDTO).getStatusCode() == HttpStatus.OK) { // Verificar con SocioController
+                    Socio socio = obtenerSocio(usuario);
+                    SocioController.setUsuarioActual(socio);
                     GymappApplication.crearPantallasPersonalizadas(card, panelCard);
                     card.show(panelCard, "Dashboard");
                 } else {
@@ -87,5 +91,17 @@ public class LoginView {
 
         // Agregar al panelCard
         panelCard.add(loginPanel, "Login");
+    }
+
+    private Socio obtenerSocio(String mail) {
+        SocioController socioController = GymappApplication.getSocioController();
+        List<Socio> usuarios = socioController.getUsuariosRegistrados();
+
+        for (Socio usuario : usuarios) {
+            if (usuario.getMail().equals(mail)) {
+                return usuario;
+            }
+        }
+        return null;
     }
 }

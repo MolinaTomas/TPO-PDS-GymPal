@@ -9,12 +9,16 @@ import com.uade.gymapp.gymapp.model.observer.TrofeoConstanciaObserver;
 import com.uade.gymapp.gymapp.model.observer.TrofeoCreidoObserver;
 import com.uade.gymapp.gymapp.model.observer.TrofeoDedicacionObserver;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class SocioController {
 
     private List<Socio> usuarios = new ArrayList<>(); // "simulación" de un repositorio de usuarios vacio
@@ -38,6 +42,7 @@ public class SocioController {
         admin.addObserver(constanciaObserver);
         TrofeoDedicacionObserver dedicacionObserver = new TrofeoDedicacionObserver();
         admin.addObserver(dedicacionObserver);
+        rutinaController.crearRutina(admin, admin.getObjetivo());
         usuarios.add(admin);
     }
 
@@ -62,8 +67,9 @@ public class SocioController {
         nuevoUsuario.setObjetivo(socioDTO.getObjetivo());
 
         // Crear una Rutina basada en el Objetivo
-        Rutina nuevaRutina = rutinaController.crearRutina(socioDTO.getObjetivo());
-        nuevoUsuario.setRutina(nuevaRutina);
+        //Rutina nuevaRutina = rutinaController.crearRutina(socioDTO.getObjetivo());
+        //nuevoUsuario.setRutina(nuevaRutina);
+        rutinaController.crearRutina(nuevoUsuario, nuevoUsuario.getObjetivo());
 
         usuarios.add(nuevoUsuario); // Agrego el usuario a la lista
         usuarioActual = nuevoUsuario; // Establezco el usuario actual
@@ -99,6 +105,11 @@ public class SocioController {
         return usuarioActual;
     }
 
+    // Método para modificar el usuario actual
+    public static void setUsuarioActual(Socio socio) {
+        usuarioActual = socio;
+    }
+
     // Método para modificar datos del usuario actual
     public static void updateUsuarioActual(SocioDTO socioDTO) {
         usuarioActual.setName(socioDTO.getName());
@@ -117,5 +128,10 @@ public class SocioController {
             Rutina nuevaRutina = new Rutina(null, new ArrayList<>(), socioDTO.getObjetivo());
             usuarioActual.setRutina(nuevaRutina);
         }
+    }
+
+    // Método para devolver la lista de usuarios registrados
+    public List<Socio> getUsuariosRegistrados() {
+        return usuarios;
     }
 }
