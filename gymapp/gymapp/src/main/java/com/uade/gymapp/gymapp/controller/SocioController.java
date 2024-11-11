@@ -34,7 +34,7 @@ public class SocioController {
         admin.setAltura(175);
         admin.setMail("admin");
         admin.setPassword("123");
-        admin.setObjetivo(new BajarDePeso(getUsuarioActual().getMediciones().get(0).getPeso()));
+        admin.setObjetivo(new BajarDePeso(65.0));
         admin.setRutina(new Rutina(admin.getObjetivo()));
         TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
         admin.addObserver(creidoObserver);

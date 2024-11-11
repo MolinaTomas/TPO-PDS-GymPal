@@ -24,19 +24,6 @@ public class MantenerFigura extends Objetivo {
         return nivelAerobico >= 2 && nivelAerobico <= 4;
     }
 
-    @Override
-    public boolean isEjercicioValido(Ejercicio ejercicio) {
-        return isAerobicoValido(ejercicio.getNivelAerobico())
-                && ejercicio.getExigenciaMuscular() != ExigenciaMuscular.ALTO;
-    }
-
-    @Override
-    public Rutina generarRutina() {
-        Rutina rutina = new Rutina();
-        rutina.setObjetivo(this);
-        rutina.generarEntrenamientos();
-        return rutina;
-    }
 
     @Override
     public boolean cumpleObjetivo(Socio socio, Medicion medicion) {

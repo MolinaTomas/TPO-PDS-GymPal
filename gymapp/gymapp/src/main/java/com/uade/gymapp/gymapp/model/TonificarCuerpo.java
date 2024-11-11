@@ -28,20 +28,6 @@ public class TonificarCuerpo extends Objetivo {
     }
 
     @Override
-    public boolean isEjercicioValido(Ejercicio ejercicio) {
-        return !isAerobicoValido(ejercicio.getNivelAerobico())
-                && ejercicio.getExigenciaMuscular() == ExigenciaMuscular.ALTO;
-    }
-
-    @Override
-    public Rutina generarRutina() {
-        Rutina rutina = new Rutina();
-        rutina.setObjetivo(this);
-        rutina.generarEntrenamientos();
-        return rutina;
-    }
-
-    @Override
     public boolean cumpleObjetivo(Socio socio, Medicion medicion) {
         if (medicion.getMasaMuscular() >= this.masaMuscularIdeal && medicion.getPorcentajeGrasaCorporal() <= this.porcentajeGrasaIdeal) {
             this.cumplido = true;
