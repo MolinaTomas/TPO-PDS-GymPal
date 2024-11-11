@@ -32,12 +32,6 @@ public class EntrenamientoView {
 
         topPanel.add(btnRegresar);
         topPanel.add(title);
-        entrenamientoPanel.add(topPanel, BorderLayout.NORTH);
-
-        // INFORMACIÓN DEL ENTRENAMIENTO
-
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
@@ -46,17 +40,28 @@ public class EntrenamientoView {
         infoPanel.add(subtitle);
         infoPanel.add(new JLabel("- duración: " + entrenamiento.getDuracion()));
         infoPanel.add(new JLabel("- fecha: " + entrenamiento.getFecha()));
+        JLabel subsubtitle = new JLabel("Ejercicios incluídos");
+        subsubtitle.setFont(new Font("Arial", Font.PLAIN, 10));
+        infoPanel.add(subtitle);
+
+        topPanel.add(infoPanel);
+
+        entrenamientoPanel.add(topPanel, BorderLayout.NORTH);
+
+        // INFORMACIÓN DEL ENTRENAMIENTO
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
 
         JPanel ejerciciosPanel = new JPanel();
         ejerciciosPanel.setLayout(new BoxLayout(ejerciciosPanel, BoxLayout.Y_AXIS));
-        ejerciciosPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-
-        JLabel subsubtitle = new JLabel("Ejercicios incluídos");
-        subsubtitle.setFont(new Font("Arial", Font.PLAIN, 10));
-        ejerciciosPanel.add(subsubtitle);
+        ejerciciosPanel.setPreferredSize(new Dimension(600, 400));
+        ejerciciosPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
         List<Ejercicio> ejercicios = entrenamiento.getEjercicios();
+        System.out.println("LISTA DE EJERCICIOS");
         for (Ejercicio ejercicio : ejercicios) {
+            System.out.println("EJERCICIO: "+ ejercicio);
             JPanel ejercicioItem = new JPanel();
             ejercicioItem.setLayout(new BoxLayout(ejercicioItem, BoxLayout.Y_AXIS));
 
@@ -84,16 +89,32 @@ public class EntrenamientoView {
             JPanel ejercicioTutorialPanel = new JPanel(new FlowLayout());
             ejercicioTutorialPanel.add(new JLabel("- video tutorial: "));
             ejercicioTutorialPanel.add(new JLabel(ejercicio.getVideoUrl()));
+            JPanel blankLine = new JPanel();
+            blankLine.add(new JLabel(" "));
+
+            ejercicioItem.add(ejercicioTitlePanel);
+            ejercicioItem.add(ejercicioDescPanel);
+            ejercicioItem.add(ejercicioSeriesPanel);
+            ejercicioItem.add(ejercicioRepsPanel);
+            ejercicioItem.add(ejercicioPesoPanel);
+            ejercicioItem.add(ejercicioNivelAerobicoPanel);
+            ejercicioItem.add(ejercicioExigenciaPanel);
+            ejercicioItem.add(ejercicioTutorialPanel);
+            ejercicioItem.add(blankLine);
+            ejercicioItem.add(blankLine);
+            ejercicioItem.add(blankLine);
 
             ejerciciosPanel.add(ejercicioItem);
         }
 
         JScrollPane scrollPane = new JScrollPane(ejerciciosPanel);
+        //scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(600, 400));
 
-        centerPanel.add(infoPanel);
-        centerPanel.add(ejerciciosPanel);
+        //centerPanel.add(infoPanel);
+        centerPanel.add(scrollPane);
         entrenamientoPanel.add(centerPanel, BorderLayout.CENTER);
 
         // BOTONES
