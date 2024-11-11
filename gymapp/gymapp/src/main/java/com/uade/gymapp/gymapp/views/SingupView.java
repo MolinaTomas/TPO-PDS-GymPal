@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
 
 public class SingupView {
     private SocioController socioController;
@@ -37,7 +36,7 @@ public class SingupView {
         signupPanel.add(topPanel, BorderLayout.NORTH);
 
         // Formulario de registro
-        JPanel formPanel = new JPanel(new GridLayout(8, 2, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(11, 2, 10, 10));
         JTextField nameField = new JTextField();
         JTextField apellidoField = new JTextField();
         JTextField sexoField = new JTextField();
@@ -117,7 +116,7 @@ public class SingupView {
                 double peso = Double.parseDouble(pesoField.getText());
                 double masa = Double.parseDouble(masaField.getText());
                 double grasa = Double.parseDouble(grasaField.getText());
-                Medicion medicionInicial = new Medicion();
+                Medicion medicionInicial = new Medicion("2024-12-12", 50.0, 50.0, 50.0);
                 medicionInicial.setPeso(peso);
                 medicionInicial.setMasaMuscular(masa);
                 medicionInicial.setPorcentajeGrasaCorporal(grasa);

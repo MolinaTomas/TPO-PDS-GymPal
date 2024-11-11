@@ -1,9 +1,6 @@
 package com.uade.gymapp.gymapp.controller;
 
-import com.uade.gymapp.gymapp.model.BajarDePeso;
-import com.uade.gymapp.gymapp.model.Objetivo;
-import com.uade.gymapp.gymapp.model.Rutina;
-import com.uade.gymapp.gymapp.model.Socio;
+import com.uade.gymapp.gymapp.model.*;
 import com.uade.gymapp.gymapp.model.dto.SocioDTO;
 import com.uade.gymapp.gymapp.model.observer.TrofeoConstanciaObserver;
 import com.uade.gymapp.gymapp.model.observer.TrofeoCreidoObserver;

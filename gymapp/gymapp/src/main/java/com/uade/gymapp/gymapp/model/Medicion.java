@@ -13,7 +13,7 @@ public class Medicion {
     private double porcentajeGrasaCorporal;
     private double masaMuscular;
 
-    public Medicion() {
+    public Medicion(String date, double peso, double porcentajeGrasaCorporal, double masaMuscular) {
     }
 
     public Medicion(LocalDateTime fechaYhora, double peso, double porcentajeGrasaCorporal, double masaMuscular) {
