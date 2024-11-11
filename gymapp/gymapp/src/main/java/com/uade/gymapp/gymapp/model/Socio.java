@@ -71,7 +71,7 @@ public class Socio {
 
     public void notifyObservers() {
         for (TrofeoObserver observador : observadores) {
-            observador.otorgarTrofeo(this, null);
+            observador.otorgarTrofeo(this, getMediciones().get(0));
         }
     }
 

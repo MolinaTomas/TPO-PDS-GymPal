@@ -69,7 +69,6 @@ public class RutinaView {
         reforzarBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Reforzando rutina...");
                 rutina.refuerzoRutina();
                 GymappApplication.crearPantallasPersonalizadas(card, panelCard);
             }
