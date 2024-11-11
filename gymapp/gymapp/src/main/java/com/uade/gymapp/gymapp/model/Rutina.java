@@ -12,6 +12,7 @@ public class Rutina {
     private Long id;
     private List<Entrenamiento> entrenamientos;
     private Objetivo objetivo;
+    private List<Trofeo> Observadores;
 
     public Rutina(Long id, List<Entrenamiento> entrenamientos, Objetivo objetivo) {
         this.id = id;
@@ -34,5 +35,21 @@ public class Rutina {
 
     public boolean isTiempoEntrenamientoValido(int duracion) {
         return duracion >= objetivo.getTiempoEntrenamientoMin() && duracion <= objetivo.getTiempoEntrenamientoMax();
+    }
+
+    public void reforzarRutina() {
+
+    }
+
+    public void registrarProgreso() {
+
+    }
+
+    public void suscribirObservador(Trofeo observador) {
+        this.Observadores.add(observador);
+    }
+
+    public void eliminarObservador(Trofeo observador) {
+        this.Observadores.remove(observador);
     }
 }
