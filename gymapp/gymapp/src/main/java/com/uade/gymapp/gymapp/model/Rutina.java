@@ -63,7 +63,6 @@ public class Rutina {
     // Recordar agregar socio en notifyObservers y reforzarRutina cuando se codee
 
     public void generarEntrenamientos() {
-
         for (int i = 0; i < 5; i++) {
             List<Ejercicio> ejerciciosSeleccionados = new ArrayList<>();
 

@@ -4,6 +4,8 @@ import com.uade.gymapp.gymapp.model.dto.ObjetivoDTO;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public abstract class Objetivo {
@@ -32,4 +34,6 @@ public abstract class Objetivo {
 
     public abstract Rutina generarRutina();
     public abstract void calcularProgreso(Socio socio);
+
+    public abstract List<Ejercicio> generarEntrenamientos();
 }
