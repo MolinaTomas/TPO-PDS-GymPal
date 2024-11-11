@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class SocioController {
         admin.addObserver(constanciaObserver);
         TrofeoDedicacionObserver dedicacionObserver = new TrofeoDedicacionObserver();
         admin.addObserver(dedicacionObserver);
+        admin.getMediciones().add(new Medicion(LocalDateTime.now(), 50.0, 50.0, 50.0));
         usuarios.add(admin);
     }
 
