@@ -23,11 +23,6 @@ public class TonificarCuerpo extends Objetivo {
     }
 
     @Override
-    public boolean isAerobicoValido(int nivelAerobico) {
-        return nivelAerobico <= 4;
-    }
-
-    @Override
     public boolean cumpleObjetivo(Socio socio, Medicion medicion) {
         if (medicion.getMasaMuscular() >= this.masaMuscularIdeal && medicion.getPorcentajeGrasaCorporal() <= this.porcentajeGrasaIdeal) {
             this.cumplido = true;

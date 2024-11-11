@@ -19,11 +19,6 @@ public class MantenerFigura extends Objetivo {
         this.cumplido = true;
     }
 
-    @Override
-    public boolean isAerobicoValido(int nivelAerobico) {
-        return nivelAerobico >= 2 && nivelAerobico <= 4;
-    }
-
 
     @Override
     public boolean cumpleObjetivo(Socio socio, Medicion medicion) {

@@ -22,11 +22,6 @@ public class BajarDePeso extends Objetivo {
     }
 
     @Override
-    public boolean isAerobicoValido(int nivelAerobico) {
-        return nivelAerobico >= 3;
-    }
-
-    @Override
     public boolean cumpleObjetivo(Socio socio, Medicion medicion) {
         if (medicion.getPeso() <= this.pesoIdeal) {
             this.cumplido = true;
