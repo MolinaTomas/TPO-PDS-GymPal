@@ -1,6 +1,8 @@
 package com.uade.gymapp.gymapp.model;
 
 import com.uade.gymapp.gymapp.model.dto.RutinaDTO;
+import com.uade.gymapp.gymapp.model.observer.TrofeoObserver;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,8 +15,7 @@ import java.util.List;
 public class Rutina {
     private List<Entrenamiento> entrenamientos;
     private Objetivo objetivo;
-    private List<Trofeo> Observadores;
-    private static final int DURACION_SEMANAS = 4;
+    private List<TrofeoObserver> Observadores;
 
     public Rutina(Objetivo objetivo) {
         this.objetivo = objetivo;
@@ -57,15 +58,23 @@ public class Rutina {
         }
     }
 
-    public void registrarProgreso() {
-
+    public void registrarProgreso(Socio socio) {
+        notifyObservers(socio);
     }
 
-    public void suscribirObservador(Trofeo observador) {
+    public void suscribirObservador(TrofeoObserver observador) {
         this.Observadores.add(observador);
     }
 
-    public void eliminarObservador(Trofeo observador) {
+    public void eliminarObservador(TrofeoObserver observador) {
         this.Observadores.remove(observador);
     }
+
+    public void notifyObservers(Socio socio) {
+        for (TrofeoObserver observer : Observadores) {
+            observer.otorgarTrofeo(socio);
+        }
+    }
+
+    // Recordar agregar socio en notifyObservers y reforzarRutina cuando se codee
 }
