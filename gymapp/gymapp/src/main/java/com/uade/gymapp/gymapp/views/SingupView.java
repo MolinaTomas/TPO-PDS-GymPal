@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class SingupView {
     private SocioController socioController;
@@ -116,14 +117,17 @@ public class SingupView {
                 double peso = Double.parseDouble(pesoField.getText());
                 double masa = Double.parseDouble(masaField.getText());
                 double grasa = Double.parseDouble(grasaField.getText());
-                Medicion medicionInicial = new Medicion("2024-12-12", 50.0, 50.0, 50.0);
+                Medicion medicionInicial = new Medicion(LocalDateTime.now(), 50.0, 50.0, 50.0);
                 medicionInicial.setPeso(peso);
                 medicionInicial.setMasaMuscular(masa);
                 medicionInicial.setPorcentajeGrasaCorporal(grasa);
+
+
+                ResponseEntity<String> response = socioController.register(socioDTO);
+
                 Socio usuarioActual = SocioController.getUsuarioActual();
                 usuarioActual.getMediciones().add(medicionInicial);
 
-                ResponseEntity<String> response = socioController.register(socioDTO);
                 System.out.println(response.getBody());
                 GymappApplication.crearPantallasPersonalizadas(card, panelCard);
                 card.show(panelCard, "Dashboard");

@@ -43,32 +43,34 @@ public class HistorialMedicionesView {
 
         List<Medicion> mediciones = SocioController.getUsuarioActual().getMediciones();
 
-        for (Medicion medicion : mediciones) {
-            JPanel item = new JPanel(new FlowLayout());
+        if (mediciones!=null) {
+            for (Medicion medicion : mediciones) {
+                JPanel item = new JPanel(new FlowLayout());
 
-            JPanel itemFecha = new JPanel(new FlowLayout());
-            itemFecha.add(new JLabel("Fecha:"));
-            itemFecha.add(new JLabel(medicion.getFechaYhora().toString()));
+                JPanel itemFecha = new JPanel(new FlowLayout());
+                itemFecha.add(new JLabel("Fecha:"));
+                itemFecha.add(new JLabel(medicion.getFechaYhora().toString()));
 
-            JPanel itemPeso = new JPanel(new FlowLayout());
-            itemPeso.add(new JLabel("Peso en KG:"));
-            itemFecha.add(new JLabel(String.valueOf(medicion.getPeso())));
+                JPanel itemPeso = new JPanel(new FlowLayout());
+                itemPeso.add(new JLabel("Peso en KG:"));
+                itemFecha.add(new JLabel(String.valueOf(medicion.getPeso())));
 
-            JPanel itemMasa= new JPanel(new FlowLayout());
-            itemMasa.add(new JLabel("Masa muscular:"));
-            itemMasa.add(new JLabel(String.valueOf(medicion.getMasaMuscular())));
+                JPanel itemMasa= new JPanel(new FlowLayout());
+                itemMasa.add(new JLabel("Masa muscular:"));
+                itemMasa.add(new JLabel(String.valueOf(medicion.getMasaMuscular())));
 
-            JPanel itemGrasa = new JPanel(new FlowLayout());
-            itemGrasa.add(new JLabel("Grasa corporal:"));
-            itemGrasa.add(new JLabel(String.valueOf(medicion.getPorcentajeGrasaCorporal())));
+                JPanel itemGrasa = new JPanel(new FlowLayout());
+                itemGrasa.add(new JLabel("Grasa corporal:"));
+                itemGrasa.add(new JLabel(String.valueOf(medicion.getPorcentajeGrasaCorporal())));
 
-            item.add(itemFecha);
-            item.add(itemPeso);
-            item.add(itemMasa);
-            item.add(itemGrasa);
+                item.add(itemFecha);
+                item.add(itemPeso);
+                item.add(itemMasa);
+                item.add(itemGrasa);
 
-            infoPanel.add(item);
+                infoPanel.add(item);
 
+            }
         }
 
         medicionPanel.add(infoPanel, BorderLayout.CENTER);
