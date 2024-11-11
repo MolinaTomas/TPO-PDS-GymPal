@@ -9,13 +9,11 @@ import java.util.List;
 @Getter
 @Setter
 public class EntrenamientoDTO {
-    private Long id;
     private int duracion;
     private Date fecha;
     private List<EjercicioDTO> ejercicios;
 
-    public EntrenamientoDTO(Long id, int duracion, Date fecha, List<EjercicioDTO> ejercicios) {
-        this.id = id;
+    public EntrenamientoDTO(int duracion, Date fecha, List<EjercicioDTO> ejercicios) {
         this.duracion = duracion;
         this.fecha = fecha;
         this.ejercicios = ejercicios;

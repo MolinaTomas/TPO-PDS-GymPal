@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
-@NoArgsConstructor
 @Getter
 @Setter
 public class Entrenamiento {
@@ -19,6 +18,10 @@ public class Entrenamiento {
     private List<EjercicioRealizado> ejerciciosRealizados;
     private EstadoEntrenamiento estado;
 
+    public Entrenamiento() {
+        this.ejerciciosRealizados = new ArrayList<>();
+        this.estado = new EstadoEntrenamientoListo(); // Estado Inicial
+    }
     public Entrenamiento(int duracion) {
         this.duracion = duracion;
         this.ejerciciosRealizados = new ArrayList<>();

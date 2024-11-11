@@ -12,7 +12,6 @@ import com.uade.gymapp.gymapp.controller.RutinaController;
 @Getter
 @Setter
 public class Socio {
-    private Long id;
     private String name;
     private String apellido;
     private String sexo;
@@ -35,10 +34,9 @@ public class Socio {
     }
 
     // Constructor
-    public Socio(Long id, String name, String apellido, String sexo, int edad,
+    public Socio(String name, String apellido, String sexo, int edad,
             int altura, String mail, String password, Objetivo objetivo, List<Trofeo> trofeos,
             List<Medicion> listaMediciones, Rutina rutina) {
-        this.id = id;
         this.name = name;
         this.apellido = apellido;
         this.sexo = sexo;
@@ -82,9 +80,8 @@ public class Socio {
     public void setObjetivo(Objetivo objetivo) {
         this.objetivo = objetivo;
         // Crea una nueva rutina basada en el nuevo objetivo
-        //Rutina nuevaRutina = rutinaController.crearRutina(objetivo);
-        //this.rutina = nuevaRutina;
-        rutinaController.crearRutina(this, objetivo);
+        Rutina nuevaRutina = new Rutina(objetivo);
+        this.rutina = nuevaRutina;
     }
 
     public void setObjetivo(String objetivoSeleccionado) {

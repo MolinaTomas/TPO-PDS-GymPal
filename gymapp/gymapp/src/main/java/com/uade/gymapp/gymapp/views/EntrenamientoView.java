@@ -1,18 +1,15 @@
 package com.uade.gymapp.gymapp.views;
 
-import com.uade.gymapp.gymapp.model.Ejercicio;
-import com.uade.gymapp.gymapp.model.Entrenamiento;
-import com.uade.gymapp.gymapp.model.EstadoEntrenamientoEnCurso;
-import com.uade.gymapp.gymapp.model.EstadoEntrenamientoFinalizado;
+import com.uade.gymapp.gymapp.GymappApplication;
+import com.uade.gymapp.gymapp.controller.SocioController;
+import com.uade.gymapp.gymapp.model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 
 public class EntrenamientoView {
     private Map<Ejercicio, JPanel> ejercicioItemsMap = new HashMap<>();
@@ -102,6 +99,7 @@ public class EntrenamientoView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 entrenamiento.setEstado(new EstadoEntrenamientoEnCurso());
+                entrenamiento.setFecha(new Date());
 
                 topPanel.removeAll();
                 topPanel.revalidate();
@@ -151,6 +149,10 @@ public class EntrenamientoView {
                     buttonsPanel.revalidate();
                     buttonsPanel.repaint();
                     buttonsPanel.add(new JLabel("Entrenamiento finalizado"));
+
+                    Socio usuario = SocioController.getUsuarioActual();
+                    usuario.getRutina().notifyObservers(usuario);
+                    GymappApplication.crearPantallasPersonalizadas(card, panelCard);
                 }
             }
         });
@@ -201,7 +203,6 @@ public class EntrenamientoView {
             public void actionPerformed(ActionEvent e) {
                 registrarEjercicioView = new RegistrarEjercicioView();
                 registrarEjercicioView.crearPantalla(entrenamiento, ejercicio, dia, ejerciciosPanel, ejercicioItemsMap);
-
             }
         });
         JPanel blankLine = new JPanel();

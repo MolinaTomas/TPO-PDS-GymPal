@@ -2,6 +2,7 @@ package com.uade.gymapp.gymapp.model.observer;
 
 import java.time.LocalDateTime;
 
+import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.model.Socio;
 import com.uade.gymapp.gymapp.model.Trofeo;
 

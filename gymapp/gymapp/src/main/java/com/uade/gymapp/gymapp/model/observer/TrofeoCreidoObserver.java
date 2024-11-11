@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class TrofeoCreidoObserver implements TrofeoObserver {
     @Override
     public void otorgarTrofeo(Socio socio) {
-        long conteo = socio.getListaMediciones().stream()
+        long conteo = socio.getMediciones().stream()
                 .filter(m -> m.getFechaYhora().getMonth() == LocalDateTime.now().getMonth())
                 .count();
 

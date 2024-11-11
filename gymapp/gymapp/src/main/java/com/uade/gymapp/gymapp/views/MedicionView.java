@@ -1,5 +1,6 @@
 package com.uade.gymapp.gymapp.views;
 
+import com.uade.gymapp.gymapp.GymappApplication;
 import com.uade.gymapp.gymapp.controller.SocioController;
 import com.uade.gymapp.gymapp.model.Medicion;
 import com.uade.gymapp.gymapp.model.Socio;
@@ -76,7 +77,6 @@ public class MedicionView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LocalDateTime fechaYhora = LocalDateTime.now();
-                System.out.println(fechaYhora);
                 double peso = Double.parseDouble(pesoField.getText());
                 double masaMuscular = Double.parseDouble(masaMuscularField.getText());
                 double grasaCorporal = Double.parseDouble(grasaCorporalField.getText());
@@ -87,7 +87,7 @@ public class MedicionView {
                 if (usuarioActual != null) {
                     Medicion medicion = new Medicion(medicionDTO.getFechaYhora(), medicionDTO.getPeso(),
                             medicionDTO.getPorcentajeGrasaCorporal(), medicionDTO.getMasaMuscular());
-                    usuarioActual.getListaMediciones().add(medicion); // Agregar la medición a la lista del usuario
+                    usuarioActual.getMediciones().add(medicion); // Agregar la medición a la lista del usuario
 
                     // Imprimir la medición en la consola
                     System.out.println("Nueva medición registrada: Peso: " + medicion.getPeso() +
@@ -96,6 +96,7 @@ public class MedicionView {
 
                     JOptionPane.showMessageDialog(medicionPanel, "Medición registrada exitosamente");
                     usuarioActual.notifyObservers();
+                    GymappApplication.crearPantallasPersonalizadas(card, panelCard);
                     historialMedicionesView.crearPantalla(card, panelCard);
                     limpiarFormulario(formPanel);
                 } else {

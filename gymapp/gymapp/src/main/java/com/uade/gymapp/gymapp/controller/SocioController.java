@@ -36,13 +36,13 @@ public class SocioController {
         admin.setMail("admin");
         admin.setPassword("123");
         admin.setObjetivo(new BajarDePeso());
+        admin.setRutina(new Rutina(admin.getObjetivo()));
         TrofeoCreidoObserver creidoObserver = new TrofeoCreidoObserver();
         admin.addObserver(creidoObserver);
         TrofeoConstanciaObserver constanciaObserver = new TrofeoConstanciaObserver();
         admin.addObserver(constanciaObserver);
         TrofeoDedicacionObserver dedicacionObserver = new TrofeoDedicacionObserver();
         admin.addObserver(dedicacionObserver);
-        rutinaController.crearRutina(admin, admin.getObjetivo());
         usuarios.add(admin);
     }
 
@@ -65,11 +65,6 @@ public class SocioController {
         nuevoUsuario.setMail(socioDTO.getMail());
         nuevoUsuario.setPassword(socioDTO.getPassword());
         nuevoUsuario.setObjetivo(socioDTO.getObjetivo());
-
-        // Crear una Rutina basada en el Objetivo
-
-        nuevoUsuario.setRutina(nuevaRutina);
-        rutinaController.crearRutina(nuevoUsuario, nuevoUsuario.getObjetivo());
 
         usuarios.add(nuevoUsuario); // Agrego el usuario a la lista
         usuarioActual = nuevoUsuario; // Establezco el usuario actual
@@ -123,10 +118,6 @@ public class SocioController {
         // Reviso si el objetivo cambió
         if (!usuarioActual.getObjetivo().equals(socioDTO.getObjetivo())) {
             usuarioActual.setObjetivo(socioDTO.getObjetivo());
-
-            // Creo una nueva Rutina basada en el nuevo Objetivo
-            Rutina nuevaRutina = new Rutina(socioDTO.getObjetivo());
-            usuarioActual.setRutina(nuevaRutina);
         }
     }
 

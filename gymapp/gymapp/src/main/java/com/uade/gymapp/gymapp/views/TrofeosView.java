@@ -47,10 +47,10 @@ public class TrofeosView {
                 JPanel item = new JPanel(new FlowLayout());
 
                 JPanel itemFecha = new JPanel(new FlowLayout());
-                itemFecha.add(new JLabel("Fecha:"));
+                itemFecha.add(new JLabel("Fecha: "));
                 itemFecha.add(new JLabel(trofeo.getFechaYhora().toString()));
                 JPanel itemNombre = new JPanel(new FlowLayout());
-                itemNombre.add(new JLabel("Fecha:"));
+                itemNombre.add(new JLabel("Tipo: "));
                 itemNombre.add(new JLabel(trofeo.getNombre()));
                 item.add(itemFecha);
                 item.add(itemNombre);

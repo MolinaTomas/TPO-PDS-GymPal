@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public abstract class Objetivo {
     private Long id;
-    private boolean cumplido;
+    protected boolean cumplido;
     private double progresoActual;
     protected Rutina rutina;
 

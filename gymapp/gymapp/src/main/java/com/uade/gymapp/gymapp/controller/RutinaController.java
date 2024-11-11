@@ -8,10 +8,10 @@ public class RutinaController {
 
     private List<Ejercicio> ejerciciosDisponibles;
 
-    public RutinaController() {
-        // Inicializamos la lista de ejercicios disponibles
-        ejerciciosDisponibles = inicializarEjercicios();
-    }
+//    public RutinaController() {
+//        // Inicializamos la lista de ejercicios disponibles
+//        ejerciciosDisponibles = inicializarEjercicios();
+//    }
 
 //    private List<Ejercicio> inicializarEjercicios() {
 //        List<Ejercicio> ejercicios = new ArrayList<>();

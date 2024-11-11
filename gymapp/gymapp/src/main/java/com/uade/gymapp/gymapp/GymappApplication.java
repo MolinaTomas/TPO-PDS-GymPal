@@ -84,8 +84,8 @@ public class GymappApplication {
 		perfilView.crearPantalla(card, panelCard);
 		configurarPerfilView.crearPantalla(card, panelCard);
 
-		Socio socioActual = SocioController.getUsuarioActual();
-		rutinaController.crearRutina(socioActual, socioActual.getObjetivo());
+//		Socio socioActual = SocioController.getUsuarioActual();
+//		rutinaController.crearRutina(socioActual, socioActual.getObjetivo());
 
 		rutinaView.crearPantalla(card, panelCard, entrenamientoView);
 		historialEntrenamientosView.crearPantalla(card, panelCard);

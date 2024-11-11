@@ -41,7 +41,7 @@ public class HistorialMedicionesView {
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
 
-        List<Medicion> mediciones = SocioController.getUsuarioActual().getListaMediciones();
+        List<Medicion> mediciones = SocioController.getUsuarioActual().getMediciones();
 
         for (Medicion medicion : mediciones) {
             JPanel item = new JPanel(new FlowLayout());

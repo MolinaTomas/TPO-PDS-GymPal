@@ -37,18 +37,17 @@ public class TonificarCuerpo extends Objetivo {
     public List<Ejercicio> generarEntrenamientos() {
         List<Ejercicio> ejerciciosSeleccionados = new ArrayList<>();
 
-        if (this.objetivo instanceof BajarDePeso) {
-            ejerciciosSeleccionados.add(new Ejercicio("Running", "Correr en cinta", 3, 4, 10.0, 5,
-                    ExigenciaMuscular.BAJO, "url_video_running"));
-            ejerciciosSeleccionados.add(new Ejercicio("Bicicleta", "Bicicleta fija", 3, 3, 15.0, 4,
-                    ExigenciaMuscular.BAJO, "url_video_bicicleta"));
-            ejerciciosSeleccionados.add(new Ejercicio("Elíptico", "Ejercicio en elíptico", 3, 3, 20.0, 5,
-                    ExigenciaMuscular.BAJO, "url_video_eliptico"));
-            ejerciciosSeleccionados.add(new Ejercicio("Salto de soga", "Saltos de soga", 3, 3, 5.0, 5,
-                    ExigenciaMuscular.BAJO, "url_video_soga"));
-            ejerciciosSeleccionados.add(new Ejercicio("Natación", "Nadar en piscina", 3, 3, 30.0, 4,
-                    ExigenciaMuscular.BAJO, "url_video_natacion"));
-        return
-    }
+        ejerciciosSeleccionados.add(new Ejercicio("Press de banca", "Press de banca con barra", 4, 4, 20.0, 2,
+                ExigenciaMuscular.ALTO, "url_video_press_banca"));
+        ejerciciosSeleccionados.add(new Ejercicio("Sentadillas", "Sentadillas con barra", 4, 4, 25.0, 3,
+                ExigenciaMuscular.ALTO, "url_video_sentadillas"));
+        ejerciciosSeleccionados.add(new Ejercicio("Peso muerto", "Peso muerto con barra", 4, 4, 30.0, 2,
+                ExigenciaMuscular.ALTO, "url_video_peso_muerto"));
+        ejerciciosSeleccionados.add(new Ejercicio("Dominadas", "Dominadas en barra", 4, 4, 15.0, 2,
+                ExigenciaMuscular.ALTO, "url_video_dominadas"));
+        ejerciciosSeleccionados.add(new Ejercicio("Flexiones", "Flexiones de brazos", 4, 4, 10.0, 4,
+                ExigenciaMuscular.ALTO, "url_video_flexiones"));
 
+        return ejerciciosSeleccionados;
+    }
 }
